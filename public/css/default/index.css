@@ -1,0 +1,111 @@
+body {
+  background: red;
+  padding: 1rem;
+}
+body header {
+  background: green;
+  width: 100%;
+}
+body header nav {
+  background: green;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+}
+body header nav .logo {
+  text-decoration: none;
+  color: inherit;
+  padding: 0rem 1rem;
+  display: block;
+  font-weight: bold;
+  font-size: 1.6875rem;
+}
+body header nav ul {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0rem;
+  margin: 0rem;
+}
+body header nav ul li {
+  list-style: none;
+}
+body header nav ul li a {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: inherit;
+  display: block;
+}
+body header nav ul li:hover {
+  color: black;
+  background: gray;
+}
+body main {
+  background: blue;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40.5px 1rem 1rem 1rem;
+}
+body main h1 {
+  padding: 0rem;
+  margin: 0rem;
+}
+body main h6 {
+  padding: 0rem;
+  margin: 0rem;
+}
+body .content-body {
+  background: yellow;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+body .content-body .content-loader {
+  background: violet;
+  width: 100%;
+  min-height: 75vh;
+}
+body .content-body aside {
+  width: 100%;
+  background: indigo;
+}
+body .content-body aside h2 {
+  text-align: center;
+}
+body footer {
+  background: orange;
+}
+body footer h2 {
+  text-align: center;
+}
+body footer .footer-contents {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body footer .footer-contents .sides {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 50%;
+  border-left: 0.1rem solid blue;
+  padding: 1rem 0.5rem;
+}
+body footer .footer-contents .sides .form-label {
+  display: block;
+}
+body footer .footer-contents .left {
+  align-items: flex-end;
+  border-left: 0;
+}
+body footer .footer-contents .left .form-label {
+  font-weight: bold;
+}/*# sourceMappingURL=index.css.map */

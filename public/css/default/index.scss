@@ -1,0 +1,133 @@
+body{
+    background: red;
+    padding: 1rem;
+
+    header{
+        background: green;
+        width: 100%;
+
+        nav{
+            background: green;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: fixed;
+            top: 0rem;
+            left: 0rem;
+            width: 100%;
+
+            .logo{
+                text-decoration: none;
+                color: inherit;
+                padding: 0rem 1rem;
+                display: block;
+                font-weight: bold;
+                font-size: 1.6875rem;
+            }
+
+            ul{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                padding: 0rem;
+                margin: 0rem;
+
+                li{
+                    list-style: none;
+
+                    a{
+                        padding: .5rem 1rem;
+                        text-decoration: none;
+                        color: inherit;
+                        display: block;
+                    }
+
+                    &:hover{
+                        color: black;
+                        background: gray;
+                    }
+                }
+            }
+        }
+    }
+
+    main{
+        background: blue;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        padding: 40.5px 1rem 1rem 1rem;
+
+        h1{
+            padding: 0rem;
+            margin: 0rem;
+        }
+
+        h6{
+            padding: 0rem;
+            margin: 0rem;
+
+        }
+    }
+
+    .content-body{
+        background: yellow;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        gap: .5rem;
+
+        .content-loader{
+            background: violet;
+            width: 100%;
+            min-height: 75vh;
+        }
+
+        aside{
+            width: 100%;
+            background: indigo;
+
+            h2{
+                text-align: center;
+            }
+        }
+    }
+
+    footer{
+        background: orange;
+
+        h2{
+            text-align: center;
+        }
+
+        .footer-contents{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .sides{
+                display: flex;
+                flex-flow: column;
+                justify-content: flex-start;
+                align-items: flex-start;
+                width: 50%;
+                border-left: .1rem solid blue;
+                padding: 1rem .5rem;
+
+                .form-label{
+                    display: block;
+                }
+            }
+
+            .left{
+                align-items: flex-end;
+                border-left: 0;
+
+                .form-label{
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}

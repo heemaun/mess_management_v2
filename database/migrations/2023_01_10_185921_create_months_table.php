@@ -13,15 +13,11 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('months', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->string('phone')->unique();
-            $table->string('image')->nullable();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->rememberToken();
+            $table->foreignId('user_id')->constrained('users','id');
+            $table->string('name')->unique();
+            $table->enum('status',['active','inactive','deleted','pending'])->default('pending');
             $table->timestamps();
         });
     }
@@ -33,6 +29,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('months');
     }
 };
