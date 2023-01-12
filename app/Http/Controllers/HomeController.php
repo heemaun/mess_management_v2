@@ -7,6 +7,7 @@ use App\Models\Member;
 use App\Models\Notice;
 use App\Models\MemberMonth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,7 @@ class HomeController extends Controller
                             ->orderBy('created_at','DESC')
                             ->limit(5)
                             ->get();
+
         return view('defult.index',compact('notices'));
     }
 
@@ -25,22 +27,25 @@ class HomeController extends Controller
                         ->orderBy('name','DESC')
                         ->get();
 
-        // $groundMemberMonths = MemberMonth::join('members','members-months.member_id','=','members.id')
-        //                         ->where('members-months.month_id',$month->last()->id)
-        //                         ->whereIn('members.status','Ground Floor')
-        //                         ->select('members-months.*')
-        //                         ->get();
+        $groundMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
+                                ->where('members_months.month_id',$months->last()->id)
+                                ->where('members.floor','Ground Floor')
+                                ->where('members.status','active')
+                                ->select('members_months.*')
+                                ->get();
 
-        // $firstMemberMonths = MemberMonth::join('members','members-months.member_id','=','members.id')
-        //                         ->where('members-months.month_id',$month->last()->id)
-        //                         ->whereIn('members.status','1st Floor')
-        //                         ->select('members-months.*')
-        //                         ->get();
-        // $secondMemberMonths = MemberMonth::join('members','members-months.member_id','=','members.id')
-        //                         ->where('members-months.month_id',$month->last()->id)
-        //                         ->whereIn('members.status','2nd Floor')
-        //                         ->select('members-months.*')
-        //                         ->get();
-        return response(view('defult.home',compact('months')));
+        $firstMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
+                                ->where('members_months.month_id',$months->last()->id)
+                                ->where('members.floor','1st Floor')
+                                ->where('members.status','active')
+                                ->select('members_months.*')
+                                ->get();
+        $secondMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
+                                ->where('members_months.month_id',$months->last()->id)
+                                ->where('members.floor','2nd Floor')
+                                ->where('members.status','active')
+                                ->select('members_months.*')
+                                ->get();
+        return response(view('defult.home',compact('months','groundMembersMonths','firstMembersMonths','secondMembersMonths')));
     }
 }

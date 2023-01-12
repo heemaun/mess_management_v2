@@ -2,6 +2,13 @@
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AdjustmentController;
+use App\Http\Controllers\MemberController;
+use App\Http\Controllers\MemberMonthController;
+use App\Http\Controllers\MonthController;
+use App\Http\Controllers\NoticeController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,9 +23,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 //resource routes
-Route::resource('/adjustments', adjustmentController::class);
+Route::resource('/adjustments', AdjustmentController::class);
 Route::resource('/members', MemberController::class);
-Route::resource('/members-months', MemberMonthController::class);
+Route::resource('/members-months', MemberMonthController::class)->parameters(['members-months' => 'member_month']);
 Route::resource('/months', MonthController::class);
 Route::resource('/notices', NoticeController::class);
 Route::resource('/payments', PaymentController::class);

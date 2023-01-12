@@ -69,11 +69,11 @@ body .content-body {
 }
 body .content-body .content-loader {
   background: violet;
-  width: 100%;
   min-height: 75vh;
+  flex-grow: 2;
 }
 body .content-body aside {
-  width: 100%;
+  flex-grow: 1;
   background: indigo;
 }
 body .content-body aside h2 {
@@ -88,7 +88,7 @@ body footer h2 {
 body footer .footer-contents {
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-start;
 }
 body footer .footer-contents .sides {
   display: flex;

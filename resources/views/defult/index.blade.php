@@ -57,7 +57,7 @@
     <body>
         <header>
             <nav>
-                <a href="{{ route('home') }}" class="logo">Zamans Mess</a>
+                <a href="{{ route('index') }}" class="logo">Calefornia Co-op</a>
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('members.index') }}">Members</a></li>
@@ -78,8 +78,8 @@
         </header>
 
         <main>
-            <h1>Zaman Mess</h1>
-            <h6>Suihary, Dinajpur</h6>
+            <h1>ABC</h1>
+            <h6>Calefornia, USA</h6>
         </main>
 
         <section class="content-body">

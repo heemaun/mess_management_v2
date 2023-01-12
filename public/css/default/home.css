@@ -1,1 +1,35 @@
-/*# sourceMappingURL=home.css.map */
+.home .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+.home .top .form-group {
+  flex-grow: 1;
+}
+.home .table-container .table-details table thead th {
+  vertical-align: middle;
+  text-align: center;
+}
+.home .table-container .table-details table tbody td {
+  vertical-align: middle;
+  text-align: center;
+}
+.home .table-container .table-details table tbody .td-flex .td-span-parent {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.home .table-container .table-details table tbody .left {
+  text-align: left;
+}
+.home .table-container .table-details table tbody .right {
+  text-align: right;
+}
+.home .table-container .table-details table tfoot th {
+  vertical-align: middle;
+  text-align: right;
+}
+.home .table-container .hide {
+  display: none;
+}/*# sourceMappingURL=home.css.map */

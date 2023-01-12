@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Month;
+use App\Models\MemberMonth;
 use Illuminate\Http\Request;
 
 class MonthController extends Controller
@@ -46,7 +47,26 @@ class MonthController extends Controller
      */
     public function show(Month $month)
     {
-        //
+        $groundMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
+                                ->where('members_months.month_id',$month->id)
+                                ->where('members.floor','Ground Floor')
+                                ->where('members.status','active')
+                                ->select('members_months.*')
+                                ->get();
+
+        $firstMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
+                                ->where('members_months.month_id',$month->id)
+                                ->where('members.floor','1st Floor')
+                                ->where('members.status','active')
+                                ->select('members_months.*')
+                                ->get();
+        $secondMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
+                                ->where('members_months.month_id',$month->id)
+                                ->where('members.floor','2nd Floor')
+                                ->where('members.status','active')
+                                ->select('members_months.*')
+                                ->get();
+        return response(view('defult.home-table-loader',compact('groundMembersMonths','firstMembersMonths','secondMembersMonths')));
     }
 
     /**

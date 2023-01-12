@@ -1,163 +1,237 @@
 <div class="home">
     <div class="top">
-        <select id="home_month_name_select">
-            <option value="all">All</option>
-            @foreach ($months as $month)
-            <option value="{{ $month->id }}">{{ $month->name }}</option>
-            @endforeach
-        </select>
+        <div class="form-group">
+            <label for="" class="form-label">Select a month</label>
+            <select id="home_month_name_select" class="form-select">
+                @foreach ($months as $month)
+                <option value="{{ $month->id }}" {{ ($loop->iteration === 1) ? 'selected' : '' }}>{{ date('Y-M',strtotime($month->name)) }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="" class="form-label">Select Floor</label>
+            <select id="home_floor_select" class="form-select">
+                <option value="all" selected>All</option>
+                <option value="ground_floor">Ground Floor</option>
+                <option value="first_floor">1st Floor</option>
+                <option value="second_floor">2nd Floor</option>
+            </select>
+        </div>
     </div>
-    {{-- <div class="table-container">
-        <div class="table-details">
+    <div id="table_container" class="table-container">
+        <div id="ground_floor_table_div" class="table-details">
             <h3>Ground Floor</h3>
             <table class="table table-bordered table-dark table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Member</th>
-                        <th>Payment</th>
-                        <th>Adjustment</th>
-                        <th>Rent</th>
-                        <th>Due</th>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">Member</th>
+                        <th colspan="2">Payment</th>
+                        <th colspan="2">Adjustment</th>
+                        <th rowspan="2">Rent</th>
+                        <th rowspan="2">Due</th>
+                    </tr>
+                    <tr>
+                        <th>Details</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($groundMembersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $ss->member->name }}</td>
-                        <td>
-                            @foreach ($ss->payments::where('status','active')->get() as $payment)
-                            {{ $payment->amount }}
-                            @if (!$loop->last)
-                            {{ ',' }}
-                            @endif
+                        <td class="left">{{ $mm->member->name }}</td>
+                        <td class="td-flex">
+                            @if (count($mm->payments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->payments->where('status','active') as $payment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($payment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
+                            </span>
                             @endforeach
-                        </td>
-                        <td>
-                            @foreach ($ss->adjustments::where('status','active')->get() as $adjustment)
-                            {{ $adjustment->amount }}
-                            @if (!$loop->last)
-                            {{ ',' }}
                             @endif
-                            @endforeach
                         </td>
-                        <td>{{ $ss->rent_this_month }}</td>
-                        <td>{{ $ss->due }}</td>
+                        <td class="right">
+                            <span>{{ number_format($mm->payments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="td-flex">
+                            @if (count($mm->adjustments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->adjustments->where('status','active') as $adjustment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($adjustment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
+                            </span>
+                            @endforeach
+                            @endif
+                        </td>
+                        <td class="right">
+                            <span>{{ number_format($mm->adjustments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="right">{{ number_format($mm->rent_this_month) }}</td>
+                        <td class="right">{{ number_format($mm->due) }}</td>
                     </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="2"></th>
-                        <th>Total Paid: {{ $groundMembersMonthsTotalPaid }}</th>
-                        <th>Total Adjustment: {{ $groundMembersMonthsTotalAdjustment }}</th>
-                        <th>Total Due: {{ $groundMembersMonthsTotalDue }}</th>
+                        <th colspan="2">Total Member: {{ count($groundMembersMonths) }}</th>
+                        <th colspan="2">Total Paid: {{ 0 }}</th>
+                        <th colspan="2">Total Adjustment: {{ 0 }}</th>
+                        <th>Total Rent: {{ 0 }}</th>
+                        <th>Total Due: {{ 0 }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
-        <div class="table-details">
+        <div id="first_floor_table_div" class="table-details">
             <h3>First Floor</h3>
             <table class="table table-bordered table-dark table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Member</th>
-                        <th>Payment</th>
-                        <th>Adjustment</th>
-                        <th>Rent</th>
-                        <th>Due</th>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">Member</th>
+                        <th colspan="2">Payment</th>
+                        <th colspan="2">Adjustment</th>
+                        <th rowspan="2">Rent</th>
+                        <th rowspan="2">Due</th>
+                    </tr>
+                    <tr>
+                        <th>Details</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($firstMembersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $ss->member->name }}</td>
-                        <td>
-                            @foreach ($ss->payments as $payment)
-                            {{ $payment->amount }}
-                            @if (!$loop->last)
-                            {{ ',' }}
-                            @endif
+                        <td class="left">{{ $mm->member->name }}</td>
+                        <td class="td-flex">
+                            @if (count($mm->payments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->payments->where('status','active') as $payment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($payment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
+                            </span>
                             @endforeach
-                        </td>
-                        <td>
-                            @foreach ($ss->adjustments as $adjustment)
-                            {{ $adjustment->amount }}
-                            @if (!$loop->last)
-                            {{ ',' }}
                             @endif
-                            @endforeach
                         </td>
-                        <td>{{ $ss->rent_this_month }}</td>
-                        <td>{{ $ss->due }}</td>
+                        <td class="right">
+                            <span>{{ number_format($mm->payments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="td-flex">
+                            @if (count($mm->adjustments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->adjustments->where('status','active') as $adjustment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($adjustment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
+                            </span>
+                            @endforeach
+                            @endif
+                        </td>
+                        <td class="right">
+                            <span>{{ number_format($mm->adjustments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="right">{{ number_format($mm->rent_this_month) }}</td>
+                        <td class="right">{{ number_format($mm->due) }}</td>
                     </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="2"></th>
-                        <th>Total Paid: {{ $firstMembersMonthsTotalPaid }}</th>
-                        <th>Total Adjustment: {{ $firstMembersMonthsTotalAdjustment }}</th>
-                        <th>Total Due: {{ $firstMembersMonthsTotalDue }}</th>
+                        <th colspan="2">Total Member: {{ count($firstMembersMonths) }}</th>
+                        <th colspan="2">Total Paid: {{ 0 }}</th>
+                        <th colspan="2">Total Adjustment: {{ 0 }}</th>
+                        <th>Total Rent: {{ 0 }}</th>
+                        <th>Total Due: {{ 0 }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
-        <div class="table-details">
+        <div id="second_floor_table_div" class="table-details">
             <h3>Second Floor</h3>
             <table class="table table-bordered table-dark table-hover table-striped">
                 <thead>
                     <tr>
-                        <th>No.</th>
-                        <th>Member</th>
-                        <th>Payment</th>
-                        <th>Adjustment</th>
-                        <th>Rent</th>
-                        <th>Due</th>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">Member</th>
+                        <th colspan="2">Payment</th>
+                        <th colspan="2">Adjustment</th>
+                        <th rowspan="2">Rent</th>
+                        <th rowspan="2">Due</th>
+                    </tr>
+                    <tr>
+                        <th>Details</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($secondMembersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td>{{ $ss->member->name }}</td>
-                        <td>
-                            @foreach ($ss->payments as $payment)
-                            {{ $payment->amount }}
-                            @if (!$loop->last)
-                            {{ ',' }}
-                            @endif
+                        <td class="left">{{ $mm->member->name }}</td>
+                        <td class="td-flex">
+                            @if (count($mm->payments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->payments->where('status','active') as $payment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($payment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
+                            </span>
                             @endforeach
-                        </td>
-                        <td>
-                            @foreach ($ss->adjustments as $adjustment)
-                            {{ $adjustment->amount }}
-                            @if (!$loop->last)
-                            {{ ',' }}
                             @endif
-                            @endforeach
                         </td>
-                        <td>{{ $ss->rent_this_month }}</td>
-                        <td>{{ $ss->due }}</td>
+                        <td class="right">
+                            <span>{{ number_format($mm->payments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="td-flex">
+                            @if (count($mm->adjustments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->adjustments->where('status','active') as $adjustment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($adjustment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
+                            </span>
+                            @endforeach
+                            @endif
+                        </td>
+                        <td class="right">
+                            <span>{{ number_format($mm->adjustments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="right">{{ number_format($mm->rent_this_month) }}</td>
+                        <td class="right">{{ number_format($mm->due) }}</td>
                     </tr>
                     @endforeach
                 </tbody>
                 <tfoot>
                     <tr>
-                        <th colspan="2"></th>
-                        <th>Total Paid: {{ $secondMembersMonthsTotalPaid }}</th>
-                        <th>Total Adjustment: {{ $secondMembersMonthsTotalAdjustment }}</th>
-                        <th>Total Due: {{ $secondMembersMonthsTotalDue }}</th>
+                        <th colspan="2">Total Member: {{ count($secondMembersMonths) }}</th>
+                        <th colspan="2">Total Paid: {{ 0 }}</th>
+                        <th colspan="2">Total Adjustment: {{ 0 }}</th>
+                        <th>Total Rent: {{ 0 }}</th>
+                        <th>Total Due: {{ 0 }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
-        <div class="table-details">
-            <span>Total Payment: {{ $groundMembersMonthsTotalPaid+$firstMembersMonthsTotalPaid+$secondMembersMonthsTotalPaid }}</span>
-            <span>Total Due: {{ $groundMembersMonthsTotalDue+$secondMembersMonthsTotalDue+$secondMembersMonthsTotalDue }}</span>
+        <div id="all_table_div" class="table-details">
+            {{-- <span>Total Payment: {{ $groundMembersMonthsTotalPaid+$firstMembersMonthsTotalPaid+$secondMembersMonthsTotalPaid }}</span>
+            <span>Total Due: {{ $groundMembersMonthsTotalDue+$secondMembersMonthsTotalDue+$secondMembersMonthsTotalDue }}</span> --}}
         </div>
-    </div> --}}
+    </div>
 </div>

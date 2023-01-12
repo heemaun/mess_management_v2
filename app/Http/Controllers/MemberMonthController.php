@@ -46,7 +46,7 @@ class MemberMonthController extends Controller
      */
     public function show(MemberMonth $memberMonth)
     {
-        //
+
     }
 
     /**

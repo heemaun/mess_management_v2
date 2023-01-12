@@ -15,7 +15,7 @@ class MemberMonth extends Model
         'member_id',
         'month_id',
         'due',
-        'rent',
+        'rent_this_month',
     ];
 
     public function member()
