@@ -44,9 +44,11 @@ class NoticeController extends Controller
      * @param  \App\Models\Notice  $notice
      * @return \Illuminate\Http\Response
      */
-    public function show(Notice $notice)
+    public function show(Notice $notice,Request $request)
     {
-        //
+        if(array_key_exists('from_home',$request->all())){
+            return view('defult.home-notice',compact('notice'));
+        }
     }
 
     /**

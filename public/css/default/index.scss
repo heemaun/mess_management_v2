@@ -93,6 +93,10 @@ body{
             h2{
                 text-align: center;
             }
+
+            tr{
+                cursor: pointer;
+            }
         }
     }
 
@@ -131,5 +135,62 @@ body{
                 }
             }
         }
+    }
+
+    .home-notice-view{
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        max-width: 75%;
+        background: black;
+        color: white;
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        z-index: 100;
+        padding: 1rem;
+
+        h3{
+            text-align: center;
+            color: goldenrod;
+        }
+
+        .body{
+            max-width: 100%;
+        }
+
+        .footer{
+            width: 100%;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: flex-end;
+
+            .admin{
+                font-size: larger;
+                font-weight: bolder;
+                font-style: italic;
+                color: red;
+            }
+
+            .date{
+                color: red;
+            }
+        }
+
+        .close{
+            position: absolute;
+            top: .5rem;
+            right: 1rem;
+            font-weight: bold;
+            font-size: larger;
+            cursor: pointer;
+        }
+    }
+
+    .hide{
+        display: none;
     }
 }

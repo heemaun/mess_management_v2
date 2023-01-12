@@ -79,6 +79,9 @@ body .content-body aside {
 body .content-body aside h2 {
   text-align: center;
 }
+body .content-body aside tr {
+  cursor: pointer;
+}
 body footer {
   background: orange;
 }
@@ -108,4 +111,53 @@ body footer .footer-contents .left {
 }
 body footer .footer-contents .left .form-label {
   font-weight: bold;
+}
+body .home-notice-view {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translateX(-50%) translateY(-50%);
+  max-width: 75%;
+  background: black;
+  color: white;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 100;
+  padding: 1rem;
+}
+body .home-notice-view h3 {
+  text-align: center;
+  color: goldenrod;
+}
+body .home-notice-view .body {
+  max-width: 100%;
+}
+body .home-notice-view .footer {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+body .home-notice-view .footer .admin {
+  font-size: larger;
+  font-weight: bolder;
+  font-style: italic;
+  color: red;
+}
+body .home-notice-view .footer .date {
+  color: red;
+}
+body .home-notice-view .close {
+  position: absolute;
+  top: 0.5rem;
+  right: 1rem;
+  font-weight: bold;
+  font-size: larger;
+  cursor: pointer;
+}
+body .hide {
+  display: none;
 }/*# sourceMappingURL=index.css.map */

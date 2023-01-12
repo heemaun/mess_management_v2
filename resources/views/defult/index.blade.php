@@ -99,7 +99,7 @@
                     </thead>
                     <tbody>
                         @foreach ($notices as $notice)
-                        <tr class="clickable" date-href={{ route('notices.show',$notice->id) }}>
+                        <tr class="clickable" data-href={{ route('notices.show',$notice->id) }}>
                             <td>{{ $notice->created_at->diffForHumans() }}</td>
                             <td>{{ Str::limit($notice->heading,10,'...') }}</td>
                             <td>{{ $notice->user->name }}</td>
@@ -131,6 +131,16 @@
                 </div>
             </div>
         </footer>
+
+        <section id="home_notice_view" class="home-notice-view hide">
+            <h3 id="home_notice_view_header"></h3>
+            <p id="home_notice_view_body" class="body"></p>
+            <p id="home_notice_view_footer" class="footer">
+                <span id="home_notice_view_admin" class="admin"></span>
+                <span id="home_notice_view_time" class="date"></span>
+            </p>
+            <span id="home_notice_view_close" class="close">X</span>
+        </section>
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
