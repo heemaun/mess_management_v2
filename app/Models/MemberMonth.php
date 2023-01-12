@@ -14,10 +14,17 @@ class MemberMonth extends Model
     protected $fillable = [
         'member_id',
         'month_id',
+        'user_id',
+        'status',
+        'image',
         'due',
         'rent_this_month',
     ];
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function member()
     {
         return $this->belongsTo(Member::class);

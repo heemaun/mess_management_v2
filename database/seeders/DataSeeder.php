@@ -32,6 +32,7 @@ class DataSeeder extends Seeder
             'name'      => 'Md. Maksuduzzaman Maun',
             'email'     => 'heemaun@gmail.com',
             'phone'     => '01751430596',
+            'status'    => 'active',
             'password'  => Hash::make('11111111'),
         ]);
         for($x=0;$x<5;$x++){
@@ -39,6 +40,7 @@ class DataSeeder extends Seeder
                 'name'      => $faker->name(),
                 'email'     => $faker->email(),
                 'phone'     => $faker->phoneNumber(),
+                'status'    => $faker->randomElement(['pending','active','deleted','banned','restricted']),
                 'password'  => Hash::make('11111111'),
             ]);
         }

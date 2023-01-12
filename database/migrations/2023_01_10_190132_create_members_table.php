@@ -21,7 +21,7 @@ return new class extends Migration
             $table->enum('status',['pending','active','inactive','deleted','banned','restricted']);
             $table->string('phone')->nullable();
             $table->string('email')->nullable();
-            $table->string('picture')->nullable();
+            $table->string('image')->nullable();
             $table->integer('initial_balance')->default(0);
             $table->integer('current_balance')->default(0);
             $table->date('joining_date');

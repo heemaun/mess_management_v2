@@ -13,6 +13,16 @@ class HomeController extends Controller
 {
     public function index()
     {
+        $month = Month::where('name',date('Y-m'))->first();
+
+        if($month === null){
+            $month = Month::create([
+                'name'      => date('Y-m'),
+                'status'    => 'pending',
+                'user_id'   => 1,
+            ]);
+        }
+
         $notices = Notice::where('status','active')
                             ->orderBy('created_at','DESC')
                             ->limit(5)

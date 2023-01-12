@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('members_months', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users','id');
             $table->foreignId('member_id')->constrained('members','id');
             $table->foreignId('month_id')->constrained('months','id');
             $table->integer('rent_this_month')->default(0);

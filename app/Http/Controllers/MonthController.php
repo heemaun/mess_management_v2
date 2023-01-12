@@ -2,9 +2,14 @@
 
 namespace App\Http\Controllers;
 
+use Exception;
 use App\Models\Month;
+use App\Models\Member;
 use App\Models\MemberMonth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class MonthController extends Controller
 {
@@ -13,9 +18,21 @@ class MonthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        if(array_key_exists('status',$request->all())){
+            if(strcmp('all',$request->status)===0){
+                $status = ['pending','active','inactive','deleted'];
+            }
+            else{
+                $status = [$request->status];
+            }
+
+            $months = Month::whereIn('status',$status)->get();
+            return response(view('month.search',compact('months')));
+        }
+        $months = Month::where('status','active')->get();
+        return view('month.index',compact('months'));
     }
 
     /**
@@ -25,7 +42,7 @@ class MonthController extends Controller
      */
     public function create()
     {
-        //
+        return response(view('month.create'));
     }
 
     /**
@@ -36,7 +53,48 @@ class MonthController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = Validator::create($request->all(),[
+            'name'      => 'required',
+            'status'    => 'required',
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status' => 'errors',
+                'errors' => $data->errors(),
+            ]);
+        }
+
+        DB::beginTransaction();
+
+        try{
+            $data = $data->validate();
+
+            $month = Month::create([
+                'user_id'   => getUser()->id,
+                'name'      => $data['name'],
+                'status'    => $data['status'],
+            ]);
+
+            if(strcmp('active',$month->status)==0){
+                foreach(Member::where('status','active') as $member){
+                    $member->months()->attach($month);
+                }
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Month added successfully',
+                'url'       => route('months.show',$month->id),
+            ]);
+        }catch(Exception $e){
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 
     /**
@@ -45,7 +103,7 @@ class MonthController extends Controller
      * @param  \App\Models\Month  $month
      * @return \Illuminate\Http\Response
      */
-    public function show(Month $month)
+    public function show(Month $month,Request $request)
     {
         $groundMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
                                 ->where('members_months.month_id',$month->id)
@@ -66,7 +124,10 @@ class MonthController extends Controller
                                 ->where('members.status','active')
                                 ->select('members_months.*')
                                 ->get();
-        return response(view('defult.home-table-loader',compact('groundMembersMonths','firstMembersMonths','secondMembersMonths')));
+        if(array_key_exists('from_home',$request->all())){
+            return response(view('defult.home-table-loader',compact('groundMembersMonths','firstMembersMonths','secondMembersMonths')));
+        }
+        return response(view('month.show',compact('month')));
     }
 
     /**
@@ -77,7 +138,7 @@ class MonthController extends Controller
      */
     public function edit(Month $month)
     {
-        //
+        return response(view('month.edit',compact('month')));
     }
 
     /**
@@ -89,7 +150,57 @@ class MonthController extends Controller
      */
     public function update(Request $request, Month $month)
     {
-        //
+        $data = Validator::create($request->all(),[
+            'name'      => 'required',
+            'status'    => 'required',
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status' => 'errors',
+                'errors' => $data->errors(),
+            ]);
+        }
+
+        DB::beginTransaction();
+
+        try{
+            $data = $data->validate();
+
+            $tmpStatus = $month->status;
+
+            $month->name    = $data['name'];
+            $month->status  = $data['status'];
+            $month->user_id = getUser()->id;
+
+            $month->save();
+
+            if(strcmp('active',$month->status)==0 && strcmp($tmpStatus,'active')!=0 && count(MemberMonth::where('month_id',$month->id))==0){
+                foreach(Member::where('status','active') as $member){
+                    $member->months()->attach($month);
+                }
+            }
+            else if(strcmp('active',$month->status) != 0 && strcmp($tmpStatus,'active') != 0 && count(MemberMonth::where('month_id',$month->id)) !=0 ){
+                foreach(MemberMonth::where('month_id',$month->id) as $mm){
+                    $mm->status = $month->status;
+                    $mm->save();
+                }
+            }
+
+            DB::commit();
+
+            return response()->json([
+                'status'    => 'success',
+                'message'   => 'Month updated successfully',
+                'url'       => route('months.show',$month->id),
+            ]);
+        }catch(Exception $e){
+            DB::rollBack();
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 
     /**
@@ -98,8 +209,50 @@ class MonthController extends Controller
      * @param  \App\Models\Month  $month
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Month $month)
+    public function destroy(Month $month,Request $request)
     {
-        //
+        $data = Validator::make($request->all(),[
+            'password' => 'required|min:8|max:20',
+        ]);
+
+        if($data->fails()){
+            return response()->json([
+                'status' => 'errors',
+                'errors' => $data->errors(),
+            ]);
+        }
+
+        DB::beginTransaction();
+
+        try{
+            $data = $data->validate();
+
+            if(Hash::check($data['password'],getUser()->password)){
+                $month->status = 'deleted';
+
+                $month->save();
+
+                DB::commit();
+
+                return response()->json([
+                    'status'    => 'success',
+                    'message'   => 'Month deleted successfully',
+                    'url'       => route('months.index'),
+                ]);
+            }
+
+            DB::rollBack();
+
+            return response()->json([
+                'status'    => 'error',
+                'message'   => 'Incorrect password',
+            ]);
+        }catch(Exception $e){
+            DB::rollBack();
+            return response()->json([
+                'status'    => 'exception',
+                'message'   => $e->getMessage(),
+            ]);
+        }
     }
 }

@@ -24,6 +24,7 @@ class User extends Authenticatable
         'email',
         'phone',
         'role',
+        'status',
         'password',
         'recovary_code'
     ];
@@ -54,6 +55,10 @@ class User extends Authenticatable
     public function members()
     {
         return $this->hasMany(Member::class);
+    }
+    public function membersMonths()
+    {
+        return $this->hasMany(MemberMonth::class);
     }
     public function payments()
     {
