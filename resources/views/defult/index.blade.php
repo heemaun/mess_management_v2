@@ -4,6 +4,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>Zaman Mess</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -58,6 +59,8 @@
         <header>
             <nav>
                 <a href="{{ route('index') }}" class="logo">Calefornia Co-op</a>
+
+                @if (checkLogin())
                 <ul>
                     <li><a href="{{ route('home') }}">Home</a></li>
                     <li><a href="{{ route('members.index') }}">Members</a></li>
@@ -66,13 +69,15 @@
                     <li><a href="{{ route('adjustments.index') }}">Adjustments</a></li>
                     <li><a href="{{ route('notices.index') }}">Notices</a></li>
                 </ul>
+                @endif
+
                 <ul>
-                    {{-- @if (1) --}}
-                    <li id="login"><a href="{{ route('login') }}">Login</a></li>
-                    {{-- @else --}}
+                    @if (checkLogin())
                     <li id="prodile"><a href="{{ '#' }}">Profile</a></li>
-                    <li id="login"><a href="{{ route('logout') }}">Logout</a></li>
-                    {{-- @endif --}}
+                    <li id="logout"><a href="{{ route('logout') }}">Logout</a></li>
+                    @else
+                    <li id="login"><a href="#">Login</a></li>
+                    @endif
                 </ul>
             </nav>
         </header>
@@ -87,6 +92,7 @@
                 <h2>Content Body</h2>
             </section>
 
+            @if (!checkLogin())
             <aside>
                 <h2>Notices</h2>
                 <table class="table table-bordered table-striped table-dark table-hover">
@@ -108,6 +114,7 @@
                     </tbody>
                 </table>
             </aside>
+            @endif
         </section>
 
         <footer>
@@ -132,6 +139,7 @@
             </div>
         </footer>
 
+        @if (!checkLogin())
         <section id="home_notice_view" class="home-notice-view hide">
             <h3 id="home_notice_view_header"></h3>
             <p id="home_notice_view_body" class="body"></p>
@@ -141,6 +149,27 @@
             </p>
             <span id="home_notice_view_close" class="close">X</span>
         </section>
+
+        <section id="login_div" class="login-div hide">
+            <form action="{{ route('login') }}" method="POST" id="login_form">
+                @csrf
+                <legend>Login</legend>
+
+                <label for="login_email" class="form-label">Email</label>
+                <input type="email" name="email" id="login_email" class="form-control" placeholder="enter your email" autocomplete="OFF">
+                <span id="login_email_error" class="login-error"></span>
+
+                <label for="login-password" class="form-label">Password</label>
+                <input type="password" name="password" id="login_password" class="form-control" placeholder="enter your password" autocomplete="OFF">
+                <span id="login_password_error" class="login-error"></span>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                    <button type="button" id="login_div_close" class="btn btn-secondary">Close</button>
+                </div>
+            </form>
+        </section>
+        @endif
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

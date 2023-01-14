@@ -158,6 +158,36 @@ body .home-notice-view .close {
   font-size: larger;
   cursor: pointer;
 }
+body .login-div {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+}
+body .login-div form {
+  max-width: 95%;
+  min-width: 500px;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+body .login-div form .login-error {
+  display: block;
+  color: red;
+}
+body .login-div form .btn-container {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 body .hide {
   display: none;
 }/*# sourceMappingURL=index.css.map */

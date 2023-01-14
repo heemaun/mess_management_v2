@@ -2,6 +2,12 @@ $("body").on("click","#home_notice_view_close",function(){
     $("#home_notice_view").addClass("hide");
 });
 
+$.ajaxSetup({
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
+});
+
 $("body").on("click","section aside .clickable",function(e){
     let url = $(this).attr("data-href");
     $.ajax({
@@ -17,6 +23,52 @@ $("body").on("click","section aside .clickable",function(e){
         success: function(response){
             $("#home_notice_view").html(response);
             $("#home_notice_view").removeClass("hide");
+        }
+    });
+});
+
+$("#login").click(function(e){
+    e.preventDefault();
+    $("#login_div").removeClass("hide");
+});
+
+$("#login_div_close").click(function(){
+    $("#login_div").addClass("hide");
+});
+
+$("#login_form").submit(function(e){
+    e.preventDefault();
+    let url = $(this).attr("action");
+    let type = $(this).attr("method");
+    let email = $("#login_email").val();
+    let password = $("#login_password").val();
+
+    $.ajax({
+        url: url,
+        type: type,
+        dataType: "json",
+        data:{
+            email: email,
+            password: password,
+        },
+        beforeSend: function(){
+            $(".login-error").text("");
+        },
+        success: function(response){
+            if(response.status === "errors"){
+                $.each(response.errors,function(key,value){
+                    $("#login_"+key+"_error").text(value);
+                });
+            }
+
+            else if(response.status === "error"){
+                toastr.error(response.message);
+            }
+
+            else{
+                window.location = response.url;
+                toastr.success(response.message);
+            }
         }
     });
 });

@@ -81,14 +81,15 @@
                 <tfoot>
                     <tr>
                         <th colspan="2">Total Member: {{ count($groundMembersMonths) }}</th>
-                        <th colspan="2">Total Paid: {{ 0 }}</th>
-                        <th colspan="2">Total Adjustment: {{ 0 }}</th>
-                        <th>Total Rent: {{ 0 }}</th>
-                        <th>Total Due: {{ 0 }}</th>
+                        <th colspan="2">Total Paid: {{ number_format($groundTotalPaid) }}</th>
+                        <th colspan="2">Total Adjustment: {{ number_format($groundTotalAdjustment) }}</th>
+                        <th>Total Rent: {{ number_format($groundTotalRent) }}</th>
+                        <th>Total Due: {{ number_format($groundTotalDue) }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
+        
         <div id="first_floor_table_div" class="table-details">
             <h3>First Floor</h3>
             <table class="table table-bordered table-dark table-hover table-striped">
@@ -151,14 +152,15 @@
                 <tfoot>
                     <tr>
                         <th colspan="2">Total Member: {{ count($firstMembersMonths) }}</th>
-                        <th colspan="2">Total Paid: {{ 0 }}</th>
-                        <th colspan="2">Total Adjustment: {{ 0 }}</th>
-                        <th>Total Rent: {{ 0 }}</th>
-                        <th>Total Due: {{ 0 }}</th>
+                        <th colspan="2">Total Paid: {{ number_format($firstTotalPaid) }}</th>
+                        <th colspan="2">Total Adjustment: {{ number_format($firstTotalAdjustment) }}</th>
+                        <th>Total Rent: {{ number_format($firstTotalRent) }}</th>
+                        <th>Total Due: {{ number_format($firstTotalDue) }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
+
         <div id="second_floor_table_div" class="table-details">
             <h3>Second Floor</h3>
             <table class="table table-bordered table-dark table-hover table-striped">
@@ -221,17 +223,20 @@
                 <tfoot>
                     <tr>
                         <th colspan="2">Total Member: {{ count($secondMembersMonths) }}</th>
-                        <th colspan="2">Total Paid: {{ 0 }}</th>
-                        <th colspan="2">Total Adjustment: {{ 0 }}</th>
-                        <th>Total Rent: {{ 0 }}</th>
-                        <th>Total Due: {{ 0 }}</th>
+                        <th colspan="2">Total Paid: {{ number_format($secondTotalPaid) }}</th>
+                        <th colspan="2">Total Adjustment: {{ number_format($secondTotalAdjustment) }}</th>
+                        <th>Total Rent: {{ number_format($secondTotalRent) }}</th>
+                        <th>Total Due: {{ number_format($secondTotalDue) }}</th>
                     </tr>
                 </tfoot>
             </table>
         </div>
+
         <div id="all_table_div" class="table-details">
-            {{-- <span>Total Payment: {{ $groundMembersMonthsTotalPaid+$firstMembersMonthsTotalPaid+$secondMembersMonthsTotalPaid }}</span>
-            <span>Total Due: {{ $groundMembersMonthsTotalDue+$secondMembersMonthsTotalDue+$secondMembersMonthsTotalDue }}</span> --}}
+            <span>Total Payment: {{ number_format($groundTotalPaid+$firstTotalPaid+$secondTotalPaid) }}</span>
+            <span>Total Adjustment: {{ number_format($groundTotalAdjustment+$firstTotalAdjustment+$secondTotalAdjustment) }}</span>
+            <span>Total Rent: {{ number_format($groundTotalRent+$firstTotalRent+$secondTotalRent) }}</span>
+            <span>Total Due: {{ number_format($groundTotalDue+$firstTotalDue+$secondTotalDue) }}</span>
         </div>
     </div>
 </div>

@@ -190,6 +190,41 @@ body{
         }
     }
 
+    .login-div{
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        width: 100%;
+        height: 100vh;
+        display: flex;
+        // flex-flow: column;
+        justify-content: center;
+        align-items: center;
+        background: rgba(0,0,0,.75);
+
+        form{
+            max-width: 95%;
+            min-width: 500px;
+            background: black;
+            color: white;
+            padding: 1rem;
+            border-radius: .25rem;
+            box-shadow: 0rem 0rem .5rem gray;
+
+            .login-error{
+                display: block;
+                color: red;
+            }
+
+            .btn-container{
+                margin-top: .5rem;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+    }
+
     .hide{
         display: none;
     }

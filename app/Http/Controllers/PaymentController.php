@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Member;
-use App\Models\MemberMonth;
 use Exception;
 use App\Models\Month;
+use App\Models\Member;
 use App\Models\Payment;
+use App\Models\MemberMonth;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class PaymentController extends Controller
@@ -62,13 +63,10 @@ class PaymentController extends Controller
      */
     public function create()
     {
-        $months = Month::where('status','active')
-                        ->orderby('name','DESC')
-                        ->get();
         $members = Member::where('status','active')
                             ->orderby('name','DESC')
                             ->get();
-        return response(view('payment.create',compact('month','member')));
+        return response(view('payment.create',compact('member')));
     }
 
     /**
@@ -157,7 +155,7 @@ class PaymentController extends Controller
      */
     public function edit(Payment $payment)
     {
-        return response(view('payment.edit',compact('payment')));
+
     }
 
     /**
@@ -169,11 +167,19 @@ class PaymentController extends Controller
      */
     public function update(Request $request, Payment $payment)
     {
+
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Payment  $payment
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Payment $payment,Request $request)
+    {
         $data = Validator::make($request->all(),[
-            'member_id' => 'required',
-            'amount'    => 'required|numeric',
-            'status'    => 'required',
-            'note'      => 'nullable|string',
+            'password' => 'required|min:8|max:20',
         ]);
 
         if($data->fails()){
@@ -188,19 +194,52 @@ class PaymentController extends Controller
         try{
             $data = $data->validate();
 
-            $payment->amount = $data['amount'];
-            $payment->status = $data['status'];
-            $payment->note = $data['note'];
-            $payment->user_id = getUser()->id;
+            if(Hash::check($data['password'],getUser()->password)){
+                $member_id = $payment->borderMonth->member_Id;
+                $month_name = $payment->borderMonth->month->name;
+                $status = $payment->status;
+                $membersMonthsArray = array();
 
-            $payment->save();
+                if($request->permanent_delete === 1){
+                    $payment->delete();
+                }
+                else{
+                    $payment->status = 'deleted';
 
-            DB::commit();
+                    $payment->save();
+                }
+
+                if(strcmp($status,'active')==0){
+                    foreach(Month::where('name'>$month_name) as $month){
+                        array_push($membersMonthsArray,MemberMonth::where('member_id',$member_id)->where('month_id',$month->id)->id);
+                    }
+
+                    foreach($membersMonthsArray as $mm){
+                        $mm->due += $payment->amount;
+                        $mm->user_id = getUser()->id;
+                        $mm->save();
+                    }
+
+                    $member = Member::find($member_id);
+                    $member->current_balance -= $payment->amount;
+                    $member->user_id = getUser()->id;
+                    $member->save();
+                }
+
+                DB::commit();
+
+                return response()->json([
+                    'status'    => 'success',
+                    'message'   => 'Member deleted successfully',
+                    'url'       => route('members.index'),
+                ]);
+            }
+
+            DB::rollBack();
 
             return response()->json([
-                'status'    => 'success',
-                'message'   => 'Payment updated successfully',
-                'url'       => route('payments.show',$payment->id),
+                'status'    => 'error',
+                'message'   => 'Incorrect password',
             ]);
         }catch(Exception $e){
             DB::rollBack();
@@ -209,16 +248,5 @@ class PaymentController extends Controller
                 'message'   => $e->getMessage(),
             ]);
         }
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Payment  $payment
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Payment $payment)
-    {
-        //
     }
 }
