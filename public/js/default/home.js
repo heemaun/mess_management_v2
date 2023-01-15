@@ -1,6 +1,8 @@
+//loads home view in the content loader
 function homeload()
 {
     $.ajax({
+        // url: "/months/create",
         url: "/home",
         type: "GET",
         success: function(response){
@@ -10,13 +12,14 @@ function homeload()
 }
 
 homeload();
+//end
 
+//home month view changer
 $("#content_loader").on("change","#home_month_name_select",function(){
     let key = $(this).val();
     $.ajax({
         url: "/months/"+key,
         type: "GET",
-        // dataType: "json",
         data: {
             from_home: true,
         },
@@ -24,13 +27,13 @@ $("#content_loader").on("change","#home_month_name_select",function(){
             console.log(key);
         },
         success: function(response){
-            // console.log(response);
-            // alert(response);
             $("#content_loader #table_container").html(response);
         }
     });
 });
+//home month view changer ends
 
+//home month view floor changer
 $("#content_loader").on("change","#home_floor_select",function(){
     $("#ground_floor_table_div").addClass("hide");
     $("#first_floor_table_div").addClass("hide");
@@ -55,3 +58,4 @@ $("#content_loader").on("change","#home_floor_select",function(){
         $("#all_table_div").removeClass("hide");
     }
 });
+//home month view floor changer end

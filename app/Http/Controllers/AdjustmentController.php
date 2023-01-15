@@ -53,6 +53,7 @@ class AdjustmentController extends Controller
             }
             return response(view('adjustment.search',compact('adjustments')));
         }
+        $adjustments = Adjustment::where('status','active')->get();
         return response(view('adjustment.index',compact('adjustments')));
     }
 

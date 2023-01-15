@@ -61,10 +61,10 @@
                 <a href="{{ route('index') }}" class="logo">Calefornia Co-op</a>
 
                 @if (checkLogin())
-                <ul>
+                <ul id="navbar">
                     <li><a href="{{ route('home') }}">Home</a></li>
-                    <li><a href="{{ route('members.index') }}">Members</a></li>
                     <li><a href="{{ route('months.index') }}">Months</a></li>
+                    <li><a href="{{ route('members.index') }}">Members</a></li>
                     <li><a href="{{ route('payments.index') }}">Payments</a></li>
                     <li><a href="{{ route('adjustments.index') }}">Adjustments</a></li>
                     <li><a href="{{ route('notices.index') }}">Notices</a></li>
@@ -82,17 +82,24 @@
             </nav>
         </header>
 
+        {{-- site banner space --}}
+        {{-- @if (!checkLogin()) --}}
         <main>
             <h1>ABC</h1>
             <h6>Calefornia, USA</h6>
         </main>
+        {{-- @endif --}}
+        {{-- site banner space end --}}
 
         <section class="content-body">
+            {{-- the part all content will load through ajax --}}
             <section id="content_loader" class="content-loader">
                 <h2>Content Body</h2>
             </section>
+            {{-- the part all content will load through ajax end --}}
 
             @if (!checkLogin())
+            {{-- public notice board --}}
             <aside>
                 <h2>Notices</h2>
                 <table class="table table-bordered table-striped table-dark table-hover">
@@ -114,6 +121,7 @@
                     </tbody>
                 </table>
             </aside>
+            {{-- public notice board end --}}
             @endif
         </section>
 
@@ -140,16 +148,13 @@
         </footer>
 
         @if (!checkLogin())
+        {{-- notice viewer --}}
         <section id="home_notice_view" class="home-notice-view hide">
-            <h3 id="home_notice_view_header"></h3>
-            <p id="home_notice_view_body" class="body"></p>
-            <p id="home_notice_view_footer" class="footer">
-                <span id="home_notice_view_admin" class="admin"></span>
-                <span id="home_notice_view_time" class="date"></span>
-            </p>
-            <span id="home_notice_view_close" class="close">X</span>
-        </section>
 
+        </section>
+        {{-- notice viewer end --}}
+
+        {{-- login div --}}
         <section id="login_div" class="login-div hide">
             <form action="{{ route('login') }}" method="POST" id="login_form">
                 @csrf
@@ -169,6 +174,7 @@
                 </div>
             </form>
         </section>
+        {{-- login div end --}}
         @endif
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>

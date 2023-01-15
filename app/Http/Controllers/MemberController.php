@@ -56,6 +56,7 @@ class MemberController extends Controller
             }
             return response(view('member.search',compact('members')));
         }
+        $members = Member::where('status','active')->get();
         return response(view('member.index',compact('members')));
     }
 

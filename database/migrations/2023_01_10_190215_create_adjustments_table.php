@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('adjustments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users','id');
-            $table->foreignId('member_month_id')->constrained('members_months','id');
+            $table->foreignId('user_id')->constrained('users','id')->onDelete('cascade');
+            $table->foreignId('member_month_id')->constrained('members_months','id')->onDelete('cascade');
             $table->enum('type',['fine','adjustment']);
             $table->integer('amount');
             $table->enum('status',['pending','active','inactive','deleted'])->default('pending');

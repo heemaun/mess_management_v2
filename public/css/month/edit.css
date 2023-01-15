@@ -1,1 +1,29 @@
-/*# sourceMappingURL=edit.css.map */
+.month-edit {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.month-edit h2 {
+  text-align: center;
+}
+.month-edit form {
+  max-width: 95%;
+  min-width: 500px;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.month-edit form .month-edit-error {
+  color: red;
+  display: block;
+}
+.month-edit form .btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}/*# sourceMappingURL=edit.css.map */

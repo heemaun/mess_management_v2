@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('members', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users','id');
+            $table->foreignId('user_id')->constrained('users','id')->onDelete('cascade');
             $table->string('name');
             $table->enum('floor',['Ground Floor','1st Floor','2nd Floor']);
             $table->enum('status',['pending','active','inactive','deleted','banned','restricted']);

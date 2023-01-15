@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('months', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users','id');
+            $table->foreignId('user_id')->constrained('users','id')->onDelete('cascade');
             $table->string('name')->unique();
             $table->enum('status',['active','inactive','deleted','pending'])->default('pending');
             $table->timestamps();

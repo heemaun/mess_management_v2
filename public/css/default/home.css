@@ -30,6 +30,18 @@
   vertical-align: middle;
   text-align: right;
 }
+.home .table-container .all-table {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.home .table-container .all-table .total-month {
+  font-style: italic;
+}
+.home .table-container .all-table .total-month label {
+  font-style: normal;
+  font-weight: bold;
+}
 .home .table-container .hide {
   display: none;
 }/*# sourceMappingURL=home.css.map */

@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('notices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users','id');
+            $table->foreignId('user_id')->constrained('users','id')->onDelete('cascade');
             $table->string('heading');
             $table->text('body');
             $table->enum('status',['pending','active','inactive','deleted'])->default('pending');

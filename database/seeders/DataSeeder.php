@@ -51,7 +51,7 @@ class DataSeeder extends Seeder
                 'user_id'           => rand(1,6),
                 'name'              => $faker->name(),
                 'phone'             => $faker->phoneNumber(),
-                'picture'           => $faker->email(),
+                'image'             => $faker->email(),
                 'initial_balance'   => rand(0,1000),
                 'current_balance'   => rand(0,1000),
                 'joining_date'      => $faker->date(),
@@ -71,6 +71,7 @@ class DataSeeder extends Seeder
         foreach(Month::where('status','active')->get() as $month){
             foreach(Member::where('status','active')->get() as $member){
                 MemberMonth::create([
+                    'user_id'         => 1,
                     'member_id'         => $member->id,
                     'month_id'          => $month->id,
                     'due'               => rand(500,1000),

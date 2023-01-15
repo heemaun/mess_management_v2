@@ -53,6 +53,7 @@ class PaymentController extends Controller
             }
             return response(view('payment.search',compact('payments')));
         }
+        $payments = Payment::where('status','active')->get();
         return response(view('payment.index',compact('payments')));
     }
 

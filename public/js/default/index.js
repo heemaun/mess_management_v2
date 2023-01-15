@@ -1,11 +1,13 @@
-$("body").on("click","#home_notice_view_close",function(){
-    $("#home_notice_view").addClass("hide");
-});
-
+//ajax setup for post
 $.ajaxSetup({
     headers: {
         "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
     },
+});
+
+//home notice viwer toogler
+$("body").on("click","#home_notice_view_close",function(){
+    $("#home_notice_view").addClass("hide");
 });
 
 $("body").on("click","section aside .clickable",function(e){
@@ -13,7 +15,6 @@ $("body").on("click","section aside .clickable",function(e){
     $.ajax({
         url: url,
         type: "GET",
-        // dataType: "json",
         data: {
             from_home: true,
         },
@@ -26,7 +27,12 @@ $("body").on("click","section aside .clickable",function(e){
         }
     });
 });
+//home notice viwer toogler end
 
+
+//login controller starts
+
+//login div toggler
 $("#login").click(function(e){
     e.preventDefault();
     $("#login_div").removeClass("hide");
@@ -35,6 +41,7 @@ $("#login").click(function(e){
 $("#login_div_close").click(function(){
     $("#login_div").addClass("hide");
 });
+//login div toggler ends
 
 $("#login_form").submit(function(e){
     e.preventDefault();
@@ -72,3 +79,19 @@ $("#login_form").submit(function(e){
         }
     });
 });
+//login controller ends
+
+//navbar controls
+$("#navbar li a").click(function(e){
+    e.preventDefault();
+    url = $(this).attr("href");
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response){
+            $("#content_loader").html(response);
+        }
+    });
+});
+//navbar controls end

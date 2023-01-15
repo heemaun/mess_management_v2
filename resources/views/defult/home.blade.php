@@ -89,7 +89,7 @@
                 </tfoot>
             </table>
         </div>
-        
+
         <div id="first_floor_table_div" class="table-details">
             <h3>First Floor</h3>
             <table class="table table-bordered table-dark table-hover table-striped">
@@ -232,11 +232,11 @@
             </table>
         </div>
 
-        <div id="all_table_div" class="table-details">
-            <span>Total Payment: {{ number_format($groundTotalPaid+$firstTotalPaid+$secondTotalPaid) }}</span>
-            <span>Total Adjustment: {{ number_format($groundTotalAdjustment+$firstTotalAdjustment+$secondTotalAdjustment) }}</span>
-            <span>Total Rent: {{ number_format($groundTotalRent+$firstTotalRent+$secondTotalRent) }}</span>
-            <span>Total Due: {{ number_format($groundTotalDue+$firstTotalDue+$secondTotalDue) }}</span>
+        <div id="all_table_div" class="table-details all-table">
+            <span class="total-month"><label>Month Payment:</label>{{ ' '.number_format($groundTotalPaid+$firstTotalPaid+$secondTotalPaid) }}</span>
+            <span class="total-month"><label>Month Adjustment:</label>{{ ' '.number_format($groundTotalAdjustment+$firstTotalAdjustment+$secondTotalAdjustment) }}</span>
+            <span class="total-month"><label>Month Rent:</label>{{ ' '.number_format($groundTotalRent+$firstTotalRent+$secondTotalRent) }}</span>
+            <span class="total-month"><label>Month Due:</label>{{ ' '.number_format($groundTotalDue+$firstTotalDue+$secondTotalDue) }}</span>
         </div>
     </div>
 </div>

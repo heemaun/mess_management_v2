@@ -1,1 +1,29 @@
-/*# sourceMappingURL=index.css.map */
+.month-index {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.month-index h2 {
+  text-align: center;
+  margin-bottom: 0rem;
+  padding-bottom: 0rem;
+}
+.month-index .top {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.month-index .top .form-group {
+  width: 100%;
+}
+.month-index .table-container {
+  width: 100%;
+}
+.month-index .table-container table .clickable {
+  cursor: pointer;
+}/*# sourceMappingURL=index.css.map */

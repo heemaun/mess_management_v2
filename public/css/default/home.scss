@@ -55,6 +55,21 @@
             }
         }
 
+        .all-table{
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+
+            .total-month{
+                font-style: italic;
+
+                label{
+                    font-style: normal;
+                    font-weight: bold;
+                }
+            }
+        }
+
         .hide{
             display: none;
         }

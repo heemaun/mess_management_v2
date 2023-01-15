@@ -22,16 +22,21 @@ class MonthController extends Controller
     {
         if(array_key_exists('status',$request->all())){
             if(strcmp('all',$request->status)===0){
-                $status = ['pending','active','inactive','deleted'];
+                $status = ['pending','active','inactive'];
             }
             else{
                 $status = [$request->status];
             }
 
-            $months = Month::whereIn('status',$status)->get();
+            $months = Month::whereIn('status',$status)
+                                ->where('name','LIKE','%'.$request->year.'-'.$request->month.'%')
+                                ->orderBy('name','DESC')
+                                ->get();
             return response(view('month.search',compact('months')));
         }
-        $months = Month::where('status','active')->get();
+        $months = Month::where('status','active')
+                        ->orderBy('name','DESC')
+                        ->get();
         return view('month.index',compact('months'));
     }
 
@@ -53,8 +58,8 @@ class MonthController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Validator::create($request->all(),[
-            'name'      => 'required',
+        $data = Validator::make($request->all(),[
+            'name'      => 'required|unique:months,name',
             'status'    => 'required',
         ]);
 
@@ -77,8 +82,12 @@ class MonthController extends Controller
             ]);
 
             if(strcmp('active',$month->status)==0){
-                foreach(Member::where('status','active') as $member){
-                    $member->months()->attach($month);
+                foreach(Member::where('status','active')->get() as $member){
+                    $member->months()->attach($month->id,[
+                        'user_id'           => getUser()->id,
+                        'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                        'due'               => $member->current_balance,
+                    ]);
                 }
             }
 
@@ -182,7 +191,7 @@ class MonthController extends Controller
         if(array_key_exists('from_home',$request->all())){
             return response(view('defult.home-table-loader',compact('groundMembersMonths','firstMembersMonths','secondMembersMonths','groundTotalPaid','groundTotalAdjustment','groundTotalRent','groundTotalDue','firstTotalPaid','firstTotalAdjustment','firstTotalRent','firstTotalDue','secondTotalPaid','secondTotalAdjustment','secondTotalRent','secondTotalDue')));
         }
-        return response(view('month.show',compact('month')));
+        return response(view('month.show',compact('month','groundMembersMonths','firstMembersMonths','secondMembersMonths','groundTotalPaid','groundTotalAdjustment','groundTotalRent','groundTotalDue','firstTotalPaid','firstTotalAdjustment','firstTotalRent','firstTotalDue','secondTotalPaid','secondTotalAdjustment','secondTotalRent','secondTotalDue')));
     }
 
     /**
@@ -205,8 +214,8 @@ class MonthController extends Controller
      */
     public function update(Request $request, Month $month)
     {
-        $data = Validator::create($request->all(),[
-            'name'      => 'required',
+        $data = Validator::make($request->all(),[
+            'name'      => 'required|unique:months,name,'.$month->id,
             'status'    => 'required',
         ]);
 
@@ -232,15 +241,19 @@ class MonthController extends Controller
 
             if(strcmp('active',$month->status)==0 && strcmp($tmpStatus,'active')!=0 && count(MemberMonth::where('month_id',$month->id))==0){
                 foreach(Member::where('status','active') as $member){
-                    $member->months()->attach($month);
+                    $member->months()->attach($month->id,[
+                        'user_id'           => getUser()->id,
+                        'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                        'due'               => $member->current_balance,
+                    ]);
                 }
             }
-            else if(strcmp('active',$month->status) != 0 && strcmp($tmpStatus,'active') != 0 && count(MemberMonth::where('month_id',$month->id)) !=0 ){
-                foreach(MemberMonth::where('month_id',$month->id) as $mm){
-                    $mm->status = $month->status;
-                    $mm->save();
-                }
-            }
+            // else if(strcmp('active',$month->status) != 0 && strcmp($tmpStatus,'active') != 0 && count(MemberMonth::where('month_id',$month->id)) !=0 ){
+            //     foreach(MemberMonth::where('month_id',$month->id) as $mm){
+            //         $mm->status = $month->status;
+            //         $mm->save();
+            //     }
+            // }
 
             DB::commit();
 
@@ -267,7 +280,8 @@ class MonthController extends Controller
     public function destroy(Month $month,Request $request)
     {
         $data = Validator::make($request->all(),[
-            'password' => 'required|min:8|max:20',
+            'password'          => 'required|min:8|max:20',
+            'permanent_delete'  => 'required',
         ]);
 
         if($data->fails()){
@@ -283,9 +297,25 @@ class MonthController extends Controller
             $data = $data->validate();
 
             if(Hash::check($data['password'],getUser()->password)){
-                $month->status = 'deleted';
+                if(strcmp($data['permanent_delete'],'true')==0){
+                    $month->delete();
+                }
+                else{
+                    $month->status = 'deleted';
+                    $month->save();
 
-                $month->save();
+                    foreach($month->memberMonths as $mm){
+                        foreach($mm->payments as $p){
+                            $p->status = 'deleted';
+                            $p->save();
+                        }
+
+                        foreach($mm->adjustments as $a){
+                            $a->status = 'deleted';
+                            $a->save();
+                        }
+                    }
+                }
 
                 DB::commit();
 
