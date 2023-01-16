@@ -24,6 +24,22 @@
 .month-index .table-container {
   width: 100%;
 }
+.month-index .table-container table th {
+  vertical-align: middle;
+  text-align: center;
+}
 .month-index .table-container table .clickable {
   cursor: pointer;
+}
+.month-index .table-container table .left {
+  vertical-align: middle;
+  text-align: left;
+}
+.month-index .table-container table .right {
+  vertical-align: middle;
+  text-align: right;
+}
+.month-index .table-container table .center {
+  vertical-align: middle;
+  text-align: center;
 }/*# sourceMappingURL=index.css.map */

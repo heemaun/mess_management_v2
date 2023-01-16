@@ -20,6 +20,7 @@ function searchMonth()
 }
 //month search end
 
+//month show function on table row click
 $("#content_loader").on("click","#month_index .clickable", function(){
     let url = $(this).attr("data-href");
 
@@ -31,7 +32,9 @@ $("#content_loader").on("click","#month_index .clickable", function(){
         }
     });
 });
+//month show function on table row click end
 
+//month create
 $("#content_loader").on("click","#month_index_create", function(e){
     e.preventDefault();
     let url = $(this).attr("href");
@@ -44,3 +47,4 @@ $("#content_loader").on("click","#month_index_create", function(e){
         }
     });
 });
+//month create end

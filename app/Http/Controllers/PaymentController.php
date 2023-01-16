@@ -78,7 +78,7 @@ class PaymentController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Validator::create($request->all(),[
+        $data = Validator::make($request->all(),[
             'member_id' => 'required',
             'amount'    => 'required|numeric',
             'status'    => 'required',

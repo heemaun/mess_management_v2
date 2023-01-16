@@ -47,10 +47,11 @@ class DataSeeder extends Seeder
 
 
         for($x=0;$x<50;$x++){
-            Member::create([
+            $member = Member::create([
                 'user_id'           => rand(1,6),
                 'name'              => $faker->name(),
                 'phone'             => $faker->phoneNumber(),
+                'email'             => $faker->email(),
                 'image'             => $faker->email(),
                 'initial_balance'   => rand(0,1000),
                 'current_balance'   => rand(0,1000),
@@ -58,6 +59,11 @@ class DataSeeder extends Seeder
                 'floor'             => $floor[rand(0,2)],
                 'status'            => $status[rand(0,5)],
             ]);
+
+            if(strcmp($member->status,'deleted')==0){
+                $member->leaving_date = $faker->date();
+                $member->save();
+            }
         }
 
         for($x=0;$x<10;$x++){

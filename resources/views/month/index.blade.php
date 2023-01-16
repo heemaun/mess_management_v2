@@ -56,9 +56,9 @@
             <tbody>
                 @foreach ($months as $month)
                 <tr class="clickable" data-href="{{ route('months.show',$month->id) }}">
-                    <td>{{ $loop->iteration }}</td>
-                    <td>{{ $month->name.' ['.date('F',strtotime($month->name)).']' }}</td>
-                    <td>{{ ucwords($month->status) }}</td>
+                    <td class="center">{{ $loop->iteration }}</td>
+                    <td class="center">{{ $month->name.' ['.date('F',strtotime($month->name)).']' }}</td>
+                    <td class="center">{{ ucwords($month->status) }}</td>
                 </tr>
                 @endforeach
             </tbody>

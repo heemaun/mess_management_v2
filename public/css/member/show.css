@@ -1,1 +1,118 @@
-/*# sourceMappingURL=show.css.map */
+.member-show h2, .member-show h3 {
+  margin: 0rem;
+  padding: 0rem;
+  text-align: center;
+}
+.member-show .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.member-show .top h2 {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.member-show .image-viewer {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+.member-show .image-viewer img {
+  min-width: 200px;
+  max-width: 20%;
+  height: auto;
+  border-radius: 50%;
+  margin: 0.5rem solid gray;
+}
+.member-show .details-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.member-show .details-container .info-container {
+  flex-grow: 5;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.member-show .details-container .info-container label {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 500px;
+  max-width: 100%;
+  font-weight: bold;
+  border-bottom: 0.1rem dashed gray;
+}
+.member-show .details-container .info-container label span {
+  font-weight: normal;
+  font-style: italic;
+}
+.member-show .details-container .payment-details {
+  flex-grow: 3;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.member-show .details-container .payment-details table {
+  min-width: 500px;
+  max-width: 50%;
+}
+.member-show .details-container .payment-details table th {
+  vertical-align: middle;
+  text-align: center;
+}
+.member-show .details-container .payment-details table .clickable {
+  cursor: pointer;
+}
+.member-show .details-container .payment-details table .left {
+  vertical-align: middle;
+  text-align: left;
+}
+.member-show .details-container .payment-details table .right {
+  vertical-align: middle;
+  text-align: right;
+}
+.member-show .details-container .payment-details table .center {
+  vertical-align: middle;
+  text-align: center;
+}
+.member-show .member-delete-div {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.member-show .member-delete-div form {
+  min-width: 500px;
+  max-width: 95%;
+  background: black;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.member-show .member-delete-div form .member-delete-error {
+  color: red;
+  display: block;
+}
+.member-show .member-delete-div form .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.member-show .hide {
+  display: none;
+}/*# sourceMappingURL=show.css.map */

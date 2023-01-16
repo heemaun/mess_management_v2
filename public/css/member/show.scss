@@ -1,1 +1,142 @@
+.member-show{
+    h2,h3{
+        margin: 0rem;
+        padding: 0rem;
+        text-align: center;
+    }
+
+    .top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h2{
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    .image-viewer{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 1rem;
+
+        img{
+            min-width: 200px;
+            max-width: 20%;
+            height: auto;
+            border-radius: 50%;
+            margin: .5rem solid gray;
+        }
+    }
+
+    .details-container{
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+
+        .info-container{
+            flex-grow: 5;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            // width: 100%;
+            gap: .5rem;
+
+            label{
+                display: flex;
+                flex-flow: row;
+                justify-content: space-between;
+                align-items: center;
+                min-width: 500px;
+                max-width: 100%;
+                font-weight: bold;
+                border-bottom: .1rem dashed gray;
+
+                span{
+                    font-weight: normal;
+                    font-style: italic;
+                }
+            }
+        }
+
+        .payment-details{
+            flex-grow: 3;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+
+            table{
+                min-width: 500px;
+                max-width: 50%;
+
+                th{
+                    vertical-align: middle;
+                    text-align: center;
+                }
+
+                .clickable{
+                    cursor: pointer;
+                }
+
+                .left{
+                    vertical-align: middle;
+                    text-align: left;
+                }
+
+                .right{
+                    vertical-align: middle;
+                    text-align: right;
+                }
+
+                .center{
+                    vertical-align: middle;
+                    text-align: center;
+                }
+            }
+        }
+    }
+
+    .member-delete-div{
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,.75);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form{
+            min-width: 500px;
+            max-width: 95%;
+            background: black;
+            padding: 1rem;
+            border-radius: .25rem;
+            box-shadow: 0rem 0rem .5rem gray;
+
+            .member-delete-error{
+                color: red;
+                display: block;
+            }
+
+            .btn-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: .5rem;
+            }
+        }
+    }
+
+    .hide{
+        display: none;
+    }
+}
 

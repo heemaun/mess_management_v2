@@ -28,8 +28,28 @@
         width: 100%;
 
         table{
+            th{
+                vertical-align: middle;
+                text-align: center;
+            }
+
             .clickable{
                 cursor: pointer;
+            }
+
+            .left{
+                vertical-align: middle;
+                text-align: left;
+            }
+
+            .right{
+                vertical-align: middle;
+                text-align: right;
+            }
+
+            .center{
+                vertical-align: middle;
+                text-align: center;
             }
         }
     }

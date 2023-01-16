@@ -1,0 +1,34 @@
+.member-create{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    h2{
+        text-align: center;
+    }
+
+    form{
+        max-width: 95%;
+        min-width: 500px;
+        background: black;
+        color: white;
+        padding: 1rem;
+        border-radius: .25rem;
+        box-shadow: 0rem 0rem .5rem gray;
+
+        .member-create-error{
+            color: red;
+            display: block;
+        }
+
+        .btn-container{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: .5rem;
+        }
+    }
+}

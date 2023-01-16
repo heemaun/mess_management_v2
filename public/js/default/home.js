@@ -2,8 +2,8 @@
 function homeload()
 {
     $.ajax({
-        // url: "/months/create",
-        url: "/home",
+        url: "/members/1/edit",
+        // url: "/home",
         type: "GET",
         success: function(response){
             $("#content_loader").html(response);

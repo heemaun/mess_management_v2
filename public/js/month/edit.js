@@ -1,3 +1,4 @@
+//month name maker
 function monthEditNameCreator()
 {
     let year = $("#month_edit_year").val();
@@ -5,7 +6,9 @@ function monthEditNameCreator()
 
     $("#month_edit_name_viewer").text("Month Name: "+year+"-"+month);
 }
+//month name maker end
 
+//month create back to show
 $("#content_loader").on("click","#month_edit_back",function(e){
     e.preventDefault();
     let url = $(this).attr("href");
@@ -18,7 +21,9 @@ $("#content_loader").on("click","#month_edit_back",function(e){
         }
     });
 });
+//month create back to show end
 
+//month update
 $("#content_loader").on("submit","#month_edit_form",function(e){
     e.preventDefault();
     let url = $(this).attr("action");
@@ -39,17 +44,19 @@ $("#content_loader").on("submit","#month_edit_form",function(e){
             console.log(url,year,month,status);
         },
         success: function(response){
-            console.log(response);
+            //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
-                    $("#month_edit_"+key+"_error").text(value);
+                    $("#month_create_"+key+"_error").text(value);
                 });
             }
 
+            //checking if laravel / database fails
             else if(response.status === "exception"){
                 toastr.error(response.message);
             }
 
+            //checking other common error fails
             else if(response.status === "error"){
                 toastr.error(response.message);
             }
@@ -57,6 +64,8 @@ $("#content_loader").on("submit","#month_edit_form",function(e){
             else{
                 toastr.success(response.message);
                 let url = response.url;
+
+                //on success redirect to month show
                 $.ajax({
                     url: url,
                     type: "GET",
@@ -68,3 +77,4 @@ $("#content_loader").on("submit","#month_edit_form",function(e){
         }
     });
 });
+//month update end

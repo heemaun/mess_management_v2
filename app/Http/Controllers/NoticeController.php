@@ -53,7 +53,7 @@ class NoticeController extends Controller
      */
     public function store(Request $request)
     {
-        $data = Validator::create($request->all(),[
+        $data = Validator::make($request->all(),[
             'heading'   => 'required|min:10|max:30|string',
             'body'      => 'required|min:50|max:500|string',
             'status'    => 'required',

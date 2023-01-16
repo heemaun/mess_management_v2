@@ -66,6 +66,7 @@ body .content-body {
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.5rem;
+  padding: 1rem 0rem;
 }
 body .content-body .content-loader {
   background: violet;

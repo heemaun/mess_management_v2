@@ -15,6 +15,7 @@ class Member extends Model
         'user_id',
         'name',
         'phone',
+        'email',
         'picture',
         'initial_balance',
         'current_balance',
