@@ -215,7 +215,8 @@ class MonthController extends Controller
     public function update(Request $request, Month $month)
     {
         $data = Validator::make($request->all(),[
-            'name'      => 'required|unique:months,name,'.$month->id,
+            'activate'  => 'sometimes',
+            'name'      => 'required_if:activate,false|unique:months,name,'.$month->id,
             'status'    => 'required',
         ]);
 
@@ -233,14 +234,16 @@ class MonthController extends Controller
 
             $tmpStatus = $month->status;
 
-            $month->name    = $data['name'];
+            if(!array_key_exists('activate',$data)){ // month activation of update
+                $month->name    = $data['name'];
+            }
             $month->status  = $data['status'];
             $month->user_id = getUser()->id;
 
             $month->save();
 
-            if(strcmp('active',$month->status)==0 && strcmp($tmpStatus,'active')!=0 && count(MemberMonth::where('month_id',$month->id))==0){
-                foreach(Member::where('status','active') as $member){
+            if(strcmp('active',$month->status)==0 && strcmp($tmpStatus,'active')!=0 && count(MemberMonth::where('month_id',$month->id)->get())==0){ // checking previous status whether create new meber-months for this month
+                foreach(Member::where('status','active')->get() as $member){
                     $member->months()->attach($month->id,[
                         'user_id'           => getUser()->id,
                         'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
@@ -259,7 +262,7 @@ class MonthController extends Controller
 
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'Month updated successfully',
+                'message'   => (!array_key_exists('activate',$data)) ? 'Month updated successfully' : 'Month activated successfully',
                 'url'       => route('months.show',$month->id),
             ]);
         }catch(Exception $e){

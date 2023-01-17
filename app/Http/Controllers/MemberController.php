@@ -204,7 +204,7 @@ class MemberController extends Controller
             'initial_balance'   => 'required|numeric',
             'current_balance'   => 'required|numeric',
             'joining_date'      => 'nullable|date',
-            'leaving_date'      => 'nullable|date',
+            'leaving_date'      => 'required_if:status,deleted|date',
         ]);
 
         //returning validation error
@@ -230,7 +230,9 @@ class MemberController extends Controller
             $member->initial_balance    = $data['initial_balance'];
             $member->current_balance    = $data['current_balance'];
             $member->joining_date       = $data['joining_date'];
-            $member->leaving_date       = $data['leaving_date'];
+            if(strcmp('deleted',$data['status'])==0){
+                $member->leaving_date       = $data['leaving_date'];
+            }
             $member->user_id            = getUser()->id;
 
             $member->save();

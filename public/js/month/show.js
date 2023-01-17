@@ -13,6 +13,57 @@ $("#content_loader").on("click","#month_show_edit",function(e){
 });
 //month edit end
 
+//month activation
+$("#content_loader").on("click","#month_show_activate",function(e){
+    e.preventDefault();
+    let url = $(this).attr("href");
+
+    $.ajax({
+        url: url,
+        type: "PUT",
+        data:{
+            activate: true,
+            status: "active",
+        },
+        beforeSend: function(){
+            console.log(url);
+        },
+        success: function(response){
+            //checking if validator fails
+            if(response.status === "errors"){
+                $.each(response.errors,function(key,value){
+                    $("#month_create_"+key+"_error").text(value);
+                });
+            }
+
+            //checking if laravel / database fails
+            else if(response.status === "exception"){
+                toastr.error(response.message);
+            }
+
+            //checking other common error fails
+            else if(response.status === "error"){
+                toastr.error(response.message);
+            }
+
+            else{
+                toastr.success(response.message);
+                let url = response.url;
+
+                //on success redirect to month show
+                $.ajax({
+                    url: url,
+                    type: "GET",
+                    success: function(response){
+                        $("#content_loader").html(response);
+                    }
+                });
+            }
+        }
+    });
+});
+// month activation end
+
 //month edit back to month show
 $("#content_loader").on("click","#month_show_back",function(e){
     e.preventDefault();

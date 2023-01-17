@@ -40,7 +40,9 @@
             <option value="active" {{ (strcmp('active',$member->status)==0) ? 'selected' : '' }}>Active</option>
             <option value="inactive" {{ (strcmp('inactive',$member->status)==0) ? 'selected' : '' }}>Inactive</option>
             <option value="pending" {{ (strcmp('pending',$member->status)==0) ? 'selected' : '' }}>Pending</option>
+            @if(strcmp('deleted',$member->status)==0)
             <option value="deleted" {{ (strcmp('deleted',$member->status)==0) ? 'selected' : '' }}>Deleted</option>
+            @endif
         </select>
         <span id="member_edit_status_error" class="member-edit-error"></span>
 
