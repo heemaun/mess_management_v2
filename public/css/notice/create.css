@@ -1,1 +1,36 @@
-/*# sourceMappingURL=create.css.map */
+.notice-create {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.notice-create h2 {
+  text-align: center;
+}
+.notice-create form {
+  max-width: 95%;
+  min-width: 75%;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.notice-create form .heading {
+  height: 5rem;
+}
+.notice-create form .body {
+  height: 10rem;
+}
+.notice-create form .notice-create-error {
+  color: red;
+  display: block;
+}
+.notice-create form .btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}/*# sourceMappingURL=create.css.map */

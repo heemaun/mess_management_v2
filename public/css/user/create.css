@@ -1,1 +1,30 @@
-/*# sourceMappingURL=create.css.map */
+.user-create {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.user-create h2 {
+  text-align: center;
+}
+.user-create form {
+  max-width: 95%;
+  min-width: 500px;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.user-create form .user-create-error {
+  color: red;
+  display: block;
+}
+.user-create form .btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}/*# sourceMappingURL=create.css.map */

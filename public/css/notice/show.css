@@ -1,1 +1,85 @@
-/*# sourceMappingURL=show.css.map */
+.notice-show h2, .notice-show h3 {
+  margin: 0rem;
+  padding: 0rem;
+  text-align: center;
+}
+.notice-show .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.notice-show .top h2 {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.notice-show .details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.notice-show .details-container .info-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+  background: black;
+  color: white;
+}
+.notice-show .details-container .info-container h3 {
+  text-align: center;
+  color: goldenrod;
+}
+.notice-show .details-container .info-container .body {
+  max-width: 100%;
+}
+.notice-show .details-container .info-container .footer {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+.notice-show .details-container .info-container .footer .admin {
+  font-size: larger;
+  font-weight: bolder;
+  font-style: italic;
+  color: red;
+}
+.notice-show .details-container .info-container .footer .date {
+  color: red;
+}
+.notice-show .notice-delete-div {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.notice-show .notice-delete-div form {
+  min-width: 500px;
+  max-width: 95%;
+  background: black;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.notice-show .notice-delete-div form .notice-delete-error {
+  color: red;
+  display: block;
+}
+.notice-show .notice-delete-div form .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.notice-show .hide {
+  display: none;
+}/*# sourceMappingURL=show.css.map */

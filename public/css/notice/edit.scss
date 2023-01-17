@@ -1,1 +1,44 @@
 
+.notice-edit{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+
+    h2{
+        text-align: center;
+    }
+
+    form{
+        max-width: 75%;
+        min-width: 95%;
+        background: black;
+        color: white;
+        padding: 1rem;
+        border-radius: .25rem;
+        box-shadow: 0rem 0rem .5rem gray;
+
+        .heading{
+            height: 5rem;
+        }
+
+        .body{
+            height: 10rem;
+        }
+
+        .notice-edit-error{
+            color: red;
+            display: block;
+        }
+
+        .btn-container{
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: .5rem;
+        }
+    }
+}
+

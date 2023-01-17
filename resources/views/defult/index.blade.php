@@ -68,6 +68,7 @@
                     <li><a href="{{ route('payments.index') }}">Payments</a></li>
                     <li><a href="{{ route('adjustments.index') }}">Adjustments</a></li>
                     <li><a href="{{ route('notices.index') }}">Notices</a></li>
+                    <li><a href="{{ route('users.index') }}">User</a></li>
                 </ul>
                 @endif
 

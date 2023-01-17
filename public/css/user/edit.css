@@ -1,1 +1,30 @@
-/*# sourceMappingURL=edit.css.map */
+.user-edit {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.user-edit h2 {
+  text-align: center;
+}
+.user-edit form {
+  max-width: 95%;
+  min-width: 500px;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.user-edit form .user-edit-error {
+  color: red;
+  display: block;
+}
+.user-edit form .btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}/*# sourceMappingURL=edit.css.map */

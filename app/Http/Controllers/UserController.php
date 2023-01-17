@@ -21,7 +21,7 @@ class UserController extends Controller
     {
         if(array_key_exists('search',$request->all())){
             if(strcmp('all',$request->status)===0){
-                $status = ['pending','active','deleted','banned','restricted'];
+                $status = ['pending','active','banned','restricted'];
             }
             else{
                 $status = [$request->status];
@@ -43,6 +43,7 @@ class UserController extends Controller
             }
             return response(view('user.search',compact('users')));
         }
+        $users = User::where('status','active')->get();
         return response(view('user.index',compact('users')));
     }
 
@@ -67,7 +68,7 @@ class UserController extends Controller
         $data = Validator::make($request->all(),[
             'name'      => 'required|min:3|max:30',
             'email'     => 'required|email',
-            'phone'     => 'required|numeric',
+            'phone'     => 'required|digits:11',
             'status'    => 'required',
             'image'     => 'nullable',
         ]);
@@ -89,7 +90,7 @@ class UserController extends Controller
                 'email'         => $data['email'],
                 'phone'         => $data['phone'],
                 'password'      => Hash::make('11111111'),
-                'status'        => 'pending',
+                'status'        => $data['status'],
             ]);
 
             if(array_key_exists('picture',$data)){
@@ -198,7 +199,8 @@ class UserController extends Controller
     public function destroy(User $user,Request $request)
     {
         $data = Validator::make($request->all(),[
-            'password' => 'required|min:8|max:20',
+            'password'          => 'required|min:8|max:20',
+            'permanent_delete'  => 'sometimes',
         ]);
 
         if($data->fails()){
@@ -208,13 +210,20 @@ class UserController extends Controller
             ]);
         }
 
+        if($user->id === 1){
+            return response()->json([
+                'status' => 'error',
+                'message' => 'This user can not be deleted',
+            ]);
+        }
+
         DB::beginTransaction();
 
         try{
             $data = $data->validate();
 
             if(Hash::check($data['password'],getUser()->password)){
-                if($request->permanent_delete === 1){
+                if(strcmp('true',$data['permanent_delete'])==0){
                     $user->delete();
                 }
                 else{

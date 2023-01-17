@@ -15,7 +15,7 @@
     <div class="details-container">
         <div class="info-container">
             <h3>Member Information</h3>
-            <label for="">Name:<span>{{ $member->name.' ['.date('Y-M',strtotime($member->name)).']' }}</span></label>
+            <label for="">Name:<span>{{ $member->name }}</span></label>
             <label for="">Status:<span>{{ ucwords($member->status) }}</span></label>
             <label for="">Floor:<span>{{ $member->floor }}</span></label>
             <label for="">Email:<span>{{ $member->email }}</span></label>

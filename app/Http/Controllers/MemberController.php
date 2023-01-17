@@ -137,7 +137,14 @@ class MemberController extends Controller
             }
 
             if(Month::where('name',date('Y-m'))->where('status','active')->first() != null){ // creating ember-months based on member & month status
-                $member->months->attach(Month::where('name',date('Y-m'))->where('status','active')->first());
+                $member->current_balance += (strcmp('Ground Floor',$member->floor)==0) ? 850 : 900;
+                $member->save();
+
+                $member->months()->attach(Month::where('name',date('Y-m'))->where('status','active')->first()->id,[
+                    'user_id'           => getUser()->id,
+                    'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                    'due'               => $member->current_balance,
+                ]);
             }
 
             DB::commit();
@@ -241,7 +248,11 @@ class MemberController extends Controller
 
             //checking if member status is activated then create member month
             if(strcmp($tmpStatus,'active') != 0 && strcmp($member->status,'active') == 0 && MemberMonth::where('member_id',$member->id)->where('month_id',$month->id)->first() === null){
-                $member->months()->attach($month);
+                $member->months()->attach([
+                    'user_id'           => getUser()->id,
+                    'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                    'due'               => $member->current_balance
+                ]);
             }
             else if(strcmp($tmpStatus,'active') == 0 && strcmp($member->status,'active') != 0 && MemberMonth::where('member_id',$member->id)->where('month_id',$month->id)->first() !== null){
                 $memberMonth = MemberMonth::where('member_id',$member->id)
