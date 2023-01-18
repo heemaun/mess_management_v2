@@ -59,6 +59,68 @@
         </div>
     </div>
 
+    <div class="member-history">
+        <h3>Month details payments</h3>
+            <table class="table table-dark table-striped table-hover table-bordered">
+                <thead>
+                    <tr>
+                        <th rowspan="2">No.</th>
+                        <th rowspan="2">Month</th>
+                        <th colspan="2">Payment</th>
+                        <th colspan="2">Adjustment</th>
+                        <th rowspan="2">Rent</th>
+                        <th rowspan="2">Due</th>
+                    </tr>
+                    <tr>
+                        <th>Details</th>
+                        <th>Total</th>
+                        <th>Details</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($membersMonths as $mm)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td class="left">{{ $mm->month->name }}</td>
+                        <td class="td-flex">
+                            @if (count($mm->payments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->payments->where('status','active') as $payment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($payment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
+                            </span>
+                            @endforeach
+                            @endif
+                        </td>
+                        <td class="right">
+                            <span>{{ number_format($mm->payments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="td-flex">
+                            @if (count($mm->adjustments->where('status','active'))==0)
+                            {{ '-' }}
+                            @else
+                            @foreach ($mm->adjustments->where('status','active') as $adjustment)
+                            <span class="td-span-parent">
+                                <span>{{ number_format($adjustment->amount) }}</span>
+                                <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
+                            </span>
+                            @endforeach
+                            @endif
+                        </td>
+                        <td class="right">
+                            <span>{{ number_format($mm->adjustments->where('status','active')->sum('amount')) }}</span>
+                        </td>
+                        <td class="right">{{ number_format($mm->rent_this_month) }}</td>
+                        <td class="right">{{ number_format($mm->due) }}</td>
+                    </tr>
+                    @endforeach
+                </tbody>
+            </table>
+    </div>
+
     <div id="member_delete_div" class="member-delete-div hide">
         <form action="{{ route('members.destroy',$member) }}" method="POST" id="member_delete_form">
             @csrf

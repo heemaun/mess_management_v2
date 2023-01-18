@@ -198,7 +198,12 @@ class MemberController extends Controller
                                 ->select('payments.*')
                                 ->limit(5)
                                 ->get();
-        return response(view('member.show',compact('member','payments')));
+        $membersMonths = MemberMonth::join('months','months.id','=','members_months.month_id')
+                                    ->where('members_months.member_id',$member->id)
+                                    ->orderBy('months.name','DESC')
+                                    ->select('members_months.*')
+                                    ->get();
+        return response(view('member.show',compact('member','payments','membersMonths')));
     }
 
     /**
