@@ -31,29 +31,47 @@ class PaymentController extends Controller
             }
 
             if(is_numeric($request->search)){
-                $payments = Payment::join('members','payments.members_id','=','members.id')
-                                    ->where('member.phone',$request->search)
+                $payments = Payment::join('members_months','payments.member_month_id','=','members_months.id')
+                                    ->join('members','members_months.member_id','=','members.id')
+                                    ->where('members.phone',$request->search)
                                     ->whereIn('payments.status',$status)
                                     ->whereBetween('payments.created_at',[$request->from,$request->to])
+                                    ->select('payments.*')
+                                    ->orderBy('members.floor','ASC')
+                                    ->orderBy('payments.created_at','DESC')
+                                    ->orderBy('members.name','ASC')
                                     ->get();
             }
             else if(Str::contains($request->search, '@')){
-                $payments = Payment::join('members','payments.members_id','=','members.id')
-                                    ->where('member.email',$request->search)
+                $payments = Payment::join('members_months','payments.member_month_id','=','members_months.id')
+                                    ->join('members','members_months.member_id','=','members.id')
+                                    ->where('members.email',$request->search)
                                     ->whereIn('payments.status',$status)
                                     ->whereBetween('payments.created_at',[$request->from,$request->to])
+                                    ->select('payments.*')
+                                    ->orderBy('members.floor','ASC')
+                                    ->orderBy('payments.created_at','DESC')
+                                    ->orderBy('members.name','ASC')
                                     ->get();
             }
             else{
-                $payments = Payment::join('members','payments.members_id','=','members.id')
-                                    ->where('member.name','LIKE','%'.$request->search.'%')
+                $payments = Payment::join('members_months','payments.member_month_id','=','members_months.id')
+                                    ->join('members','members_months.member_id','=','members.id')
+                                    ->where('members.name','LIKE','%'.$request->search.'%')
                                     ->whereIn('payments.status',$status)
                                     ->whereBetween('payments.created_at',[$request->from,$request->to])
+                                    ->select('payments.*')
+                                    ->orderBy('members.floor','ASC')
+                                    ->orderBy('payments.created_at','DESC')
+                                    ->orderBy('members.name','ASC')
                                     ->get();
             }
             return response(view('payment.search',compact('payments')));
         }
-        $payments = Payment::where('status','active')->get();
+        $payments = Payment::where('status','active')
+                            // ->orderBy('floor','ASC')
+                            ->orderBy('created_at','DESC')
+                            ->get();
         return response(view('payment.index',compact('payments')));
     }
 
@@ -65,9 +83,10 @@ class PaymentController extends Controller
     public function create()
     {
         $members = Member::where('status','active')
-                            ->orderby('name','DESC')
-                            ->get();
-        return response(view('payment.create',compact('member')));
+                        ->orderBy('floor','ASC')
+                        ->orderBy('name','ASC')
+                        ->get();
+        return response(view('payment.create',compact('members')));
     }
 
     /**
@@ -80,9 +99,11 @@ class PaymentController extends Controller
     {
         $data = Validator::make($request->all(),[
             'member_id' => 'required',
-            'amount'    => 'required|numeric',
+            'amount'    => 'required|numeric|min:1',
             'status'    => 'required',
             'note'      => 'nullable|string',
+        ],$messages =[
+            'member_id.required' => 'A member is required',
         ]);
 
         if($data->fails()){
@@ -97,12 +118,14 @@ class PaymentController extends Controller
         try{
             $data = $data->validate();
 
-            $month = Month::where('name',date('Y-m'))->first();
+            $month = Month::where('status','active')
+                            ->where('name',date('Y-m'))
+                            ->first();
 
             if($month === null){
                 return response()->json([
                     'status'    => 'error',
-                    'message'   => 'Please first activate this month',
+                    'message'   => 'Please first activate running month',
                 ]);
             }
 
@@ -115,11 +138,11 @@ class PaymentController extends Controller
             ]);
 
             if(strcmp('active',$payment->status)==0){
-                $payment->borderMonth->due -= $payment->amount;
-                $payment->borderMonth->save();
+                $payment->memberMonth->due -= $payment->amount;
+                $payment->memberMonth->save();
 
-                $payment->member->current_balance += $payment->amount;
-                $payment->member->save();
+                $payment->memberMonth->member->current_balance -= $payment->amount;
+                $payment->memberMonth->member->save();
             }
 
             DB::commit();
@@ -196,43 +219,37 @@ class PaymentController extends Controller
             $data = $data->validate();
 
             if(Hash::check($data['password'],getUser()->password)){
-                $member_id = $payment->borderMonth->member_Id;
-                $month_name = $payment->borderMonth->month->name;
-                $status = $payment->status;
-                $membersMonthsArray = array();
+                $member = $payment->memberMonth->member;
+                $month = $payment->memberMonth->month;
+                $amount = $payment->amount;
 
-                if($request->permanent_delete === 1){
-                    $payment->delete();
-                }
-                else{
-                    $payment->status = 'deleted';
+                $payment->delete();
 
-                    $payment->save();
-                }
+                $member->current_balance += $amount;
+                $member->save();
 
-                if(strcmp($status,'active')==0){
-                    foreach(Month::where('name'>$month_name) as $month){
-                        array_push($membersMonthsArray,MemberMonth::where('member_id',$member_id)->where('month_id',$month->id)->id);
-                    }
 
-                    foreach($membersMonthsArray as $mm){
-                        $mm->due += $payment->amount;
-                        $mm->user_id = getUser()->id;
-                        $mm->save();
-                    }
 
-                    $member = Member::find($member_id);
-                    $member->current_balance -= $payment->amount;
-                    $member->user_id = getUser()->id;
-                    $member->save();
+                $months = Month::where('status','active')
+                                ->where('name','>=',$month->name)
+                                ->orderBy('name','DESC')
+                                ->get();
+
+                foreach($months as $m){
+                    $memberMonth = MemberMonth::where('member_id',$member->id)
+                                                ->where('month_id',$m->id)
+                                                ->first();
+
+                    $memberMonth->due += $amount;
+                    $memberMonth->save();
                 }
 
                 DB::commit();
 
                 return response()->json([
                     'status'    => 'success',
-                    'message'   => 'Member deleted successfully',
-                    'url'       => route('members.index'),
+                    'message'   => 'Payment deleted successfully',
+                    'url'       => route('payments.index'),
                 ]);
             }
 

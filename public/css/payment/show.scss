@@ -1,1 +1,102 @@
 
+
+.payment-show{
+    h2,h3{
+        margin: 0rem;
+        padding: 0rem;
+        text-align: center;
+    }
+
+    .top{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: .5rem;
+
+        h2{
+            margin-left: 50%;
+            transform: translateX(-50%);
+        }
+    }
+
+    .details-container{
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+
+        .info-container{
+            flex-grow: 5;
+            display: flex;
+            flex-flow: column;
+            justify-content: center;
+            align-items: center;
+            // width: 100%;
+            gap: .5rem;
+
+            label{
+                display: flex;
+                flex-flow: row;
+                justify-content: space-between;
+                align-items: center;
+                min-width: 500px;
+                max-width: 100%;
+                font-weight: bold;
+                border-bottom: .1rem dashed gray;
+
+                span{
+                    font-weight: normal;
+                    font-style: italic;
+                }
+            }
+
+            .note{
+                border-bottom: none;
+            }
+
+            p{
+                width: 500px;
+                padding: .5rem;
+                border: .1rem dashed gray;
+            }
+        }
+    }
+
+    .payment-delete-div{
+        position: fixed;
+        top: 0rem;
+        left: 0rem;
+        width: 100%;
+        height: 100vh;
+        background: rgba(0,0,0,.75);
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        form{
+            min-width: 500px;
+            max-width: 95%;
+            background: black;
+            padding: 1rem;
+            border-radius: .25rem;
+            box-shadow: 0rem 0rem .5rem gray;
+
+            .payment-delete-error{
+                color: red;
+                display: block;
+            }
+
+            .btn-container{
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+                margin-top: .5rem;
+            }
+        }
+    }
+
+    .hide{
+        display: none;
+    }
+}
+

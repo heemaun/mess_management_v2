@@ -1,1 +1,83 @@
-/*# sourceMappingURL=show.css.map */
+.payment-show h2, .payment-show h3 {
+  margin: 0rem;
+  padding: 0rem;
+  text-align: center;
+}
+.payment-show .top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.payment-show .top h2 {
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+.payment-show .details-container {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+.payment-show .details-container .info-container {
+  flex-grow: 5;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+}
+.payment-show .details-container .info-container label {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: center;
+  min-width: 500px;
+  max-width: 100%;
+  font-weight: bold;
+  border-bottom: 0.1rem dashed gray;
+}
+.payment-show .details-container .info-container label span {
+  font-weight: normal;
+  font-style: italic;
+}
+.payment-show .details-container .info-container .note {
+  border-bottom: none;
+}
+.payment-show .details-container .info-container p {
+  width: 500px;
+  padding: 0.5rem;
+  border: 0.1rem dashed gray;
+}
+.payment-show .payment-delete-div {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.payment-show .payment-delete-div form {
+  min-width: 500px;
+  max-width: 95%;
+  background: black;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.payment-show .payment-delete-div form .payment-delete-error {
+  color: red;
+  display: block;
+}
+.payment-show .payment-delete-div form .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+.payment-show .hide {
+  display: none;
+}/*# sourceMappingURL=show.css.map */

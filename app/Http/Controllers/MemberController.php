@@ -66,6 +66,26 @@ class MemberController extends Controller
             }
             return response(view('member.search',compact('members')));
         }
+
+        else if(array_key_exists('from_payment_create',$request->all())){
+            if(strcmp('all',$request->floor)==0){
+                $floor = ['Ground Floor','1st Floor','2nd Floor'];
+            }
+            else{
+                $floor = [$request->floor];
+            }
+
+            $members = Member::where('status','active')
+                                ->whereIn('floor',$floor)
+                                ->orderBy('floor','ASC')
+                                ->orderBy('name','ASC')
+                                ->get();
+            return response()->json([
+                'status' => 'success',
+                'data' => $members,
+            ]);
+        }
+
         $members = Member::where('status','active')
                             ->orderBy('floor','ASC')
                             ->orderBy('status','DESC')

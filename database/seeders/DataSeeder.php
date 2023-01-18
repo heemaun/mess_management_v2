@@ -93,6 +93,7 @@ class DataSeeder extends Seeder
                 'amount'            => $amount[rand(0,3)],
                 'note'              => $faker->text(),
                 'status'            => $faker->randomElement(['pending','active','inactive','deleted']),
+                'created_at'        => $faker->dateTime(),
             ]);
         }
 
