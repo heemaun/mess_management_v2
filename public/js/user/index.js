@@ -50,7 +50,7 @@ $("#content_loader").on("click","#user_index_create", function(e){
 //user create end
 
 //pagination  links
-$("#content_loader").on("click",".pagination a",function(e){
+$("#content_loader").on("click","#user_index .pagination a",function(e){
     e.preventDefault();
     let url = $(this).attr("href");
     let search = $("#user_index_search").val();

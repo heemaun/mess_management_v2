@@ -41,6 +41,19 @@
                 <option value="12">December</option>
             </select>
         </div>
+
+        <div class="form-group select">
+            <label for="month_index_limit" class="form-label">Select a limit</label>
+            <select id="month_index_limit" class="form-select" onchange="searchMonth()">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+            </select>
+        </div>
+
         <a href="{{ route('months.create') }}" id="month_index_create" class="btn btn-success">Create</a>
     </div>
 
@@ -63,5 +76,6 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $months->links() }}
     </div>
 </div>

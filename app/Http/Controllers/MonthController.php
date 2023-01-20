@@ -31,12 +31,12 @@ class MonthController extends Controller
             $months = Month::whereIn('status',$status)
                                 ->where('name','LIKE','%'.$request->year.'-'.$request->month.'%')
                                 ->orderBy('name','DESC')
-                                ->get();
+                                ->paginate($request->limit);
             return response(view('month.search',compact('months')));
         }
         $months = Month::where('status','active')
                         ->orderBy('name','DESC')
-                        ->get();
+                        ->paginate(10);
         return view('month.index',compact('months'));
     }
 

@@ -48,7 +48,7 @@ class AdjustmentController extends Controller
                                     ->orderBy('adjustments.created_at','DESC')
                                     ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
-                                    ->get();
+                                    ->paginate($request->limit);
             }
             else if(Str::contains($request->search, '@')){
                 $adjustments = Adjustment::join('members_months','adjustments.member_month_id','=','members_months.id')
@@ -61,7 +61,7 @@ class AdjustmentController extends Controller
                                     ->orderBy('adjustments.created_at','DESC')
                                     ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
-                                    ->get();
+                                    ->paginate($request->limit);
             }
             else{
                 $adjustments = Adjustment::join('members_months','adjustments.member_month_id','=','members_months.id')
@@ -74,14 +74,14 @@ class AdjustmentController extends Controller
                                     ->orderBy('adjustments.created_at','DESC')
                                     ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
-                                    ->get();
+                                    ->paginate($request->limit);
             }
             return response(view('adjustment.search',compact('adjustments')));
         }
         $adjustments = Adjustment::where('status','active')
                             // ->orderBy('floor','ASC')
                             ->orderBy('created_at','DESC')
-                            ->get();
+                            ->paginate(10);
         return response(view('adjustment.index',compact('adjustments')));
     }
 

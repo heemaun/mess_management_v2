@@ -53,9 +53,9 @@
             <div class="form-group select">
                 <label for="adjustment_index_limit" class="form-label">Select row count</label>
                 <select id="adjustment_index_limit" class="form-select" onchange="searchAdjustment()">
-                    <option value="all" selected>All</option>
+                    <option value="all">All</option>
                     <option value="5">5</option>
-                    <option value="10">10</option>
+                    <option value="10" selected>10</option>
                     <option value="25">25</option>
                     <option value="50">50</option>
                     <option value="100">100</option>
@@ -90,5 +90,6 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $adjustments->links() }}
     </div>
 </div>

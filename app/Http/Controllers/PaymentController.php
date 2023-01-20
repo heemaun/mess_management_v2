@@ -40,7 +40,7 @@ class PaymentController extends Controller
                                     ->orderBy('payments.created_at','DESC')
                                     ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
-                                    ->get();
+                                    ->paginate($request->limit);
             }
             else if(Str::contains($request->search, '@')){
                 $payments = Payment::join('members_months','payments.member_month_id','=','members_months.id')
@@ -52,7 +52,7 @@ class PaymentController extends Controller
                                     ->orderBy('payments.created_at','DESC')
                                     ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
-                                    ->get();
+                                    ->paginate($request->limit);
             }
             else{
                 $payments = Payment::join('members_months','payments.member_month_id','=','members_months.id')
@@ -64,14 +64,14 @@ class PaymentController extends Controller
                                     ->orderBy('payments.created_at','DESC')
                                     ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
-                                    ->get();
+                                    ->paginate($request->limit);
             }
             return response(view('payment.search',compact('payments')));
         }
         $payments = Payment::where('status','active')
                             // ->orderBy('floor','ASC')
                             ->orderBy('created_at','DESC')
-                            ->get();
+                            ->paginate(10);
         return response(view('payment.index',compact('payments')));
     }
 

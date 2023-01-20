@@ -44,7 +44,7 @@ class MemberController extends Controller
                                 ->orderBy('floor','ASC')
                                 ->orderBy('status','DESC')
                                 ->orderBy('name','ASC')
-                                ->get();
+                                ->paginate($request->limit);
             }
             else if(Str::contains($request->search, '@')){ // search by email
                 $members = Member::where('email',$request->search)
@@ -53,7 +53,7 @@ class MemberController extends Controller
                                 ->orderBy('floor','ASC')
                                 ->orderBy('status','DESC')
                                 ->orderBy('name','ASC')
-                                ->get();
+                                ->paginate($request->limit);
             }
             else{ //search by name
                 $members = Member::where('name','LIKE','%'.$request->search.'%')
@@ -62,7 +62,7 @@ class MemberController extends Controller
                                 ->orderBy('floor','ASC')
                                 ->orderBy('status','DESC')
                                 ->orderBy('name','ASC')
-                                ->get();
+                                ->paginate($request->limit);
             }
             return response(view('member.search',compact('members')));
         }
@@ -90,7 +90,7 @@ class MemberController extends Controller
                             ->orderBy('floor','ASC')
                             ->orderBy('status','DESC')
                             ->orderBy('name','ASC')
-                            ->get();
+                            ->paginate(10);
         return response(view('member.index',compact('members')));
     }
 

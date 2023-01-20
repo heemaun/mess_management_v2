@@ -34,10 +34,10 @@ class NoticeController extends Controller
                                 )
                                 ->whereIn('status',$status)
                                 ->whereBetween('created_at',[$request->from,$request->to])
-                                ->get();
+                                ->paginate($request->limit);
             return response(view('notice.search',compact('notices')));
         }
-        $notices = Notice::where('status','active')->get();
+        $notices = Notice::where('status','active')->paginate(10);
         return view('notice.index',compact('notices'));
     }
 
