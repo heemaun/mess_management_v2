@@ -29,21 +29,21 @@ class UserController extends Controller
             if(is_numeric($request->search)){
                 $users = User::where('phone',$request->search)
                                 ->whereIn('status',$status)
-                                ->get();
+                                ->paginate($request->limit);
             }
             else if(Str::contains($request->search, '@')){
                 $users = User::where('email',$request->search)
                                 ->whereIn('status',$status)
-                                ->get();
+                                ->paginate($request->limit);
             }
             else{
                 $users = User::where('name','LIKE','%'.$request->search.'%')
                                 ->whereIn('status',$status)
-                                ->get();
+                                ->paginate($request->limit);
             }
             return response(view('user.search',compact('users')));
         }
-        $users = User::where('status','active')->get();
+        $users = User::where('status','active')->paginate(10);
         return response(view('user.index',compact('users')));
     }
 

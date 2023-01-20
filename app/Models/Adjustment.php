@@ -17,6 +17,7 @@ class Adjustment extends Model
         'type',
         'amount',
         'status',
+        'note',
     ];
 
     public function user()

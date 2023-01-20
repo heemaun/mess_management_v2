@@ -35,24 +35,33 @@ class DataSeeder extends Seeder
             'status'    => 'active',
             'password'  => Hash::make('11111111'),
         ]);
-        for($x=0;$x<5;$x++){
+        for($x=0;$x<501;$x++){
             User::create([
                 'name'      => $faker->name(),
                 'email'     => $faker->email(),
-                'phone'     => $faker->phoneNumber(),
+                'phone'     => $faker->e164PhoneNumber(),
                 'status'    => $faker->randomElement(['pending','active','deleted','banned','restricted']),
                 'password'  => Hash::make('11111111'),
             ]);
         }
 
+        for($x=2018;$x<2024;$x++){
+            for($y=1;$y<=12;$y++){
+                Month::create([
+                    'user_id'       => rand(1,501),
+                    'name'          => date('Y-m',strtotime($x.'-'.$y)),
+                    'status'        => 'active',
+                ]);
+            }
+        }
 
-        for($x=0;$x<50;$x++){
+        for($x=0;$x<501;$x++){
             $member = Member::create([
-                'user_id'           => rand(1,6),
+                'user_id'           => rand(1,501),
                 'name'              => $faker->name(),
-                'phone'             => $faker->phoneNumber(),
+                'phone'             => $faker->e164PhoneNumber(),
                 'email'             => $faker->email(),
-                'image'             => $faker->email(),
+                'image'             => '',
                 'initial_balance'   => rand(0,1000),
                 'current_balance'   => rand(0,1000),
                 'joining_date'      => $faker->date(),
@@ -66,18 +75,10 @@ class DataSeeder extends Seeder
             }
         }
 
-        for($x=0;$x<10;$x++){
-            Month::create([
-                'user_id'       => rand(1,6),
-                'name'          => date('Y-m',strtotime(rand(2015,date('Y')).'-'.rand(1,12))),
-                'status'        => 'active',
-            ]);
-        }
-
         foreach(Month::where('status','active')->get() as $month){
             foreach(Member::where('status','active')->get() as $member){
                 MemberMonth::create([
-                    'user_id'         => 1,
+                    'user_id'           => rand(1,501),
                     'member_id'         => $member->id,
                     'month_id'          => $month->id,
                     'due'               => rand(500,1000),
@@ -86,9 +87,9 @@ class DataSeeder extends Seeder
             }
         }
 
-        for($x=0;$x<500;$x++){
+        for($x=0;$x<501;$x++){
             Payment::create([
-                'user_id'           => rand(1,6),
+                'user_id'           => rand(1,501),
                 'member_month_id'   => rand(1,count(MemberMonth::all())),
                 'amount'            => $amount[rand(0,3)],
                 'note'              => $faker->text(),
@@ -97,19 +98,21 @@ class DataSeeder extends Seeder
             ]);
         }
 
-        for($x=0;$x<25;$x++){
+        for($x=0;$x<501;$x++){
             Adjustment::create([
-                'user_id'           => rand(1,6),
+                'user_id'           => rand(1,501),
                 'member_month_id'   => rand(1,count(MemberMonth::all())),
                 'type'              => $faker->randomElement(['fine','adjustment']),
                 'amount'            => $amount[rand(0,3)],
+                'note'              => $faker->text(),
                 'status'            => $faker->randomElement(['pending','active','inactive','deleted']),
+                'created_at'        => $faker->dateTime(),
             ]);
         }
 
-        for($x=0;$x<5;$x++){
+        for($x=0;$x<501;$x++){
             Notice::create([
-                'user_id'   => rand(1,6),
+                'user_id'   => rand(1,501),
                 'heading'   => $faker->text(),
                 'body'      => $faker->paragraph(),
                 'status'    => $faker->randomElement(['pending','active','inactive','deleted']),

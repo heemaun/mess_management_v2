@@ -19,6 +19,18 @@
             </select>
         </div>
 
+        <div class="form-group select">
+            <label for="user_index_limit" class="form-label">Select a limit</label>
+            <select id="user_index_limit" class="form-select" onchange="searchUser()">
+                <option value="5">5</option>
+                <option value="10" selected>10</option>
+                <option value="25">25</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+            </select>
+        </div>
+
         <a href="{{ route('users.create') }}" id="user_index_create" class="btn btn-success">Create</a>
     </div>
 
@@ -45,5 +57,6 @@
                 @endforeach
             </tbody>
         </table>
+        {{ $users->links() }}
     </div>
 </div>

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->enum('type',['fine','adjustment']);
             $table->integer('amount');
             $table->enum('status',['pending','active','inactive','deleted'])->default('pending');
+            $table->text('note')->nullable();
             $table->timestamps();
         });
     }

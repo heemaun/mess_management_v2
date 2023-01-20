@@ -24,7 +24,7 @@ class PaymentController extends Controller
     {
         if(array_key_exists('search',$request->all())){
             if(strcmp('all',$request->status)===0){
-                $status = ['pending','active','deleted','inactive'];
+                $status = ['pending','active','inactive'];
             }
             else{
                 $status = [$request->status];
@@ -37,8 +37,8 @@ class PaymentController extends Controller
                                     ->whereIn('payments.status',$status)
                                     ->whereBetween('payments.created_at',[$request->from,$request->to])
                                     ->select('payments.*')
-                                    ->orderBy('members.floor','ASC')
                                     ->orderBy('payments.created_at','DESC')
+                                    ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
                                     ->get();
             }
@@ -49,8 +49,8 @@ class PaymentController extends Controller
                                     ->whereIn('payments.status',$status)
                                     ->whereBetween('payments.created_at',[$request->from,$request->to])
                                     ->select('payments.*')
-                                    ->orderBy('members.floor','ASC')
                                     ->orderBy('payments.created_at','DESC')
+                                    ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
                                     ->get();
             }
@@ -61,8 +61,8 @@ class PaymentController extends Controller
                                     ->whereIn('payments.status',$status)
                                     ->whereBetween('payments.created_at',[$request->from,$request->to])
                                     ->select('payments.*')
-                                    ->orderBy('members.floor','ASC')
                                     ->orderBy('payments.created_at','DESC')
+                                    ->orderBy('members.floor','ASC')
                                     ->orderBy('members.name','ASC')
                                     ->get();
             }

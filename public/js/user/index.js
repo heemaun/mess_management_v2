@@ -3,6 +3,7 @@ function searchUser()
 {
     let search = $("#user_index_search").val();
     let status = $("#user_index_status").val();
+    let limit = $("#user_index_limit").val();
 
     $.ajax({
         url: "/users",
@@ -10,9 +11,10 @@ function searchUser()
         data:{
             search: search,
             status: status,
+            limit: limit,
         },
         success: function(response){
-            $("#content_loader tbody").html(response);
+            $("#content_loader #user_index_table_container").html(response);
         }
     });
 }
@@ -46,3 +48,26 @@ $("#content_loader").on("click","#user_index_create", function(e){
     });
 });
 //user create end
+
+//pagination  links
+$("#content_loader").on("click",".pagination a",function(e){
+    e.preventDefault();
+    let url = $(this).attr("href");
+    let search = $("#user_index_search").val();
+    let status = $("#user_index_status").val();
+    let limit = $("#user_index_limit").val();
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        data:{
+            search: search,
+            status: status,
+            limit: limit,
+        },
+        success: function(response){
+            $("#content_loader #user_index_table_container").html(response);
+        }
+    });
+});
+//pagination  links end

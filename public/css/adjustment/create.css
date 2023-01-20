@@ -1,1 +1,36 @@
-/*# sourceMappingURL=create.css.map */
+.adjustment-create {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.adjustment-create h2 {
+  text-align: center;
+}
+.adjustment-create form {
+  max-width: 95%;
+  min-width: 75%;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+.adjustment-create form .heading {
+  height: 5rem;
+}
+.adjustment-create form .body {
+  height: 10rem;
+}
+.adjustment-create form .adjustment-create-error {
+  color: red;
+  display: block;
+}
+.adjustment-create form .btn-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0.5rem;
+}/*# sourceMappingURL=create.css.map */

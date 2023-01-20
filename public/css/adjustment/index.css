@@ -1,1 +1,50 @@
-/*# sourceMappingURL=index.css.map */
+.adjustment-index {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+.adjustment-index h2 {
+  text-align: center;
+  margin-bottom: 0rem;
+  padding-bottom: 0rem;
+}
+.adjustment-index .top {
+  width: 100%;
+}
+.adjustment-index .top .rows {
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+.adjustment-index .top .rows .search {
+  flex-grow: 10;
+}
+.adjustment-index .top .rows .select {
+  flex-grow: 1;
+}
+.adjustment-index .table-container {
+  width: 100%;
+}
+.adjustment-index .table-container table th {
+  vertical-align: middle;
+  text-align: center;
+}
+.adjustment-index .table-container table .clickable {
+  cursor: pointer;
+}
+.adjustment-index .table-container table .left {
+  vertical-align: middle;
+  text-align: left;
+}
+.adjustment-index .table-container table .right {
+  vertical-align: middle;
+  text-align: right;
+}
+.adjustment-index .table-container table .center {
+  vertical-align: middle;
+  text-align: center;
+}/*# sourceMappingURL=index.css.map */
