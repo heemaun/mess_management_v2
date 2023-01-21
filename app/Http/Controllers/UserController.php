@@ -17,6 +17,11 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('login');
+    }
+
     public function index(Request $request)
     {
         if(array_key_exists('search',$request->all())){
@@ -149,10 +154,18 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $data = Validator::make($request->all(),[
-            'name'   => 'required|string|min:3|max:30',
-            'email'  => 'required|email|unique:users,email,'.$user->id,
-            'phone'  => 'required|numeric|unique:users,phone,'.$user->id,
-            'status' => 'required',
+            'name'                          => 'required_if:password,false|string|min:3|max:30',
+            'email'                         => 'required_if:password,false|email|unique:users,email,'.$user->id,
+            'phone'                         => 'required_if:password,false|numeric|unique:users,phone,'.$user->id,
+            'status'                        => 'required_if:password,false',
+            'current_password'              => 'required_if:password,true|min:8|max:20',
+            'new_password'                  => 'required_if:password,true|min:8|max:20|confirmed',
+            'new_password_confirmation'     => 'required_if:password,true|min:8|max:20',
+            'password'                      => 'required',
+        ],$messages = [
+            'current_password.required_if'          => 'Current password field is required',
+            'new_password.required_if'              => 'New password field is required',
+            'new_password_confirmation.required_if' => 'Confirm new password field is required',
         ]);
 
         if($data->fails()){
@@ -167,10 +180,23 @@ class UserController extends Controller
         try{
             $data = $data->validate();
 
-            $user->name   = $data['name'];
-            $user->email  = $data['email'];
-            $user->phone  = $data['phone'];
-            $user->status = $data['status'];
+            if(strcmp($data['password'],'true')==0){
+                if(Hash::check($data['current_password'],$user->password)){
+                    $user->password = Hash::make($data['new_password']);
+                }
+                else{
+                    return response()->json([
+                        'status'    => 'error',
+                        'message'   => 'Incorrect current password',
+                    ]);
+                }
+            }
+            else{
+                $user->name   = $data['name'];
+                $user->email  = $data['email'];
+                $user->phone  = $data['phone'];
+                $user->status = $data['status'];
+            }
 
             $user->save();
 
@@ -178,7 +204,7 @@ class UserController extends Controller
 
             return response()->json([
                 'status'    => 'success',
-                'message'   => 'User updated successfully',
+                'message'   => (strcmp($data['password'],'true')==0) ? 'Password changed successfully' : 'User updated successfully',
                 'url'       => route('users.show',$user->id),
             ]);
         }catch(Exception $e){

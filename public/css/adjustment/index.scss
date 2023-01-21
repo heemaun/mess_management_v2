@@ -16,14 +16,22 @@
 
     .top{
         width: 100%;
+        display: flex;
+        flex-flow: column;
+        justify-content: space-between;
+        align-items: flex-end;
+        gap: .5rem;
 
         .rows{
+            width: 100%;
             display: flex;
             flex-flow: row;
             justify-content: space-between;
             align-items: flex-end;
             gap: 1rem;
-            
+            background: gray;
+            padding: .5rem;
+
             .search{
                 flex-grow: 10;
             }

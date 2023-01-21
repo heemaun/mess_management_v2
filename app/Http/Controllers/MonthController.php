@@ -18,6 +18,11 @@ class MonthController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->middleware('login')->except('show');
+    }
+
     public function index(Request $request)
     {
         if(array_key_exists('status',$request->all())){

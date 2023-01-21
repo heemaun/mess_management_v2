@@ -55,10 +55,11 @@
         <link rel="stylesheet" href="{{ asset('css/notice/create.css') }}">
         <link rel="stylesheet" href="{{ asset('css/notice/edit.css') }}">
     </head>
+
     <body>
         <header>
             <nav>
-                <a href="{{ route('index') }}" class="logo">Calefornia Co-op</a>
+                <a href="{{ route('index') }}" class="logo">Zaman Mess</a>
 
                 @if (checkLogin())
                 <ul id="navbar">
@@ -72,30 +73,32 @@
                 </ul>
                 @endif
 
-                <ul>
-                    @if (checkLogin())
-                    <li id="prodile"><a href="{{ '#' }}">Profile</a></li>
+                @if (checkLogin())
+                <span id="right_trigger" class="right-trigger">{{ getUser()->name }}</span>
+                <ul id="right_ul" class="right-ul hide">
+                    <li id="profile"><a href="{{ route('users.show',getUser()->id) }}">Profile</a></li>
+                    <li id="change_password"><a href="{{ '#' }}">Change Password</a></li>
                     <li id="logout"><a href="{{ route('logout') }}">Logout</a></li>
-                    @else
-                    <li id="login"><a href="#">Login</a></li>
-                    @endif
                 </ul>
+                @else
+                <span id="login" class="right-trigger">Login</span>
+                @endif
+
             </nav>
         </header>
 
         {{-- site banner space --}}
-        {{-- @if (!checkLogin()) --}}
+        @if (!checkLogin())
         <main>
             <h1>ABC</h1>
             <h6>Calefornia, USA</h6>
         </main>
-        {{-- @endif --}}
+        @endif
         {{-- site banner space end --}}
 
         <section class="content-body">
             {{-- the part all content will load through ajax --}}
             <section id="content_loader" class="content-loader">
-                <h2>Content Body</h2>
             </section>
             {{-- the part all content will load through ajax end --}}
 
@@ -162,11 +165,11 @@
                 <legend>Login</legend>
 
                 <label for="login_email" class="form-label">Email</label>
-                <input type="email" name="email" id="login_email" class="form-control" placeholder="enter your email" autocomplete="OFF">
+                <input type="email" name="email" id="login_email" class="form-control" placehcurrenter="enter your email" autocomplete="OFF">
                 <span id="login_email_error" class="login-error"></span>
 
                 <label for="login-password" class="form-label">Password</label>
-                <input type="password" name="password" id="login_password" class="form-control" placeholder="enter your password" autocomplete="OFF">
+                <input type="password" name="password" id="login_password" class="form-control" placehcurrenter="enter your password" autocomplete="OFF">
                 <span id="login_password_error" class="login-error"></span>
 
                 <div class="btn-container">
@@ -176,6 +179,41 @@
             </form>
         </section>
         {{-- login div end --}}
+
+        @else
+        {{-- change password div --}}
+        <section id="change_password_div" class="change-password-div hide">
+            <form action="{{ route('users.update',getUser()->id) }}" method="POST" id="change_password_form">
+                @csrf
+                @method("PUT")
+
+                <legend>Change Password</legend>
+
+                <div class="form-group">
+                    <label for="change_password_current" class="form-label">Enter current password</label>
+                    <input type="password" id="change_password_current" name="current_password" placehcurrenter="enter current password" autocomplete="OFF" class="form-control">
+                    <span id="change_password_current_password_error" class="change-password-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="change_password_new" class="form-label">Enter new password</label>
+                    <input type="password" id="change_password_new" name="new_password" placehcurrenter="enter new password" autocomplete="OFF" class="form-control">
+                    <span id="change_password_new_password_error" class="change-password-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="change_password_confirm" class="form-label">Confirm new password</label>
+                    <input type="password" id="change_password_confirm" name="confirm_password" placehcurrenter="confirm new password" autocomplete="OFF" class="form-control">
+                    <span id="change_password_new_password_confirmation_error" class="change-password-error"></span>
+                </div>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Change</button>
+                    <button type="button" id="change_password_close" class="btn btn-secondary">Close</button>
+                </div>
+            </form>
+        </section>
+        {{-- change password div end --}}
         @endif
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>

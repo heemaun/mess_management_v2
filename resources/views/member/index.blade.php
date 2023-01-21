@@ -13,7 +13,8 @@
                 <option value="all">All</option>
                 <option value="pending">Pending</option>
                 <option value="active" selected>Active</option>
-                <option value="inactive">Inactive</option>
+                <option value="banned">Banned</option>
+                <option value="restricted">Restricted</option>
                 <option value="deleted">Deleted</option>
             </select>
         </div>

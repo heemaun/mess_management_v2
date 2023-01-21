@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('login')->only(['logout']);
+    }
+
     public function login(Request $request)
     {
         $data = Validator::make($request->all(),[

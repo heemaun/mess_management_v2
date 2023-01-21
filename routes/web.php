@@ -9,6 +9,7 @@ use App\Http\Controllers\MonthController;
 use App\Http\Controllers\NoticeController;
 use App\Http\Controllers\PaymentController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SettingController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,6 +31,7 @@ Route::resource('/months', MonthController::class);
 Route::resource('/notices', NoticeController::class);
 Route::resource('/payments', PaymentController::class);
 Route::resource('/users', UserController::class);
+Route::resource('/settings', SettingController::class);
 
 //login routes
 Route::post('/login',[LoginController::class,'login'])->name('login');

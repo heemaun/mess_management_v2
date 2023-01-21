@@ -17,6 +17,7 @@ $("#content_loader").on("click","#user_edit_back",function(e){
 $("#content_loader").on("submit","#user_edit_form",function(e){
     e.preventDefault();
     let url = $(this).attr("action");
+
     let name = $("#user_edit_name").val();
     let phone = $("#user_edit_phone").val();
     let email = $("#user_edit_email").val();
@@ -31,6 +32,7 @@ $("#content_loader").on("submit","#user_edit_form",function(e){
             phone: phone,
             email: email,
             status: status,
+            password: "false",
         },
         beforeSend: function(){
             $(".user-edit-error").text("");

@@ -1,7 +1,8 @@
 <?php
 
-use App\Models\Settings;
 use App\Models\User;
+use App\Models\Setting;
+use App\Models\Settings;
 use Illuminate\Support\Facades\Session;
 function checkLogin()
 {
@@ -57,15 +58,4 @@ function checkCustomer()
     }
     return false;
 }
-
-// function getSettingsValue($key)
-// {
-//     $settings = Settings::where('key',$key)->first();
-
-//     if($settings === null){
-//         return null;
-//     }
-
-//     return $settings->value;
-// }
 ?>

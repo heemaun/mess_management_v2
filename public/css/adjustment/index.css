@@ -12,13 +12,21 @@
 }
 .adjustment-index .top {
   width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 0.5rem;
 }
 .adjustment-index .top .rows {
+  width: 100%;
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: flex-end;
   gap: 1rem;
+  background: gray;
+  padding: 0.5rem;
 }
 .adjustment-index .top .rows .search {
   flex-grow: 10;

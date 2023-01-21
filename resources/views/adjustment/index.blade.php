@@ -21,7 +21,7 @@
             </div>
 
             <div class="form-group select">
-                <label for="adjustment_index_type" class="form-label">Select a adjustment type</label>
+                <label for="adjustment_index_type" class="form-label">Select a type</label>
                 <select id="adjustment_index_type" class="form-select" onchange="searchAdjustment()">
                     <option value="all" selected>All</option>
                     <option value="fine">Fine</option>
@@ -30,7 +30,7 @@
             </div>
 
             <div class="form-group select">
-                <label for="adjustment_index_status" class="form-label">Select a adjustment status</label>
+                <label for="adjustment_index_status" class="form-label">Select a status</label>
                 <select id="adjustment_index_status" class="form-select" onchange="searchAdjustment()">
                     <option value="all">All</option>
                     <option value="pending">Pending</option>
