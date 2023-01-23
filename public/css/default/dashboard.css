@@ -1,0 +1,35 @@
+.dashboard {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.dashboard .top {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.dashboard .top .charts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 2;
+  min-height: 33vh;
+}
+.dashboard .top .head {
+  flex-grow: 3;
+}
+.dashboard .middle {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+.dashboard .middle .charts {
+  min-height: 33vh;
+  width: 100%;
+}
+.dashboard .bottom {
+  width: 100%;
+}/*# sourceMappingURL=dashboard.css.map */

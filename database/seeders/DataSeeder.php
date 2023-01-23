@@ -46,7 +46,7 @@ class DataSeeder extends Seeder
             ]);
         }
 
-        for($x=2022;$x<2024;$x++){
+        for($x=2023;$x<2024;$x++){
             for($y=1;$y<=12;$y++){
                 Month::create([
                     'user_id'       => rand(1,count(User::all())),
@@ -56,7 +56,7 @@ class DataSeeder extends Seeder
             }
         }
 
-        for($x=0;$x<20;$x++){
+        for($x=0;$x<50;$x++){
             $member = Member::create([
                 'user_id'           => rand(1,count(User::all())),
                 'name'              => $faker->name(),
@@ -67,7 +67,8 @@ class DataSeeder extends Seeder
                 'current_balance'   => rand(0,1000),
                 'joining_date'      => $faker->date(),
                 'floor'             => $floor[rand(0,2)],
-                'status'            => $status[rand(0,5)],
+                // 'status'            => $status[rand(0,5)],
+                'status'            => 'active',
             ]);
 
             if(strcmp($member->status,'deleted')==0){
@@ -88,7 +89,7 @@ class DataSeeder extends Seeder
             }
         }
 
-        for($x=0;$x<50;$x++){
+        for($x=0;$x<600;$x++){
             Payment::create([
                 'user_id'           => rand(1,count(User::all())),
                 'member_month_id'   => rand(1,count(MemberMonth::all())),
@@ -99,7 +100,7 @@ class DataSeeder extends Seeder
             ]);
         }
 
-        for($x=0;$x<50;$x++){
+        for($x=0;$x<500;$x++){
             Adjustment::create([
                 'user_id'           => rand(1,count(User::all())),
                 'member_month_id'   => rand(1,count(MemberMonth::all())),

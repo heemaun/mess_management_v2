@@ -12,6 +12,7 @@
         {{-- default css --}}
         <link rel="stylesheet" href="{{ asset('css/default/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/default/home.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/default/dashboard.css') }}">
 
         {{-- user css --}}
         <link rel="stylesheet" href="{{ asset('css/user/index.css') }}">
@@ -63,7 +64,7 @@
 
                 @if (checkLogin())
                 <ul id="navbar">
-                    <li><a href="{{ route('home') }}">Home</a></li>
+                    <li><a href="{{ route('home') }}" id="home">Home</a></li>
                     <li><a href="{{ route('months.index') }}">Months</a></li>
                     <li><a href="{{ route('members.index') }}">Members</a></li>
                     <li><a href="{{ route('payments.index') }}">Payments</a></li>
@@ -219,8 +220,10 @@
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         {{-- default js --}}
+        <script src="{{ asset('js/default/dashboard.js') }}"></script>
         <script src="{{ asset('js/default/index.js') }}"></script>
         <script src="{{ asset('js/default/home.js') }}"></script>
 
@@ -265,5 +268,7 @@
         <script src="{{ asset('js/notice/show.js') }}"></script>
         <script src="{{ asset('js/notice/create.js') }}"></script>
         <script src="{{ asset('js/notice/edit.js') }}"></script>
+
+        @stack("js")
     </body>
 </html>

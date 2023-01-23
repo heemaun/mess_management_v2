@@ -84,13 +84,17 @@ $("#login_form").submit(function(e){
 //navbar controls
 $("#navbar li a").click(function(e){
     e.preventDefault();
-    url = $(this).attr("href");
+    let url = $(this).attr("href");
+    let id = $(this).attr("id");
 
     $.ajax({
         url: url,
         type: "GET",
         success: function(response){
             $("#content_loader").html(response);
+            if(id === "home"){
+                dashboard();
+            }
         }
     });
 });

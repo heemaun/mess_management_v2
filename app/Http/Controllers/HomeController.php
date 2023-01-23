@@ -33,6 +33,9 @@ class HomeController extends Controller
 
     public function home()
     {
+        if(checkLogin()){
+            return response(view('defult.dashboard'));
+        }
         $months = Month::where('status','active')
                         ->orderBy('name','DESC')
                         ->get();

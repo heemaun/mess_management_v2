@@ -7,6 +7,7 @@ function homeload()
         type: "GET",
         success: function(response){
             $("#content_loader").html(response);
+            dashboard();
         }
     });
 }
