@@ -120,5 +120,23 @@ class DataSeeder extends Seeder
                 'status'    => $faker->randomElement(['pending','active','inactive','deleted']),
             ]);
         }
+
+        Setting::create([
+            'key'       => 'Ground Floor Rent',
+            'value'     => 850,
+            'user_id'   => 1
+        ]);
+
+        Setting::create([
+            'key'       => '1st Floor Rent',
+            'value'     => 900,
+            'user_id'   => 1
+        ]);
+
+        Setting::create([
+            'key'       => '2nd Floor Rent',
+            'value'     => 900,
+            'user_id'   => 1
+        ]);
     }
 }

@@ -32,4 +32,51 @@
 }
 .dashboard .bottom {
   width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+.dashboard .bottom .sides {
+  width: 100%;
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.dashboard .bottom .sides label {
+  color: goldenrod;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  border-bottom: 0.1rem dashed gray;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+.dashboard .bottom .sides label span {
+  color: white;
+  font-weight: normal;
+  font-style: italic;
+}
+.dashboard .bottom .sides form {
+  width: 100%;
+}
+.dashboard .bottom .sides form label {
+  color: white;
+  width: auto;
+  border: none;
+  font-weight: normal;
+  margin: 0rem;
+  display: inline;
+}
+.dashboard .bottom .sides form .home-rent-error {
+  color: red;
+}
+.dashboard .bottom .sides form .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-top: 0.5rem;
 }/*# sourceMappingURL=dashboard.css.map */

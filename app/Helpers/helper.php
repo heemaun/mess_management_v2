@@ -58,4 +58,12 @@ function checkCustomer()
     }
     return false;
 }
+
+function getSetting($key)
+{
+    if($key === null || $key === ''){
+        return null;
+    }
+    return Setting::where('key',$key)->first();
+}
 ?>

@@ -34,7 +34,19 @@ class HomeController extends Controller
     public function home()
     {
         if(checkLogin()){
-            return response(view('defult.dashboard'));
+            $gm = Member::where('status','active')
+                        ->where('floor','Ground Floor')
+                        ->orderBy('current_balance','DESC')
+                        ->first();
+            $fm = Member::where('status','active')
+                        ->where('floor','1st Floor')
+                        ->orderBy('current_balance','DESC')
+                        ->first();
+            $sm = Member::where('status','active')
+                        ->where('floor','2nd Floor')
+                        ->orderBy('current_balance','DESC')
+                        ->first();
+            return response(view('defult.dashboard',compact('gm','fm','sm')));
         }
         $months = Month::where('status','active')
                         ->orderBy('name','DESC')
@@ -54,6 +66,14 @@ class HomeController extends Controller
         $secondTotalAdjustment = 0;
         $secondTotalRent = 0;
         $secondTotalDue = 0;
+
+        $groundMembersMonths = array();
+        $firstMembersMonths = array();
+        $secondMembersMonths = array();
+
+        if(count($months) === 0){
+            return response(view('defult.home',compact('months','groundMembersMonths','firstMembersMonths','secondMembersMonths','groundTotalPaid','groundTotalAdjustment','groundTotalRent','groundTotalDue','firstTotalPaid','firstTotalAdjustment','firstTotalRent','firstTotalDue','secondTotalPaid','secondTotalAdjustment','secondTotalRent','secondTotalDue')));
+        }
 
         $groundMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
                                 ->where('members_months.month_id',$months->last()->id)
@@ -116,5 +136,12 @@ class HomeController extends Controller
         }
 
         return response(view('defult.home',compact('months','groundMembersMonths','firstMembersMonths','secondMembersMonths','groundTotalPaid','groundTotalAdjustment','groundTotalRent','groundTotalDue','firstTotalPaid','firstTotalAdjustment','firstTotalRent','firstTotalDue','secondTotalPaid','secondTotalAdjustment','secondTotalRent','secondTotalDue')));
+    }
+
+    function checkLoginHome()
+    {
+        return response()->json([
+            'login' => checkLogin(),
+        ]);
     }
 }

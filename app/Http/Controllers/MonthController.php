@@ -90,7 +90,7 @@ class MonthController extends Controller
                 foreach(Member::where('status','active')->get() as $member){
                     $member->months()->attach($month->id,[
                         'user_id'           => getUser()->id,
-                        'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                        'rent_this_month'   => getSetting($member->floor.' Rent')->value,
                         'due'               => $member->current_balance,
                     ]);
                 }
@@ -251,17 +251,11 @@ class MonthController extends Controller
                 foreach(Member::where('status','active')->get() as $member){
                     $member->months()->attach($month->id,[
                         'user_id'           => getUser()->id,
-                        'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                        'rent_this_month'   => getSetting($member->floor.' Rent')->value,
                         'due'               => $member->current_balance,
                     ]);
                 }
             }
-            // else if(strcmp('active',$month->status) != 0 && strcmp($tmpStatus,'active') != 0 && count(MemberMonth::where('month_id',$month->id)) !=0 ){
-            //     foreach(MemberMonth::where('month_id',$month->id) as $mm){
-            //         $mm->status = $month->status;
-            //         $mm->save();
-            //     }
-            // }
 
             DB::commit();
 

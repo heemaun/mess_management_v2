@@ -2,12 +2,23 @@
 function homeload()
 {
     $.ajax({
-        // url: "/members/1/edit",
         url: "/home",
         type: "GET",
         success: function(response){
             $("#content_loader").html(response);
-            dashboard();
+
+            //checking login status whether to load dashboard
+            $.ajax({
+                url: "/check-login",
+                type: "GET",
+                dataType: "json",
+                success: function(response){
+                    // if login is true dashboard will load
+                    if(response.login){
+                        dashboard();
+                    }
+                }
+            });
         }
     });
 }

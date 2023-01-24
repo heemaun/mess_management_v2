@@ -40,3 +40,4 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 //default routes
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'home'])->name('home');
+Route::get('/check-login',[HomeController::class,'checkLoginHome'])->name('check-login');

@@ -17,9 +17,11 @@
             <label for="month_index_year" class="form-label">Select a year</label>
             <select id="month_index_year" class="form-select" onchange="searchMonth()">
                 <option value="" selected>All</option>
+                @if (count($months) != 0)
                 @for ($x = date('Y'); $x >= date('Y',strtotime($months->last()->name)); $x--)
                 <option value="{{ $x }}">{{ $x }}</option>
                 @endfor
+                @endif
             </select>
         </div>
 

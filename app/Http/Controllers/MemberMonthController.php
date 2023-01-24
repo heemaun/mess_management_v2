@@ -16,44 +16,53 @@ class MemberMonthController extends Controller
      */
     public function index()
     {
-        $limit = 5;
+        $limit = 5; // this is the number of months will be shown in ther dashboard
+        $m = array(); //
         $months = Month::where('status','active')
                         ->orderBy('name','DESC')
                         ->limit($limit)
                         ->get('id');
 
-        $groundMembers = Member::where('floor','Ground Floor')->get('id');
-        $firstMembers = Member::where('floor','1st Floor')->get('id');
-        $secondMembers = Member::where('floor','2nd Floor')->get('id');
+        $groundMembers = Member::where('floor','Ground Floor')
+                                ->where('status','active')
+                                ->get('id');
+        $firstMembers = Member::where('floor','1st Floor')
+                                ->where('status','active')
+                                ->get('id');
+        $secondMembers = Member::where('floor','2nd Floor')
+                                ->where('status','active')
+                                ->get('id');
 
         $gm = array();
         $fm = array();
         $sm = array();
 
-        foreach($months as $m){
-            $mm = MemberMonth::whereIn('month_id',$m)
+        foreach($months as $month){
+            // storing member months of each month based on member floor
+
+            // each index of $gm,$fm,$sm will be a months membermonths
+            $mm = MemberMonth::whereIn('month_id',$month)
                                 ->whereIn('member_id',$groundMembers)
                                 ->get();
             array_push($gm,$mm);
 
-            $mm = MemberMonth::whereIn('month_id',$m)
+            $mm = MemberMonth::whereIn('month_id',$month)
                                 ->whereIn('member_id',$firstMembers)
                                 ->get();
             array_push($fm,$mm);
 
-            $mm = MemberMonth::whereIn('month_id',$m)
+            $mm = MemberMonth::whereIn('month_id',$month)
                                 ->whereIn('member_id',$secondMembers)
                                 ->get();
             array_push($sm,$mm);
         }
 
-        $m = array();
-
-        for($x=0;$x<$limit;$x++){
+        for($x=0;$x<count($gm);$x++){
             $gm_payment = 0;
             $fm_payment = 0;
             $sm_payment = 0;
 
+            //storing total payments of a floor members using membermonths of that floor
             foreach($gm[$x] as $mm){
                 $gm_payment += $mm->payments->where('status','active')->sum('amount');
             }
@@ -66,6 +75,8 @@ class MemberMonthController extends Controller
                 $sm_payment += $mm->payments->where('status','active')->sum('amount');
             }
 
+            //this data consists of all floor rent,due & payments based on the member months by floor
+            //each index will refer to a month worth of data
             $m[$x] = [
                 'gm_rent' => $gm[$x]->sum('rent_this_month'),
                 'fm_rent' => $fm[$x]->sum('rent_this_month'),

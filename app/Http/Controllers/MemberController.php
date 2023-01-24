@@ -167,7 +167,7 @@ class MemberController extends Controller
 
                 $member->months()->attach(Month::where('name',date('Y-m'))->where('status','active')->first()->id,[
                     'user_id'           => getUser()->id,
-                    'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),
+                    'rent_this_month'   => getSetting($member->floor.' Rent')->value,
                     'due'               => $member->current_balance,
                 ]);
             }
