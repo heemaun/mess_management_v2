@@ -101,3 +101,10 @@ $("#content_loader").on("click","#notice_index .pagination a",function(e){
     });
 });
 //pagination  links end
+
+//filter trigger
+$("#content_loader").on("click","#notice_index_filter_trigger",function(){
+    $(".top").toggleClass("top-hide");
+    $(this).toggleClass("filter-close");
+});
+//filter trigger ends

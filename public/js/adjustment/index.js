@@ -103,3 +103,10 @@ $("#content_loader").on("click","#adjustment_index .pagination a",function(e){
     });
 });
 //pagination  links end
+
+//filter trigger
+$("#content_loader").on("click","#adjustment_index_filter_trigger",function(){
+    $(".top").toggleClass("top-hide");
+    $(this).toggleClass("filter-close");
+});
+//filter trigger ends

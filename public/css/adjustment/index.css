@@ -11,28 +11,81 @@
   padding-bottom: 0rem;
 }
 .adjustment-index .top {
+  width: 50%;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+  align-items: flex-end;
+  position: fixed;
+  top: 40.5px;
+  right: 0rem;
+  transform: translateX(0%);
+  transition: all 1s;
+  z-index: 500;
+}
+.adjustment-index .top .rows {
   width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 0.5rem;
-}
-.adjustment-index .top .rows {
-  width: 100%;
-  display: flex;
-  flex-flow: row;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 1rem;
   background: gray;
-  padding: 0.5rem;
+  padding: 0.5rem 0.5rem 0rem 0.5rem;
 }
 .adjustment-index .top .rows .search {
-  flex-grow: 10;
+  order: 2;
 }
-.adjustment-index .top .rows .select {
-  flex-grow: 1;
+.adjustment-index .top .rows a {
+  order: 1;
+}
+.adjustment-index .top .rows .form-group {
+  width: 100%;
+}
+.adjustment-index .top .rows .form-label {
+  margin-bottom: 0rem;
+}
+.adjustment-index .top .rows .sm-sector {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+.adjustment-index .top .rows .sm-sector .form-group {
+  width: 100%;
+}
+.adjustment-index .top .rows-two {
+  padding: 0rem 0.5rem 0.5rem 0.5rem;
+}
+.adjustment-index .top .filter-show {
+  position: fixed;
+  top: 0rem;
+  left: 0.5rem;
+  transform: translateX(-100%);
+  cursor: pointer;
+  transition: all 0s 0.2s;
+  background: gray;
+  padding: 0rem 0.5rem;
+}
+.adjustment-index .top .filter-show:hover {
+  color: blue;
+}
+.adjustment-index .top .filter-show:hover svg {
+  stroke: blue;
+  fill: blue;
+}
+.adjustment-index .top .filter-show svg {
+  transition: all 0s 0.2s;
+  transform: scale(0.5) rotateY(180deg);
+  stroke: white;
+  fill: white;
+}
+.adjustment-index .top .filter-close svg {
+  transform: scale(0.5) rotateY(0deg);
+}
+.adjustment-index .top-hide {
+  transition: all 1s;
+  transform: translateX(100%);
 }
 .adjustment-index .table-container {
   width: 100%;
@@ -55,4 +108,40 @@
 .adjustment-index .table-container table .center {
   vertical-align: middle;
   text-align: center;
+}
+
+@media screen and (min-width: 920px) {
+  .adjustment-index .top {
+    position: static;
+    width: 100%;
+    gap: 0.5rem;
+  }
+  .adjustment-index .top .rows {
+    flex-flow: row;
+    gap: 0.5rem;
+    padding: 0.5rem;
+  }
+  .adjustment-index .top .rows .search {
+    flex-grow: 10;
+    order: 1;
+  }
+  .adjustment-index .top .rows .select {
+    flex-grow: 1;
+    order: 2;
+  }
+  .adjustment-index .top .rows a {
+    order: 2;
+  }
+  .adjustment-index .top .rows-two {
+    padding: 0.5rem;
+  }
+  .adjustment-index .top .filter-show {
+    display: none;
+  }
+  .adjustment-index .top .filter-close {
+    display: none;
+  }
+  .adjustment-index .top-hide {
+    transform: translateX(0%);
+  }
 }/*# sourceMappingURL=index.css.map */

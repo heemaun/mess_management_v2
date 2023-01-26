@@ -1,24 +1,26 @@
 <div id="notice_index" class="notice-index">
     <h2>Notices Index</h2>
 
-    <div class="top">
+    <div class="top top-hide">
+        <span id="notice_index_filter_trigger" class="filter-show filter-close">Filter<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 40 8 24 24 8l2.1 2.1-12.4 12.4H40v3H13.7l12.4 12.4Z"/></svg></span>
+
         <div class="form-group search">
             <label for="notice_index_search" class="form-label">Search notice</label>
             <input type="text" id="notice_index_search" class="form-control" placeholder="search by name, email, phone" autocomplete="OFF" onkeyup="searchNotice()">
         </div>
 
         <div class="form-group select">
-            <label for="notice_index_from" class="form-label">Select a notice from</label>
+            <label for="notice_index_from" class="form-label">From Date</label>
             <input type="date" id="notice_index_from" class="form-control" placeholder="enter from date" autocomplete="OFF" onchange="searchNotice()">
         </div>
 
         <div class="form-group select">
-            <label for="notice_index_to" class="form-label">Select a notice to</label>
+            <label for="notice_index_to" class="form-label">To Date</label>
             <input type="date" id="notice_index_to" class="form-control" placeholder="enter to date" autocomplete="OFF" onchange="searchNotice()">
         </div>
 
         <div class="form-group select">
-            <label for="notice_index_status" class="form-label">Select a notice status</label>
+            <label for="notice_index_status" class="form-label">Select a status</label>
             <select id="notice_index_status" class="form-select" onchange="searchNotice()">
                 <option value="all">All</option>
                 <option value="pending">Pending</option>

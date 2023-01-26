@@ -1,7 +1,9 @@
 <div id="member_index" class="member-index">
     <h2>Members Index</h2>
 
-    <div class="top">
+    <div class="top top-hide">
+        <span id="member_index_filter_trigger" class="filter-show filter-close">Filter<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 40 8 24 24 8l2.1 2.1-12.4 12.4H40v3H13.7l12.4 12.4Z"/></svg></span>
+
         <div class="form-group search">
             <label for="member_index_search" class="form-label">Search member</label>
             <input type="text" id="member_index_search" class="form-control" placeholder="search by name, email, phone" autocomplete="OFF" onkeyup="searchMember()">

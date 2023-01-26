@@ -11,20 +11,64 @@
   padding-bottom: 0rem;
 }
 .payment-index .top {
-  width: 100%;
+  width: 50%;
   display: flex;
-  flex-flow: row;
+  flex-flow: column;
   justify-content: space-between;
   align-items: flex-end;
-  gap: 1rem;
+  gap: 0.5rem;
   background: gray;
   padding: 0.5rem;
+  position: fixed;
+  top: 40.5px;
+  right: 0rem;
+  transform: translateX(0%);
+  transition: all 1s;
+  z-index: 500;
 }
 .payment-index .top .search {
   flex-grow: 10;
+  width: 100%;
 }
 .payment-index .top .select {
   flex-grow: 1;
+  width: 100%;
+}
+.payment-index .top .form-group {
+  order: 2;
+}
+.payment-index .top a {
+  order: 1;
+}
+.payment-index .top .filter-show {
+  position: fixed;
+  top: 0rem;
+  left: 0.5rem;
+  transform: translateX(-100%);
+  cursor: pointer;
+  transition: all 0s 0.2s;
+  background: gray;
+  padding: 0rem 0.5rem;
+}
+.payment-index .top .filter-show:hover {
+  color: blue;
+}
+.payment-index .top .filter-show:hover svg {
+  stroke: blue;
+  fill: blue;
+}
+.payment-index .top .filter-show svg {
+  transition: all 0s 0.2s;
+  transform: scale(0.5) rotateY(180deg);
+  stroke: white;
+  fill: white;
+}
+.payment-index .top .filter-close svg {
+  transform: scale(0.5) rotateY(0deg);
+}
+.payment-index .top-hide {
+  transition: all 1s;
+  transform: translateX(100%);
 }
 .payment-index .table-container {
   width: 100%;
@@ -47,4 +91,35 @@
 .payment-index .table-container table .center {
   vertical-align: middle;
   text-align: center;
+}
+
+@media screen and (min-width: 920px) {
+  .payment-index .top {
+    position: static;
+    flex-flow: row;
+    width: 100%;
+  }
+  .payment-index .top .form-group {
+    order: 1;
+  }
+  .payment-index .top a {
+    order: 2;
+  }
+  .payment-index .top .search {
+    flex-grow: 10;
+    width: auto;
+  }
+  .payment-index .top .select {
+    flex-grow: 1;
+    width: auto;
+  }
+  .payment-index .top .filter-show {
+    display: none;
+  }
+  .payment-index .top .filter-close {
+    display: none;
+  }
+  .payment-index .top-hide {
+    transform: translateX(0%);
+  }
 }/*# sourceMappingURL=index.css.map */

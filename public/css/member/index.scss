@@ -12,25 +12,72 @@
     }
 
     .top{
-        width: 100%;
+        width: 50%;
         display: flex;
-        flex-flow: row;
+        flex-flow: column;
         justify-content: space-between;
         align-items: flex-end;
-        gap: 1rem;
+        gap: .5rem;
         background: gray;
         padding: .5rem;
+        position: fixed;
+        top: 40.5px;
+        right: 0rem;
+        transform: translateX(0%);
+        transition: all 1s;
+        z-index: 500;
 
-        // .form-group{
-        //     width: 100%;
-        // }
         .search{
-            flex-grow: 10;
+            order: 2;
+            width: 100%;
         }
 
         .select{
-            flex-grow: 1;
+            order: 2;
+            width: 100%;
         }
+
+        a{
+            order: 1;
+        }
+
+        .filter-show{
+            position: fixed;
+            top: 0rem;
+            left: .5rem;
+            transform: translateX(-100%);
+            cursor: pointer;
+            transition: all 0s .2s;
+            background: gray;
+            padding: 0rem .5rem;
+
+            &:hover{
+                color: blue;
+
+                svg{
+                    stroke: blue;
+                    fill: blue;
+                }
+            }
+
+            svg{
+                transition: all 0s .2s;
+                transform: scale(.5) rotateY(180deg);
+                stroke: white;
+                fill: white;
+            }
+        }
+
+        .filter-close{
+            svg{
+                transform: scale(.5) rotateY(0deg);
+            }
+        }
+    }
+
+    .top-hide{
+        transition: all 1s;
+        transform: translateX(100%);
     }
 
     .table-container{
@@ -64,3 +111,45 @@
     }
 }
 
+@media screen and (min-width: 920px) {
+    .member-index{
+        .top{
+            position: static;
+            flex-flow: row;
+            width: 100%;
+
+            .form-group{
+                order: 1;
+                width: auto;
+            }
+
+            .search{
+                flex-grow: 10;
+                order: 1;
+                width: auto;
+            }
+
+            .select{
+                flex-grow: 1;
+                order: 1;
+                width: auto;
+            }
+
+            a{
+                order: 2;
+            }
+
+            .filter-show{
+                display: none;
+            }
+
+            .filter-close{
+                display: none;
+            }
+        }
+
+        .top-hide{
+            transform: translateX(0%);
+        }
+    }
+}

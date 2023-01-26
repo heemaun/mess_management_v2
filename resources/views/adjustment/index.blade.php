@@ -2,6 +2,8 @@
     <h2>Adjustments Index</h2>
 
     <div class="top">
+        <span id="adjustment_index_filter_trigger" class="filter-show filter-close">Filter<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 40 8 24 24 8l2.1 2.1-12.4 12.4H40v3H13.7l12.4 12.4Z"/></svg></span>
+
         <div class="rows">
             <div class="form-group search">
                 <label for="adjustment_index_search" class="form-label">Search adjustment</label>
@@ -9,58 +11,65 @@
             </div>
             <a href="{{ route('adjustments.create') }}" id="adjustment_index_create" class="btn btn-success">Create</a>
         </div>
-        <div class="rows">
-            <div class="form-group select">
-                <label for="adjustment_index_from" class="form-label">Select from date</label>
-                <input type="date" id="adjustment_index_from" class="form-control" placeholder="enter from date" autocomplete="OFF" onchange="searchAdjustment()">
+
+        <div class="rows rows-two">
+            <div class="sm-sector">
+                <div class="form-group select">
+                    <label for="adjustment_index_from" class="form-label">Select from date</label>
+                    <input type="date" id="adjustment_index_from" class="form-control" placeholder="enter from date" autocomplete="OFF" onchange="searchAdjustment()">
+                </div>
+
+                <div class="form-group select">
+                    <label for="adjustment_index_to" class="form-label">Select to date</label>
+                    <input type="date" id="adjustment_index_to" class="form-control" placeholder="enter to date" autocomplete="OFF" onchange="searchAdjustment()">
+                </div>
             </div>
 
-            <div class="form-group select">
-                <label for="adjustment_index_to" class="form-label">Select to date</label>
-                <input type="date" id="adjustment_index_to" class="form-control" placeholder="enter to date" autocomplete="OFF" onchange="searchAdjustment()">
+            <div class="sm-sector">
+                <div class="form-group select">
+                    <label for="adjustment_index_type" class="form-label">Select a type</label>
+                    <select id="adjustment_index_type" class="form-select" onchange="searchAdjustment()">
+                        <option value="all" selected>All</option>
+                        <option value="fine">Fine</option>
+                        <option value="adjustment">Adjustment</option>
+                    </select>
+                </div>
+
+                <div class="form-group select">
+                    <label for="adjustment_index_status" class="form-label">Select a status</label>
+                    <select id="adjustment_index_status" class="form-select" onchange="searchAdjustment()">
+                        <option value="all">All</option>
+                        <option value="pending">Pending</option>
+                        <option value="active" selected>Active</option>
+                        <option value="inactive">Inactive</option>
+                        <option value="deleted">Deleted</option>
+                    </select>
+                </div>
             </div>
 
-            <div class="form-group select">
-                <label for="adjustment_index_type" class="form-label">Select a type</label>
-                <select id="adjustment_index_type" class="form-select" onchange="searchAdjustment()">
-                    <option value="all" selected>All</option>
-                    <option value="fine">Fine</option>
-                    <option value="adjustment">Adjustment</option>
-                </select>
-            </div>
+            <div class="sm-sector">
+                <div class="form-group select">
+                    <label for="adjustment_index_floor" class="form-label">Select a floor</label>
+                    <select id="adjustment_index_floor" class="form-select" onchange="searchAdjustment()">
+                        <option value="all" selected>All</option>
+                        <option value="Ground Floor">Ground Floor</option>
+                        <option value="1st Floor">1st Floor</option>
+                        <option value="2nd Floor">2nd Floor</option>
+                    </select>
+                </div>
 
-            <div class="form-group select">
-                <label for="adjustment_index_status" class="form-label">Select a status</label>
-                <select id="adjustment_index_status" class="form-select" onchange="searchAdjustment()">
-                    <option value="all">All</option>
-                    <option value="pending">Pending</option>
-                    <option value="active" selected>Active</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="deleted">Deleted</option>
-                </select>
-            </div>
-
-            <div class="form-group select">
-                <label for="adjustment_index_floor" class="form-label">Select a member floor</label>
-                <select id="adjustment_index_floor" class="form-select" onchange="searchAdjustment()">
-                    <option value="all" selected>All</option>
-                    <option value="Ground Floor">Ground Floor</option>
-                    <option value="1st Floor">1st Floor</option>
-                    <option value="2nd Floor">2nd Floor</option>
-                </select>
-            </div>
-
-            <div class="form-group select">
-                <label for="adjustment_index_limit" class="form-label">Select row count</label>
-                <select id="adjustment_index_limit" class="form-select" onchange="searchAdjustment()">
-                    <option value="all">All</option>
-                    <option value="5">5</option>
-                    <option value="10" selected>10</option>
-                    <option value="25">25</option>
-                    <option value="50">50</option>
-                    <option value="100">100</option>
-                    <option value="500">500</option>
-                </select>
+                <div class="form-group select">
+                    <label for="adjustment_index_limit" class="form-label">Select row count</label>
+                    <select id="adjustment_index_limit" class="form-select" onchange="searchAdjustment()">
+                        <option value="all">All</option>
+                        <option value="5">5</option>
+                        <option value="10" selected>10</option>
+                        <option value="25">25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                        <option value="500">500</option>
+                    </select>
+                </div>
             </div>
         </div>
     </div>
