@@ -1,3 +1,6 @@
+.home h2 {
+  text-align: center;
+}
 .home .top {
   display: flex;
   justify-content: space-between;
@@ -44,4 +47,10 @@
 }
 .home .table-container .hide {
   display: none;
+}
+
+@media screen and (max-width: 640px) {
+  .hide-in-low-res {
+    display: none;
+  }
 }/*# sourceMappingURL=home.css.map */

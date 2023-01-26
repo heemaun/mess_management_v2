@@ -95,6 +95,8 @@ $("#navbar li a").click(function(e){
             if(id === "home"){
                 dashboard();
             }
+            $("#navbar").toggleClass("center-ul-show");
+            $("#center_ul_toggler").toggleClass("center-ul-close");
         }
     });
 });
@@ -189,3 +191,10 @@ $("#change_password_form").submit(function(e){
     });
 });
 //change password funcitonality ends
+
+//center ul toggler
+$("#center_ul_toggler").click(function(){
+    $(this).toggleClass("center-ul-close");
+    $("#navbar").toggleClass("center-ul-show");
+});
+//center ul toggler ends

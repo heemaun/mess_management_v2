@@ -3,12 +3,10 @@
     flex-flow: column;
     justify-content: center;
     align-items: center;
-    // border: .1rem solid white;
 
     .top{
-        // border: .1rem solid red;
-        // padding: .5rem;
         display: flex;
+        flex-flow: column;
         justify-content: flex-start;
         align-items: center;
         width: 100%;
@@ -17,29 +15,20 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            // border: .1rem solid gray;
-            // padding: .5rem;
-            flex-grow: 2;
             min-height: 33vh;
-        }
-
-        .head{
-            flex-grow: 3;
+            width: 100%;
         }
     }
 
     .middle{
-        // border: .1rem solid green;
-        // padding: .5rem;
         display: flex;
+        flex-flow: column;
         justify-content: flex-start;
         align-items: center;
         width: 100%;
+        gap: .5rem;
 
         .charts{
-            // border: .1rem solid yellow;
-            // padding: .5rem;
-            // flex-grow: 1;
             min-height: 33vh;
             width: 100%;
         }
@@ -48,6 +37,7 @@
     .bottom{
         width: 100%;
         display: flex;
+        flex-flow: column;
         justify-content: flex-start;
         align-items: flex-start;
         gap: 1rem;
@@ -78,6 +68,8 @@
 
             form{
                 width: 100%;
+                border: .1rem dotted gray;
+                padding: .5rem;
 
                 label{
                     color: white;
@@ -90,7 +82,6 @@
 
                 .home-rent-error{
                     color: red;
-                    // display: block;
                 }
 
                 .btn-container{
@@ -101,6 +92,22 @@
                     margin-top: .5rem;
                 }
             }
+        }
+    }
+}
+
+@media screen and (min-width: 920px) {
+    .dashboard {
+        .top {
+            flex-flow: row;
+        }
+
+        .middle{
+            flex-flow: row;
+        }
+
+        .bottom{
+            flex-flow: row;
         }
     }
 }

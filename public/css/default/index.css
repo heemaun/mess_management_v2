@@ -1,21 +1,25 @@
-body {
+html {
+  overflow-x: hidden;
+}
+html body {
+  overflow-x: auto;
   padding: 1rem;
   background: black;
   color: white;
 }
-body .form-label {
+html body .form-label {
   font-weight: bold;
 }
-body h1, body h2, body h3, body h4, body legend {
+html body h1, html body h2, html body h3, html body h4, html body legend {
   color: goldenrod;
 }
-body th {
+html body th {
   color: #f48203;
 }
-body header {
+html body header {
   width: 100%;
 }
-body header nav {
+html body header nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,7 +31,7 @@ body header nav {
   background: rgba(0, 0, 0, 0.75);
   z-index: 1000;
 }
-body header nav .logo {
+html body header nav .logo {
   color: goldenrod;
   text-decoration: none;
   display: block;
@@ -35,41 +39,85 @@ body header nav .logo {
   font-size: 1.6875rem;
   animation: logo 3s linear 1s infinite alternate-reverse forwards;
 }
-body header nav .logo:hover {
+html body header nav .logo:hover {
   -webkit-animation: none;
           animation: none;
 }
-body header nav ul {
+html body header nav ul {
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
   align-items: center;
   padding: 0rem;
   margin: 0rem;
 }
-body header nav ul li {
+html body header nav ul li {
   list-style: none;
   transition: all 0.2s 0.1s;
 }
-body header nav ul li a {
+html body header nav ul li a {
   padding: 0.5rem 1rem;
   text-decoration: none;
   color: inherit;
   display: block;
   font-style: italic;
 }
-body header nav ul li:hover {
+html body header nav ul li:hover {
   scale: 1.1;
   color: blue;
 }
-body header nav .right-trigger {
+html body header nav .center-ul {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  background: black;
+  width: 100%;
+  transform: translateY(40.5px) translateX(-100%);
+  transition: all 1s ease-in-out;
+}
+html body header nav .center-ul li {
+  border-bottom: 0.1rem solid gray;
+  width: 100%;
+  text-align: center;
+}
+html body header nav .center-ul-show {
+  transform: translateY(40.5px) translateX(0%);
+  transition: all 1s ease-in-out;
+}
+html body header nav .center-ul-open {
+  display: block;
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  padding: 0rem;
+  transform: translateY(40.5px);
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+}
+html body header nav .center-ul-open svg {
+  stroke: white;
+  fill: white;
+  transition: all 1s ease-in-out;
+  transform: rotateY(180deg);
+}
+html body header nav .center-ul-close {
+  left: 100%;
+  transform: translateY(40.5px) translateX(-100%);
+  transition: all 1s ease-in-out;
+}
+html body header nav .center-ul-close svg {
+  transition: all 1s ease-in-out;
+  transform: rotateY(0deg);
+}
+html body header nav .right-trigger {
   padding: 0.5rem 0rem;
   font-style: italic;
   cursor: pointer;
 }
-body header nav .right-trigger:hover {
+html body header nav .right-trigger:hover {
   color: blue;
 }
-body header nav .right-ul {
+html body header nav .right-ul {
   position: absolute;
   top: 40.5px;
   right: 0rem;
@@ -79,14 +127,14 @@ body header nav .right-ul {
   color: white;
   transition: all 0.5s ease-in-out;
 }
-body header nav .right-ul li {
+html body header nav .right-ul li {
   width: 100%;
   text-align: right;
 }
-body header nav .hide {
+html body header nav .hide {
   transform: translatex(500px);
 }
-body main {
+html body main {
   background-image: url("/images/main_pic.jpg");
   background-size: cover;
   display: flex;
@@ -96,71 +144,80 @@ body main {
   margin-top: 40.5px;
   height: 50vh;
 }
-body main h1 {
+html body main h1 {
   padding: 0rem;
   margin: 0rem;
 }
-body main h6 {
+html body main h6 {
   padding: 0rem;
   margin: 0rem;
 }
-body .content-body {
+html body .content-body {
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
   align-items: flex-start;
   gap: 0.5rem;
   padding: 1.5625rem 0rem;
+  overflow-x: auto;
 }
-body .content-body .content-loader {
+html body .content-body .content-loader {
   min-height: 75vh;
-  flex-grow: 2;
+  width: 100%;
+  order: 2;
 }
-body .content-body aside {
-  flex-grow: 1;
+html body .content-body aside {
+  width: 100%;
+  order: 1;
 }
-body .content-body aside h2 {
+html body .content-body aside h2 {
   text-align: center;
 }
-body .content-body aside tr {
+html body .content-body aside tr {
   cursor: pointer;
 }
-body footer {
+html body footer {
   padding-top: 1rem;
 }
-body footer h2 {
+html body footer h2 {
   text-align: center;
 }
-body footer .footer-contents {
+html body footer .footer-contents {
   display: flex;
   justify-content: center;
   align-items: flex-start;
 }
-body footer .footer-contents .sides {
+html body footer .footer-contents .sides {
   display: flex;
   flex-flow: column;
-  justify-content: flex-start;
+  justify-content: space-between;
   align-items: flex-start;
-  width: 50%;
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
   border-left: 0.1rem solid white;
   padding: 1rem 0.5rem;
 }
-body footer .footer-contents .sides .form-label {
+html body footer .footer-contents .sides .form-label {
   display: block;
 }
-body footer .footer-contents .left {
+html body footer .footer-contents .left {
   align-items: flex-end;
   border-left: 0;
 }
-body footer .footer-contents .left .form-label {
+html body footer .footer-contents .left .form-label {
   font-weight: bold;
   color: goldenrod;
 }
-body .home-notice-view {
+html body .home-notice-view {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  max-width: 75%;
+  min-width: 90%;
+  min-height: 75vh;
+  max-width: 95%;
+  max-height: 95vh;
   background: black;
   color: white;
   display: flex;
@@ -169,31 +226,32 @@ body .home-notice-view {
   align-items: center;
   z-index: 100;
   padding: 1rem;
+  box-shadow: 0rem 0rem 0.25rem gray;
 }
-body .home-notice-view h3 {
+html body .home-notice-view h3 {
   text-align: center;
   color: goldenrod;
 }
-body .home-notice-view .body {
+html body .home-notice-view .body {
   max-width: 100%;
 }
-body .home-notice-view .footer {
+html body .home-notice-view .footer {
   width: 100%;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: flex-end;
 }
-body .home-notice-view .footer .admin {
+html body .home-notice-view .footer .admin {
   font-size: larger;
   font-weight: bolder;
   font-style: italic;
   color: red;
 }
-body .home-notice-view .footer .date {
+html body .home-notice-view .footer .date {
   color: red;
 }
-body .home-notice-view .close {
+html body .home-notice-view .close {
   position: absolute;
   top: 0.5rem;
   right: 1rem;
@@ -201,7 +259,7 @@ body .home-notice-view .close {
   font-size: larger;
   cursor: pointer;
 }
-body .login-div {
+html body .login-div {
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -212,26 +270,26 @@ body .login-div {
   align-items: center;
   background: rgba(0, 0, 0, 0.75);
 }
-body .login-div form {
+html body .login-div form {
   max-width: 95%;
-  min-width: 500px;
+  min-width: 90%;
   background: black;
   color: white;
   padding: 1rem;
   border-radius: 0.25rem;
   box-shadow: 0rem 0rem 0.5rem gray;
 }
-body .login-div form .login-error {
+html body .login-div form .login-error {
   display: block;
   color: red;
 }
-body .login-div form .btn-container {
+html body .login-div form .btn-container {
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-body .change-password-div {
+html body .change-password-div {
   position: fixed;
   top: 0rem;
   left: 0rem;
@@ -242,26 +300,26 @@ body .change-password-div {
   align-items: center;
   background: rgba(0, 0, 0, 0.75);
 }
-body .change-password-div form {
+html body .change-password-div form {
   max-width: 95%;
-  min-width: 500px;
+  min-width: 90%;
   background: black;
   color: white;
   padding: 1rem;
   border-radius: 0.25rem;
   box-shadow: 0rem 0rem 0.5rem gray;
 }
-body .change-password-div form .change-password-error {
+html body .change-password-div form .change-password-error {
   display: block;
   color: red;
 }
-body .change-password-div form .btn-container {
+html body .change-password-div form .btn-container {
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-body .hide {
+html body .hide {
   display: none;
 }
 
@@ -280,5 +338,58 @@ body .hide {
   }
   to {
     transform: rotateY(360deg);
+  }
+}
+@media screen and (min-width: 640px) {
+  html body .home-notice-view {
+    min-width: 500px;
+    min-height: 50vh;
+    max-width: 95%;
+    max-height: 95vh;
+    overflow: auto;
+  }
+  html body .login-div form {
+    min-width: 500px;
+  }
+  html body .change-password-div form {
+    min-width: 500px;
+  }
+}
+@media screen and (min-width: 920px) {
+  html body header nav ul {
+    flex-flow: row;
+  }
+  html body header nav .center-ul {
+    position: static;
+    background: none;
+    width: auto;
+    transform: translateY(0px) translateX(0%);
+    transition: all 1s ease-in-out;
+  }
+  html body header nav .center-ul li {
+    border: none;
+  }
+  html body header nav .center-ul-show {
+    transform: translateY(0px) translateX(0%);
+    transition: all 1s ease-in-out;
+  }
+  html body header nav .center-ul-open {
+    display: none;
+  }
+  html body .content-body {
+    flex-flow: row;
+  }
+  html body .content-body .content-loader {
+    order: 1;
+    flex-grow: 2;
+    width: auto;
+  }
+  html body .content-body aside {
+    order: 2;
+    flex-grow: 1;
+    width: auto;
+  }
+  html body footer .footer-contents .sides {
+    width: 50%;
   }
 }/*# sourceMappingURL=index.css.map */

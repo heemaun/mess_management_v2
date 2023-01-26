@@ -1,4 +1,8 @@
 .home{
+    h2{
+        text-align: center;
+    }
+
     .top{
         display: flex;
         justify-content: space-between;
@@ -11,10 +15,7 @@
     }
     .table-container{
         .table-details{
-            // width: 100%;
-
             table{
-                // width: 100%;
 
                 thead{
                     th{
@@ -73,5 +74,11 @@
         .hide{
             display: none;
         }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hide-in-low-res{
+        display: none;
     }
 }
