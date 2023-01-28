@@ -198,3 +198,10 @@ $("#center_ul_toggler").click(function(){
     $("#navbar").toggleClass("center-ul-show");
 });
 //center ul toggler ends
+
+//repositining right ul location
+$(document).ready(function(){
+    $("#right_ul,#center_ul_toggler,#navbar").css("top",$("nav").height());
+    $("main,.content-loader").css("margin-top",$("nav").height());
+});
+//repositining right ul location ends

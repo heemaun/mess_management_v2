@@ -1,7 +1,7 @@
 <div id="adjustment_index" class="adjustment-index">
     <h2>Adjustments Index</h2>
 
-    <div class="top">
+    <div class="top top-hide">
         <span id="adjustment_index_filter_trigger" class="filter-show filter-close">Filter<svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="M24 40 8 24 24 8l2.1 2.1-12.4 12.4H40v3H13.7l12.4 12.4Z"/></svg></span>
 
         <div class="rows">
@@ -13,7 +13,7 @@
         </div>
 
         <div class="rows rows-two">
-            <div class="sm-sector">
+            <div class="sm-sector dates">
                 <div class="form-group select">
                     <label for="adjustment_index_from" class="form-label">Select from date</label>
                     <input type="date" id="adjustment_index_from" class="form-control" placeholder="enter from date" autocomplete="OFF" onchange="searchAdjustment()">

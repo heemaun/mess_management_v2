@@ -41,6 +41,7 @@ html{
                     font-weight: bold;
                     font-size: 1.6875rem;
                     animation: logo 3s linear 1s infinite alternate-reverse forwards;
+                    text-align: center;
 
                     &:hover{
                         animation: none;
@@ -76,11 +77,11 @@ html{
 
                 .center-ul {
                     position: fixed;
-                    top: 0rem;
+                    // top: 0rem;
                     left: 0rem;
                     background: black;
                     width: 100%;
-                    transform: translateY(40.5px) translateX(-100%);
+                    transform: translateX(-100%);
                     transition: all 1s ease-in-out;
 
                     li{
@@ -91,17 +92,17 @@ html{
                 }
 
                 .center-ul-show {
-                    transform: translateY(40.5px) translateX(0%);
+                    transform: translateX(0%);
                     transition: all 1s ease-in-out;
                 }
 
                 .center-ul-open {
                     display: block;
                     position: fixed;
-                    top: 0rem;
+                    // top: 0rem;
                     left: 0rem;
                     padding: 0rem;
-                    transform: translateY(40.5px);
+                    transform: translateY(0);
                     cursor: pointer;
                     transition: all 1s ease-in-out;
 
@@ -115,7 +116,7 @@ html{
 
                 .center-ul-close{
                     left: 100%;
-                    transform: translateY(40.5px) translateX(-100%);
+                    transform: translateX(-100%);
                     transition: all 1s ease-in-out;
 
                     svg{
@@ -128,6 +129,7 @@ html{
                     padding: .5rem 0rem;
                     font-style: italic;
                     cursor: pointer;
+                    text-align: center;
 
                     &:hover{
                         color: blue;
@@ -136,12 +138,13 @@ html{
 
                 .right-ul{
                     position: absolute;
-                    top: 40.5px;
+                    // top: 81px;
                     right: 0rem;
                     display: flex;
                     flex-flow: column;
                     background: black;
                     color: white;
+                    background: gray;
                     transition: all .5s ease-in-out;
 
                     li{
@@ -163,8 +166,8 @@ html{
             flex-flow: column;
             justify-content: center;
             align-items: center;
-            // padding: 40.5px 1rem 1rem 1rem;
-            margin-top: 40.5px;
+            // padding: 81px 1rem 1rem 1rem;
+            margin-top: 81px;
             height: 50vh;
 
             h1{
@@ -185,7 +188,7 @@ html{
             justify-content: space-between;
             align-items: flex-start;
             gap: .5rem;
-            padding: 1.5625rem 0rem;
+            // padding: 1.5625rem 0rem;
             overflow-x: auto;
 
             .content-loader{

@@ -17,7 +17,7 @@
   justify-content: space-between;
   align-items: flex-end;
   position: fixed;
-  top: 40.5px;
+  top: 81px;
   right: 0rem;
   transform: translateX(0%);
   transition: all 1s;
@@ -53,6 +53,9 @@
 }
 .adjustment-index .top .rows .sm-sector .form-group {
   width: 100%;
+}
+.adjustment-index .top .rows .dates {
+  flex-flow: column;
 }
 .adjustment-index .top .rows-two {
   padding: 0rem 0.5rem 0.5rem 0.5rem;
@@ -110,6 +113,11 @@
   text-align: center;
 }
 
+@media screen and (min-width: 768px) {
+  .adjustment-index .top .rows .dates {
+    flex-flow: row;
+  }
+}
 @media screen and (min-width: 920px) {
   .adjustment-index .top {
     position: static;
