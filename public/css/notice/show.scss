@@ -8,56 +8,47 @@
 
     .top{
         display: flex;
-        justify-content: space-between;
+        flex-flow: column;
+        justify-content: center;
         align-items: center;
-        margin-bottom: .5rem;
-
-        h2{
-            margin-left: 50%;
-            transform: translateX(-50%);
-        }
+        gap: .5rem;
     }
 
-    .details-container{
+    .info-container{
         display: flex;
+        flex-flow: column;
         justify-content: center;
-        align-items: flex-start;
+        align-items: center;
+        background: black;
+        color: white;
+        padding: 1rem 0rem;
 
-        .info-container{
+        h3{
+            text-align: center;
+            color: goldenrod;
+        }
+
+        .body{
+            width: 100%;
+            text-align: justify;
+        }
+
+        .footer{
+            width: 100%;
             display: flex;
             flex-flow: column;
             justify-content: center;
-            align-items: center;
-            padding: 1rem;
-            background: black;
-            color: white;
+            align-items: flex-end;
 
-            h3{
-                text-align: center;
-                color: goldenrod;
+            .admin{
+                font-size: larger;
+                font-weight: bolder;
+                font-style: italic;
+                color: red;
             }
 
-            .body{
-                max-width: 100%;
-            }
-
-            .footer{
-                width: 100%;
-                display: flex;
-                flex-flow: column;
-                justify-content: center;
-                align-items: flex-end;
-
-                .admin{
-                    font-size: larger;
-                    font-weight: bolder;
-                    font-style: italic;
-                    color: red;
-                }
-
-                .date{
-                    color: red;
-                }
+            .date{
+                color: red;
             }
         }
     }
@@ -75,8 +66,7 @@
         align-items: center;
 
         form{
-            min-width: 500px;
-            max-width: 95%;
+            width: 95%;
             background: black;
             padding: 1rem;
             border-radius: .25rem;
@@ -101,3 +91,41 @@
     }
 }
 
+@media screen and (min-width: 640px) {
+    .notice-show{
+        .top{
+            flex-flow: row;
+            justify-content: space-between;
+
+            h2{
+                transform: translateX(-40%);
+                margin-left: 40%;
+            }
+        }
+
+        .info-container{
+            label{
+                width: 90%;
+                max-width: 500px;
+            }
+        }
+
+        .notice-delete-div{
+            form{
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media screen and (min-width: 920px) {
+    .notice-show{
+        .top{
+
+            h2{
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+    }
+}

@@ -7,20 +7,18 @@
         </div>
     </div>
 
-    <div class="details-container">
-        <div class="info-container">
-            <label for="">Member:<span>{{ $payment->memberMonth->member->name }}</span></label>
-            <label for="">Month:<span>{{ $payment->memberMonth->month->name }}</span></label>
-            <label for="">Status:<span>{{ ucwords($payment->status) }}</span></label>
-            <label for="">Amount:<span>{{ number_format($payment->amount) }}</span></label>
-            <label for="">Last modified by:<span>{{ $payment->user->name }}</span></label>
-            <label for="">Created at:<span>{{ date('d/m/Y h:i:s a',strtotime($payment->created_at)) }}</span></label>
-            <label for="">Updated at:<span>{{ date('d/m/Y h:i:s a',strtotime($payment->updated_at)) }}</span></label>
-            @if (!empty($payment->note))
-            <label for="" class="note">Note</label>
-            <p>{{ $payment->note }}</p>
-            @endif
-        </div>
+    <div class="info-container">
+        <label for="">Member:<span>{{ $payment->memberMonth->member->name }}</span></label>
+        <label for="">Month:<span>{{ $payment->memberMonth->month->name }}</span></label>
+        <label for="">Status:<span>{{ ucwords($payment->status) }}</span></label>
+        <label for="">Amount:<span>{{ number_format($payment->amount) }}</span></label>
+        <label for="">Last modified by:<span>{{ $payment->user->name }}</span></label>
+        <label for="">Created at:<span>{{ date('d/m/Y h:i:s a',strtotime($payment->created_at)) }}</span></label>
+        <label for="">Updated at:<span>{{ date('d/m/Y h:i:s a',strtotime($payment->updated_at)) }}</span></label>
+        @if (!empty($payment->note))
+        <label for="" class="note">Note</label>
+        <p>{{ $payment->note }}</p>
+        @endif
     </div>
 
     <div id="payment_delete_div" class="payment-delete-div hide">

@@ -5,12 +5,10 @@
 }
 .month-show .top {
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
   align-items: center;
-}
-.month-show .top h2 {
-  margin-left: 50%;
-  transform: translateX(-50%);
+  gap: 0.5rem;
 }
 .month-show .info-container {
   display: flex;
@@ -19,20 +17,21 @@
   align-items: center;
   width: 100%;
   gap: 0.5rem;
+  padding: 1rem 0rem;
 }
 .month-show .info-container label {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  min-width: 500px;
-  max-width: 100%;
+  width: 100%;
   font-weight: bold;
   border-bottom: 0.1rem dashed gray;
 }
 .month-show .info-container label span {
   font-weight: normal;
   font-style: italic;
+  text-align: right;
 }
 .month-show .detail-container .table-details table thead th {
   vertical-align: middle;
@@ -82,8 +81,7 @@
   align-items: center;
 }
 .month-show .month-delete-div form {
-  min-width: 500px;
-  max-width: 95%;
+  width: 95%;
   background: black;
   padding: 1rem;
   border-radius: 0.25rem;
@@ -101,4 +99,33 @@
 }
 .month-show .hide {
   display: none;
+}
+
+@media screen and (min-width: 640px) {
+  .month-show .top {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  .month-show .top h2 {
+    transform: translateX(-40%);
+    margin-left: 40%;
+  }
+  .month-show .info-container label {
+    width: 90%;
+    max-width: 500px;
+  }
+  .month-show .month-delete-div form {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .hide-in-low-res {
+    display: none;
+  }
+}
+@media screen and (min-width: 920px) {
+  .month-show .top h2 {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 }/*# sourceMappingURL=show.css.map */

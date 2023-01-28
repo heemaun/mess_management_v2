@@ -3,7 +3,7 @@ html {
 }
 html body {
   overflow-x: auto;
-  padding: 1rem;
+  padding: 0.5rem;
   background: black;
   color: white;
 }
@@ -354,6 +354,9 @@ html body .hide {
   }
 }
 @media screen and (min-width: 920px) {
+  html body {
+    padding: 1rem;
+  }
   html body header nav ul {
     flex-flow: row;
   }

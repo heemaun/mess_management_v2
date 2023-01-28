@@ -5,46 +5,39 @@
 }
 .adjustment-show .top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-.adjustment-show .top h2 {
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-.adjustment-show .details-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-.adjustment-show .details-container .info-container {
-  flex-grow: 5;
-  display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
-.adjustment-show .details-container .info-container label {
+.adjustment-show .info-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 1rem 0rem;
+}
+.adjustment-show .info-container label {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  min-width: 500px;
-  max-width: 100%;
+  width: 95%;
   font-weight: bold;
   border-bottom: 0.1rem dashed gray;
 }
-.adjustment-show .details-container .info-container label span {
+.adjustment-show .info-container label span {
   font-weight: normal;
   font-style: italic;
+  text-align: right;
 }
-.adjustment-show .details-container .info-container .note {
+.adjustment-show .info-container .note {
   border-bottom: none;
 }
-.adjustment-show .details-container .info-container p {
-  width: 500px;
+.adjustment-show .info-container p {
+  width: 95%;
   padding: 0.5rem;
   border: 0.1rem dashed gray;
 }
@@ -61,8 +54,7 @@
   align-items: center;
 }
 .adjustment-show .adjustment-delete-div form {
-  min-width: 500px;
-  max-width: 95%;
+  width: 95%;
   background: black;
   padding: 1rem;
   border-radius: 0.25rem;
@@ -80,4 +72,32 @@
 }
 .adjustment-show .hide {
   display: none;
+}
+
+@media screen and (min-width: 640px) {
+  .adjustment-show .top {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  .adjustment-show .top h2 {
+    transform: translateX(-40%);
+    margin-left: 40%;
+  }
+  .adjustment-show .info-container label {
+    width: 90%;
+    max-width: 500px;
+  }
+  .adjustment-show .info-container p {
+    width: 90%;
+    max-width: 500px;
+  }
+  .adjustment-show .adjustment-delete-div form {
+    width: 500px;
+  }
+}
+@media screen and (min-width: 920px) {
+  .adjustment-show .top h2 {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 }/*# sourceMappingURL=show.css.map */

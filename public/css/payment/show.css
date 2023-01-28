@@ -5,46 +5,39 @@
 }
 .payment-show .top {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-.payment-show .top h2 {
-  margin-left: 50%;
-  transform: translateX(-50%);
-}
-.payment-show .details-container {
-  display: flex;
-  justify-content: center;
-  align-items: flex-start;
-}
-.payment-show .details-container .info-container {
-  flex-grow: 5;
-  display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
 }
-.payment-show .details-container .info-container label {
+.payment-show .info-container {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+  padding: 1rem 0rem;
+}
+.payment-show .info-container label {
   display: flex;
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  min-width: 500px;
-  max-width: 100%;
+  width: 95%;
   font-weight: bold;
   border-bottom: 0.1rem dashed gray;
 }
-.payment-show .details-container .info-container label span {
+.payment-show .info-container label span {
   font-weight: normal;
   font-style: italic;
+  text-align: right;
 }
-.payment-show .details-container .info-container .note {
+.payment-show .info-container .note {
   border-bottom: none;
 }
-.payment-show .details-container .info-container p {
-  width: 500px;
+.payment-show .info-container p {
+  width: 95%;
   padding: 0.5rem;
   border: 0.1rem dashed gray;
 }
@@ -61,8 +54,7 @@
   align-items: center;
 }
 .payment-show .payment-delete-div form {
-  min-width: 500px;
-  max-width: 95%;
+  width: 95%;
   background: black;
   padding: 1rem;
   border-radius: 0.25rem;
@@ -80,4 +72,32 @@
 }
 .payment-show .hide {
   display: none;
+}
+
+@media screen and (min-width: 640px) {
+  .payment-show .top {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  .payment-show .top h2 {
+    transform: translateX(-40%);
+    margin-left: 40%;
+  }
+  .payment-show .info-container label {
+    width: 90%;
+    max-width: 500px;
+  }
+  .payment-show .info-container p {
+    width: 90%;
+    max-width: 500px;
+  }
+  .payment-show .payment-delete-div form {
+    width: 500px;
+  }
+}
+@media screen and (min-width: 920px) {
+  .payment-show .top h2 {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 }/*# sourceMappingURL=show.css.map */

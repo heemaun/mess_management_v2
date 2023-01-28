@@ -1,16 +1,12 @@
 .member-show h2, .member-show h3 {
   margin: 0rem;
   padding: 0rem;
-  text-align: center;
 }
 .member-show .top {
   display: flex;
-  justify-content: space-between;
+  flex-flow: column;
+  justify-content: center;
   align-items: center;
-}
-.member-show .top h2 {
-  margin-left: 50%;
-  transform: translateX(-50%);
 }
 .member-show .image-viewer {
   width: 100%;
@@ -28,15 +24,18 @@
 }
 .member-show .details-container {
   display: flex;
+  flex-flow: column;
   justify-content: space-between;
   align-items: flex-start;
+  gap: 0.5rem;
+  width: 100%;
 }
 .member-show .details-container .info-container {
-  flex-grow: 5;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   gap: 0.5rem;
 }
 .member-show .details-container .info-container label {
@@ -44,25 +43,24 @@
   flex-flow: row;
   justify-content: space-between;
   align-items: center;
-  min-width: 500px;
-  max-width: 100%;
+  width: 95%;
   font-weight: bold;
   border-bottom: 0.1rem dashed gray;
 }
 .member-show .details-container .info-container label span {
   font-weight: normal;
   font-style: italic;
+  text-align: right;
 }
 .member-show .details-container .payment-details {
-  flex-grow: 3;
   display: flex;
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
 }
 .member-show .details-container .payment-details table {
-  min-width: 500px;
-  max-width: 50%;
+  width: 95%;
 }
 .member-show .details-container .payment-details table th {
   vertical-align: middle;
@@ -83,6 +81,34 @@
   vertical-align: middle;
   text-align: center;
 }
+.member-show .member-history {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+.member-show .member-history table {
+  width: 95%;
+}
+.member-show .member-history table th {
+  vertical-align: middle;
+  text-align: center;
+}
+.member-show .member-history table .clickable {
+  cursor: pointer;
+}
+.member-show .member-history table .left {
+  vertical-align: middle;
+  text-align: left;
+}
+.member-show .member-history table .right {
+  vertical-align: middle;
+  text-align: right;
+}
+.member-show .member-history table .center {
+  vertical-align: middle;
+  text-align: center;
+}
 .member-show .member-delete-div {
   position: fixed;
   top: 0rem;
@@ -96,8 +122,7 @@
   align-items: center;
 }
 .member-show .member-delete-div form {
-  min-width: 500px;
-  max-width: 95%;
+  width: 95%;
   background: black;
   padding: 1rem;
   border-radius: 0.25rem;
@@ -115,4 +140,56 @@
 }
 .member-show .hide {
   display: none;
+}
+
+@media screen and (min-width: 640px) {
+  .member-show .top {
+    flex-flow: row;
+    justify-content: space-between;
+  }
+  .member-show .top h2 {
+    transform: translateX(-40%);
+    margin-left: 40%;
+  }
+  .member-show .details-container .info-container label {
+    width: 90%;
+    max-width: 500px;
+  }
+  .member-show .member-delete-div form {
+    width: 500px;
+  }
+}
+@media screen and (max-width: 640px) {
+  .hide-in-low-res {
+    display: none;
+  }
+}
+@media screen and (min-width: 920px) {
+  .member-show .top h2 {
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
+  .member-show .details-container {
+    flex-flow: row;
+  }
+  .member-show .details-container .info-container {
+    width: auto;
+    flex-grow: 5;
+  }
+  .member-show .details-container .info-container label {
+    width: 100%;
+  }
+  .member-show .details-container .payment-details {
+    width: auto;
+    flex-grow: 3;
+  }
+  .member-show .details-container .payment-details table {
+    width: 100%;
+  }
+  .member-show .member-history {
+    margin-top: 1rem;
+  }
+  .member-show .member-history table {
+    width: 100%;
+  }
 }/*# sourceMappingURL=show.css.map */

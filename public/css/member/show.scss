@@ -2,17 +2,18 @@
     h2,h3{
         margin: 0rem;
         padding: 0rem;
-        text-align: center;
+        // text-align: center;
     }
 
     .top{
         display: flex;
-        justify-content: space-between;
+        flex-flow: column;
+        justify-content: center;
         align-items: center;
 
         h2{
-            margin-left: 50%;
-            transform: translateX(-50%);
+            // margin-left: 50%;
+            // transform: translateX(-50%);
         }
     }
 
@@ -34,16 +35,18 @@
 
     .details-container{
         display: flex;
+        flex-flow: column;
         justify-content: space-between;
         align-items: flex-start;
+        gap: .5rem;
+        width: 100%;
 
         .info-container{
-            flex-grow: 5;
             display: flex;
             flex-flow: column;
             justify-content: center;
             align-items: center;
-            // width: 100%;
+            width: 100%;
             gap: .5rem;
 
             label{
@@ -51,28 +54,27 @@
                 flex-flow: row;
                 justify-content: space-between;
                 align-items: center;
-                min-width: 500px;
-                max-width: 100%;
+                width: 95%;
                 font-weight: bold;
                 border-bottom: .1rem dashed gray;
 
                 span{
                     font-weight: normal;
                     font-style: italic;
+                    text-align: right;
                 }
             }
         }
 
         .payment-details{
-            flex-grow: 3;
             display: flex;
             flex-flow: column;
             justify-content: center;
             align-items: center;
+            width: 100%;
 
             table{
-                min-width: 500px;
-                max-width: 50%;
+                width: 95%;
 
                 th{
                     vertical-align: middle;
@@ -101,6 +103,41 @@
         }
     }
 
+    .member-history {
+        display: flex;
+        flex-flow: column;
+        justify-content: center;
+        align-items: center;
+
+        table{
+            width: 95%;
+
+            th{
+                vertical-align: middle;
+                text-align: center;
+            }
+
+            .clickable{
+                cursor: pointer;
+            }
+
+            .left{
+                vertical-align: middle;
+                text-align: left;
+            }
+
+            .right{
+                vertical-align: middle;
+                text-align: right;
+            }
+
+            .center{
+                vertical-align: middle;
+                text-align: center;
+            }
+        }
+    }
+
     .member-delete-div{
         position: fixed;
         top: 0rem;
@@ -114,8 +151,7 @@
         align-items: center;
 
         form{
-            min-width: 500px;
-            max-width: 95%;
+            width: 95%;
             background: black;
             padding: 1rem;
             border-radius: .25rem;
@@ -140,3 +176,79 @@
     }
 }
 
+@media screen and (min-width: 640px) {
+    .member-show{
+        .top{
+            flex-flow: row;
+            justify-content: space-between;
+
+            h2{
+                transform: translateX(-40%);
+                margin-left: 40%;
+            }
+        }
+
+        .details-container{
+            .info-container{
+                label{
+                    width: 90%;
+                    max-width: 500px;
+                }
+            }
+        }
+
+        .member-delete-div{
+            form{
+                width: 500px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 640px) {
+    .hide-in-low-res{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 920px) {
+    .member-show{
+        .top{
+
+            h2{
+                margin-left: 50%;
+                transform: translateX(-50%);
+            }
+        }
+
+        .details-container{
+            flex-flow: row;
+
+            .info-container{
+                width: auto;
+                flex-grow: 5;
+
+                label{
+                    width: 100%;
+                }
+            }
+
+            .payment-details{
+                width: auto;
+                flex-grow: 3;
+
+                table{
+                    width: 100%;
+                }
+            }
+        }
+
+        .member-history{
+            margin-top: 1rem;
+
+            table{
+                width: 100%;
+            }
+        }
+    }
+}

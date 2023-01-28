@@ -60,18 +60,18 @@
     </div>
 
     <div class="member-history">
-        <h3>Month details payments</h3>
+        <h3>Month details</h3>
             <table class="table table-dark table-striped table-hover table-bordered">
                 <thead>
                     <tr>
                         <th rowspan="2">No.</th>
                         <th rowspan="2">Month</th>
-                        <th colspan="2">Payment</th>
-                        <th colspan="2">Adjustment</th>
+                        <th colspan="2" class="hide-in-low-res">Payment</th>
+                        <th colspan="2" class="hide-in-low-res">Adjustment</th>
                         <th rowspan="2">Rent</th>
                         <th rowspan="2">Due</th>
                     </tr>
-                    <tr>
+                    <tr class="hide-in-low-res">
                         <th>Details</th>
                         <th>Total</th>
                         <th>Details</th>
@@ -83,7 +83,7 @@
                     <tr>
                         <td>{{ $loop->iteration }}</td>
                         <td class="left">{{ $mm->month->name }}</td>
-                        <td class="td-flex">
+                        <td class="td-flex hide-in-low-res">
                             @if (count($mm->payments->where('status','active'))==0)
                             {{ '-' }}
                             @else
@@ -95,10 +95,10 @@
                             @endforeach
                             @endif
                         </td>
-                        <td class="right">
+                        <td class="right hide-in-low-res">
                             <span>{{ number_format($mm->payments->where('status','active')->sum('amount')) }}</span>
                         </td>
-                        <td class="td-flex">
+                        <td class="td-flex hide-in-low-res">
                             @if (count($mm->adjustments->where('status','active'))==0)
                             {{ '-' }}
                             @else
@@ -110,7 +110,7 @@
                             @endforeach
                             @endif
                         </td>
-                        <td class="right">
+                        <td class="right hide-in-low-res">
                             <span>{{ number_format($mm->adjustments->where('status','active')->sum('amount')) }}</span>
                         </td>
                         <td class="right">{{ number_format($mm->rent_this_month) }}</td>

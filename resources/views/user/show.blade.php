@@ -12,16 +12,14 @@
         <img src="{{ asset('images/default_member_picture_male.png') }}" alt="">
     </div>
 
-    <div class="details-container">
-        <div class="info-container">
-            <h3>User Information</h3>
-            <label for="">Name:<span>{{ $user->name }}</span></label>
-            <label for="">Status:<span>{{ ucwords($user->status) }}</span></label>
-            <label for="">Email:<span>{{ $user->email }}</span></label>
-            <label for="">Phone:<span>{{ $user->phone }}</span></label>
-            <label for="">Created At<span>{{ date('d/m/Y h:m:i A',strtotime($user->created_at)) }}</span></label>
-            <label for="">Updated At<span>{{ date('d/m/Y h:m:i A',strtotime($user->updated_at)) }}</span></label>
-        </div>
+    <div class="info-container">
+        <h3>User Information</h3>
+        <label for="">Name:<span>{{ $user->name }}</span></label>
+        <label for="">Status:<span>{{ ucwords($user->status) }}</span></label>
+        <label for="">Email:<span>{{ $user->email }}</span></label>
+        <label for="">Phone:<span>{{ $user->phone }}</span></label>
+        <label for="">Created At<span>{{ date('d/m/Y h:m:i A',strtotime($user->created_at)) }}</span></label>
+        <label for="">Updated At<span>{{ date('d/m/Y h:m:i A',strtotime($user->updated_at)) }}</span></label>
     </div>
 
     <div id="user_delete_div" class="user-delete-div hide">

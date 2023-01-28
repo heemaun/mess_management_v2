@@ -7,20 +7,18 @@
         </div>
     </div>
 
-    <div class="details-container">
-        <div class="info-container">
-            <label for="">Member:<span>{{ $adjustment->memberMonth->member->name }}</span></label>
-            <label for="">Month:<span>{{ $adjustment->memberMonth->month->name }}</span></label>
-            <label for="">Status:<span>{{ ucwords($adjustment->status) }}</span></label>
-            <label for="">Amount:<span>{{ number_format($adjustment->amount) }}</span></label>
-            <label for="">Last modified by:<span>{{ $adjustment->user->name }}</span></label>
-            <label for="">Created at:<span>{{ date('d/m/Y h:i:s a',strtotime($adjustment->created_at)) }}</span></label>
-            <label for="">Updated at:<span>{{ date('d/m/Y h:i:s a',strtotime($adjustment->updated_at)) }}</span></label>
-            @if (!empty($adjustment->note))
-            <label for="" class="note">Note</label>
-            <p>{{ $adjustment->note }}</p>
-            @endif
-        </div>
+    <div class="info-container">
+        <label for="">Member:<span>{{ $adjustment->memberMonth->member->name }}</span></label>
+        <label for="">Month:<span>{{ $adjustment->memberMonth->month->name }}</span></label>
+        <label for="">Status:<span>{{ ucwords($adjustment->status) }}</span></label>
+        <label for="">Amount:<span>{{ number_format($adjustment->amount) }}</span></label>
+        <label for="">Last modified by:<span>{{ $adjustment->user->name }}</span></label>
+        <label for="">Created at:<span>{{ date('d/m/Y h:i:s a',strtotime($adjustment->created_at)) }}</span></label>
+        <label for="">Updated at:<span>{{ date('d/m/Y h:i:s a',strtotime($adjustment->updated_at)) }}</span></label>
+        @if (!empty($adjustment->note))
+        <label for="" class="note">Note</label>
+        <p>{{ $adjustment->note }}</p>
+        @endif
     </div>
 
     <div id="adjustment_delete_div" class="adjustment-delete-div hide">
