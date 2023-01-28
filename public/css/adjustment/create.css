@@ -9,19 +9,14 @@
   text-align: center;
 }
 .adjustment-create form {
-  max-width: 95%;
-  min-width: 75%;
+  width: 95%;
+  max-width: 500px;
   background: black;
   color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
   box-shadow: 0rem 0rem 0.5rem gray;
-}
-.adjustment-create form .heading {
-  height: 5rem;
-}
-.adjustment-create form .body {
-  height: 10rem;
 }
 .adjustment-create form .adjustment-create-error {
   color: red;
@@ -29,8 +24,8 @@
 }
 .adjustment-create form .btn-container {
   width: 100%;
+  padding-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.5rem;
 }/*# sourceMappingURL=create.css.map */

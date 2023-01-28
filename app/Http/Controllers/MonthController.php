@@ -64,6 +64,8 @@ class MonthController extends Controller
     public function store(Request $request)
     {
         $data = Validator::make($request->all(),[
+            'year'      => 'required|numeric|min:1970|max:2100',
+            'month'     => 'required|numeric|min:1|max:12',
             'name'      => 'required|unique:months,name',
             'status'    => 'required',
         ]);
@@ -221,6 +223,8 @@ class MonthController extends Controller
     {
         $data = Validator::make($request->all(),[
             'activate'  => 'sometimes',
+            'year'      => 'required_if:activate,false|numeric|min:1970|max:2100',
+            'month'     => 'required_if:activate,false|numeric|min:1|max:12',
             'name'      => 'required_if:activate,false|unique:months,name,'.$month->id,
             'status'    => 'required',
         ]);

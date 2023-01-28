@@ -9,12 +9,13 @@
   text-align: center;
 }
 .notice-edit form {
-  max-width: 75%;
-  min-width: 95%;
+  width: 95%;
+  max-width: 500px;
   background: black;
   color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
   box-shadow: 0rem 0rem 0.5rem gray;
 }
 .notice-edit form .heading {
@@ -29,8 +30,8 @@
 }
 .notice-edit form .btn-container {
   width: 100%;
+  padding-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.5rem;
 }/*# sourceMappingURL=edit.css.map */

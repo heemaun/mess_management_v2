@@ -2,8 +2,8 @@
     <div class="top">
         <h2>Payment Details</h2>
         <div class="btn-container">
-            <a href="{{ route('payments.index') }}" id="payment_show_back" class="btn btn-secondary">Back</a>
             <button type="button" id="payment_show_delete" class="btn btn-danger">Delete</button>
+            <a href="{{ route('payments.index') }}" id="payment_show_back" class="btn btn-secondary">Back</a>
         </div>
     </div>
 

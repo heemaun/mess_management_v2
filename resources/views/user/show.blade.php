@@ -3,8 +3,8 @@
         <h2>User Details</h2>
         <div class="btn-container">
             <a href="{{ route('users.edit',$user->id) }}" id="user_show_edit" class="btn btn-success">Edit</a>
-            <a href="{{ route('users.index') }}" id="user_show_back" class="btn btn-secondary">Back</a>
             <button type="button" id="user_show_delete" class="btn btn-danger">Delete</button>
+            <a href="{{ route('users.index') }}" id="user_show_back" class="btn btn-secondary">Back</a>
         </div>
     </div>
 

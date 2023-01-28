@@ -38,16 +38,17 @@ $("#content_loader").on("submit","#month_edit_form",function(e){
         data:{
             name: year+"-"+month,
             status: status,
+            year: year,
+            month: month,
         },
         beforeSend: function(){
             $(".month-edit-error").text("");
-            console.log(url,year,month,status);
         },
         success: function(response){
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
-                    $("#month_create_"+key+"_error").text(value);
+                    $("#month_edit_"+key+"_error").text(value[0]);
                 });
             }
 

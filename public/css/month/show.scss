@@ -18,7 +18,10 @@
         }
 
         .btn-container{
-            // order: 1;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: .25rem;
         }
     }
 
@@ -152,8 +155,8 @@
             justify-content: space-between;
 
             h2{
-                transform: translateX(-40%);
-                margin-left: 40%;
+                transform: translateX(-26%);
+                margin-left: 26%;
             }
         }
 

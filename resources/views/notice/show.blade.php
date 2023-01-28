@@ -3,8 +3,8 @@
         <h2>Notice Details</h2>
         <div class="btn-container">
             <a href="{{ route('notices.edit',$notice->id) }}" id="notice_show_edit" class="btn btn-success">Edit</a>
-            <a href="{{ route('notices.index') }}" id="notice_show_back" class="btn btn-secondary">Back</a>
             <button type="button" id="notice_show_delete" class="btn btn-danger">Delete</button>
+            <a href="{{ route('notices.index') }}" id="notice_show_back" class="btn btn-secondary">Back</a>
         </div>
     </div>
 

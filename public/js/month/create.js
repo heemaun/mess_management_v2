@@ -36,6 +36,8 @@ $("#content_loader").on("submit","#month_create_form",function(e){
         type: "POST",
         dataType: "json",
         data:{
+            year: year,
+            month: month,
             name: year+"-"+month,
             status: status,
         },

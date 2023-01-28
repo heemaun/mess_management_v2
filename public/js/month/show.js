@@ -25,9 +25,6 @@ $("#content_loader").on("click","#month_show_activate",function(e){
             activate: true,
             status: "active",
         },
-        beforeSend: function(){
-            console.log(url);
-        },
         success: function(response){
             //checking if validator fails
             if(response.status === "errors"){

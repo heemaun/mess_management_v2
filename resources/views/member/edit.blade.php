@@ -50,8 +50,8 @@
         <select id="member_edit_floor" class="form-select">
             <option value="">Select a floor</option>
             <option value="Ground Floor" {{ (strcmp('Ground Floor',$member->floor)==0)? 'selected' : '' }}>Ground Floor</option>
-            <option value="1st Floor" {{ (strcmp('Ground Floor',$member->floor)==0)? 'selected' : '' }}>1st Floor</option>
-            <option value="2nd Floor" {{ (strcmp('Ground Floor',$member->floor)==0)? 'selected' : '' }}>2nd Floor</option>
+            <option value="1st Floor" {{ (strcmp('1st Floor',$member->floor)==0)? 'selected' : '' }}>1st Floor</option>
+            <option value="2nd Floor" {{ (strcmp('2nd Floor',$member->floor)==0)? 'selected' : '' }}>2nd Floor</option>
         </select>
         <span id="member_edit_floor_error" class="member-edit-error"></span>
 

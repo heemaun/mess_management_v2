@@ -2,12 +2,12 @@
     <div class="top">
         <h2>Month Details</h2>
         <div class="btn-container">
-            <a href="{{ route('months.index') }}" id="month_show_back" class="btn btn-secondary">Back</a>
             @if (strcmp('inactive',$month->status)==0 || strcmp('pending',$month->status)==0)
             <a href="{{ route('months.update',$month->id) }}" id="month_show_activate" class="btn btn-primary">Activate</a>
             @endif
             <a href="{{ route('months.edit',$month->id) }}" id="month_show_edit" class="btn btn-success">Edit</a>
             <button type="button" id="month_show_delete" class="btn btn-danger">Delete</button>
+            <a href="{{ route('months.index') }}" id="month_show_back" class="btn btn-secondary">Back</a>
         </div>
     </div>
 

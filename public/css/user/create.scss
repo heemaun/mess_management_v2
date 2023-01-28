@@ -10,12 +10,13 @@
     }
 
     form{
-        max-width: 95%;
-        min-width: 500px;
+        width: 95%;
+        max-width: 500px;
         background: black;
         color: white;
-        padding: 1rem;
+        padding: .5rem;
         border-radius: .25rem;
+        margin-bottom: .5rem;
         box-shadow: 0rem 0rem .5rem gray;
 
         .user-create-error{
@@ -25,10 +26,10 @@
 
         .btn-container{
             width: 100%;
+            padding-top: .5rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-top: .5rem;
         }
     }
 }

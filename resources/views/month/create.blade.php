@@ -39,7 +39,7 @@
         </select>
         <span id="month_create_status_error" class="month-create-error"></span>
 
-        <label for="" id="month_create_name_viewer">Month Name: </label>
+        <label for="" id="month_create_name_viewer" class="form-label">Month Name: </label>
         <span id="month_create_name_error" class="month-create-error"></span>
 
         <div class="btn-container">

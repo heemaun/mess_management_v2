@@ -9,12 +9,13 @@
   text-align: center;
 }
 .member-edit form {
-  max-width: 95%;
-  min-width: 500px;
+  width: 95%;
+  max-width: 500px;
   background: black;
   color: white;
-  padding: 1rem;
+  padding: 0.5rem;
   border-radius: 0.25rem;
+  margin-bottom: 0.5rem;
   box-shadow: 0rem 0rem 0.5rem gray;
 }
 .member-edit form .member-edit-error {
@@ -23,8 +24,8 @@
 }
 .member-edit form .btn-container {
   width: 100%;
+  padding-top: 0.5rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-top: 0.5rem;
 }/*# sourceMappingURL=edit.css.map */

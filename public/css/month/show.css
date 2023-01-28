@@ -10,6 +10,12 @@
   align-items: center;
   gap: 0.5rem;
 }
+.month-show .top .btn-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.25rem;
+}
 .month-show .info-container {
   display: flex;
   flex-flow: column;
@@ -107,8 +113,8 @@
     justify-content: space-between;
   }
   .month-show .top h2 {
-    transform: translateX(-40%);
-    margin-left: 40%;
+    transform: translateX(-26%);
+    margin-left: 26%;
   }
   .month-show .info-container label {
     width: 90%;
