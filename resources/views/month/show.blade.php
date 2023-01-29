@@ -43,16 +43,16 @@
                     @foreach ($groundMembersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td class="left">{{ $mm->member->name }}</td>
+                        <td class="left"><a href="{{ route('members.show',$mm->member->id) }}">{{ $mm->member->name }}</a></td>
                         <td class="td-flex hide-in-low-res">
                             @if (count($mm->payments->where('status','active'))==0)
                             {{ '-' }}
                             @else
                             @foreach ($mm->payments->where('status','active') as $payment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('payments.show',$payment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($payment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>
@@ -64,10 +64,10 @@
                             {{ '-' }}
                             @else
                             @foreach ($mm->adjustments->where('status','active') as $adjustment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('adjustments.show',$adjustment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($adjustment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>
@@ -114,16 +114,16 @@
                     @foreach ($firstMembersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td class="left">{{ $mm->member->name }}</td>
+                        <td class="left"><a href="{{ route('members.show',$mm->member->id) }}">{{ $mm->member->name }}</a></td>
                         <td class="td-flex hide-in-low-res">
                             @if (count($mm->payments->where('status','active'))==0)
                             {{ '-' }}
                             @else
                             @foreach ($mm->payments->where('status','active') as $payment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('payments.show',$payment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($payment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>
@@ -135,10 +135,10 @@
                             {{ '-' }}
                             @else
                             @foreach ($mm->adjustments->where('status','active') as $adjustment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('adjustments.show',$adjustment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($adjustment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>
@@ -182,19 +182,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($groundMembersMonths as $mm)
+                    @foreach ($secondMembersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td class="left">{{ $mm->member->name }}</td>
+                        <td class="left"><a href="{{ route('members.show',$mm->member->id) }}">{{ $mm->member->name }}</a></td>
                         <td class="td-flex hide-in-low-res">
                             @if (count($mm->payments->where('status','active'))==0)
                             {{ '-' }}
                             @else
                             @foreach ($mm->payments->where('status','active') as $payment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('payments.show',$payment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($payment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>
@@ -206,10 +206,10 @@
                             {{ '-' }}
                             @else
                             @foreach ($mm->adjustments->where('status','active') as $adjustment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('adjustments.show',$adjustment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($adjustment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>

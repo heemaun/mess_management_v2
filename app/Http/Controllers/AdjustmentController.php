@@ -23,6 +23,7 @@ class AdjustmentController extends Controller
     public function __construct()
     {
         $this->middleware('login');
+        $this->middleware('guest')->only(['store','destroy']);
     }
 
     public function index(Request $request)

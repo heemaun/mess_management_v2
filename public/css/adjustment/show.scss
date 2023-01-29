@@ -33,6 +33,16 @@
             font-weight: bold;
             border-bottom: .1rem dashed gray;
 
+            a{
+                text-decoration: none;
+                color: white;
+
+                &:hover{
+                    text-decoration: underline;
+                    font-weight: bold;
+                }
+            }
+
             span{
                 font-weight: normal;
                 font-style: italic;

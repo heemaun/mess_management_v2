@@ -19,6 +19,6 @@ class LoginMiddleware
         if(checkLogin()){
             return $next($request);
         }
-        return redirect(route('index'));
+        return redirect(route('index'))->with('error','Login required');
     }
 }

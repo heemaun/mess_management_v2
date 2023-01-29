@@ -43,9 +43,9 @@
                 </thead>
                 <tbody>
                     @foreach ($payments as $p)
-                    <tr>
+                    <tr class="clickable" data-href="{{ route('payments.show',$p->id) }}">
                         <td class="center">{{ $loop->iteration }}</td>
-                        <td class="center">{{ date('Y-m-d h:i:s a',strtotime($p->created_at)) }}</td>
+                        <td class="center">{{ date('d/m/Y h:i:s a',strtotime($p->created_at)) }}</td>
                         <td class="right">{{ number_format($p->amount) }}</td>
                     </tr>
                     @endforeach
@@ -82,16 +82,16 @@
                     @foreach ($membersMonths as $mm)
                     <tr>
                         <td>{{ $loop->iteration }}</td>
-                        <td class="left">{{ $mm->month->name }}</td>
+                        <td class="left"><a href="{{ route('months.show',$mm->month->id ) }}">{{ $mm->month->name }}</a></td>
                         <td class="td-flex hide-in-low-res">
                             @if (count($mm->payments->where('status','active'))==0)
                             {{ '-' }}
                             @else
                             @foreach ($mm->payments->where('status','active') as $payment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('payments.show',$payment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($payment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($payment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>
@@ -103,10 +103,10 @@
                             {{ '-' }}
                             @else
                             @foreach ($mm->adjustments->where('status','active') as $adjustment)
-                            <span class="td-span-parent">
+                            <a href="{{ route('adjustments.show',$adjustment->id) }}" class="td-span-parent">
                                 <span>{{ number_format($adjustment->amount) }}</span>
                                 <span>{{ '['.date('d/m/Y',strtotime($adjustment->created_at)).']' }}</span>
-                            </span>
+                            </a>
                             @endforeach
                             @endif
                         </td>

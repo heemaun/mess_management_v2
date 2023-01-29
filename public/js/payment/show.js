@@ -92,3 +92,18 @@ $("#content_loader").on("submit","#payment_delete_form",function(e){
     });
 });
 //payment delete function end
+
+// redirecting to month / member
+$("#content_loader").on("click","#payment_show label a",function(e){
+    e.preventDefault();
+    let url = $(this).attr("href");
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response){
+            $("#content_loader").html(response);
+        }
+    });
+});
+// redirecting to month / member ends

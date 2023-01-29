@@ -8,8 +8,8 @@
     </div>
 
     <div class="info-container">
-        <label for="">Member:<span>{{ $payment->memberMonth->member->name }}</span></label>
-        <label for="">Month:<span>{{ $payment->memberMonth->month->name }}</span></label>
+        <label for="">Member:<span><a href="{{ route('members.show',$payment->memberMonth->member->id) }}">{{ $payment->memberMonth->member->name }}</a></span></label>
+        <label for="">Month:<span><a href="{{ route('months.show',$payment->memberMonth->month->id) }}">{{ $payment->memberMonth->month->name }}</a></span></label>
         <label for="">Status:<span>{{ ucwords($payment->status) }}</span></label>
         <label for="">Amount:<span>{{ number_format($payment->amount) }}</span></label>
         <label for="">Last modified by:<span>{{ $payment->user->name }}</span></label>

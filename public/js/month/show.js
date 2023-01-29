@@ -139,3 +139,18 @@ $("#content_loader").on("submit","#month_delete_form",function(e){
     });
 });
 //month delete function end
+
+// redirecting to payment / member / adjustment
+$("#content_loader").on("click","#month_show table a",function(e){
+    e.preventDefault();
+    let url = $(this).attr("href");
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response){
+            $("#content_loader").html(response);
+        }
+    });
+});
+// redirecting to month / member ends

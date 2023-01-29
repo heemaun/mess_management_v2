@@ -47,6 +47,13 @@
   vertical-align: middle;
   text-align: center;
 }
+.month-show .detail-container .table-details table tbody td a {
+  color: white;
+  text-decoration: none;
+}
+.month-show .detail-container .table-details table tbody td a:hover {
+  text-decoration: underline;
+}
 .month-show .detail-container .table-details table tbody .td-flex .td-span-parent {
   display: flex;
   justify-content: space-evenly;

@@ -92,8 +92,8 @@
         {{-- site banner space --}}
         @if (!checkLogin())
         <main>
-            <h1>ABC</h1>
-            <h6>Calefornia, USA</h6>
+            <h1>Zaman Mess</h1>
+            <h6>Suihary, Dinajpur</h6>
         </main>
         @endif
         {{-- site banner space end --}}
@@ -269,6 +269,12 @@
         <script src="{{ asset('js/notice/show.js') }}"></script>
         <script src="{{ asset('js/notice/create.js') }}"></script>
         <script src="{{ asset('js/notice/edit.js') }}"></script>
+
+        @if (Session::has('error'))
+        <script>
+            toastr.error("{{ Session::get('error') }}");
+        </script>
+        @endif
 
         @stack("js")
     </body>

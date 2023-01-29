@@ -28,6 +28,14 @@
   font-weight: bold;
   border-bottom: 0.1rem dashed gray;
 }
+.payment-show .info-container label a {
+  text-decoration: none;
+  color: white;
+}
+.payment-show .info-container label a:hover {
+  text-decoration: underline;
+  font-weight: bold;
+}
 .payment-show .info-container label span {
   font-weight: normal;
   font-style: italic;

@@ -72,6 +72,7 @@ html{
                         &:hover{
                             scale: 1.1;
                             color: blue;
+                            text-decoration: underline;
                         }
                     }
                 }
@@ -145,12 +146,21 @@ html{
                     flex-flow: column;
                     background: black;
                     color: white;
-                    background: gray;
+                    background: black;
                     transition: all .5s ease-in-out;
+                    box-shadow: 0rem 0rem .25rem gray;
 
                     li{
                         width: 100%;
                         text-align: right;
+                        border-bottom: .1rem dashed gray;
+
+                        &:hover{
+                            scale: 1;
+                            color: white;
+                            background: gray;
+                            text-decoration: underline;
+                        }
                     }
                 }
 
@@ -167,19 +177,15 @@ html{
             flex-flow: column;
             justify-content: center;
             align-items: center;
-            // padding: 81px 1rem 1rem 1rem;
             margin-top: 81px;
             height: 50vh;
 
-            h1{
+            h1,h6{
+                color: gold;
                 padding: 0rem;
                 margin: 0rem;
-            }
-
-            h6{
-                padding: 0rem;
-                margin: 0rem;
-
+                text-transform: uppercase;
+                text-shadow: .1rem .1rem .25rem black;
             }
         }
 
@@ -189,15 +195,11 @@ html{
             justify-content: space-between;
             align-items: flex-start;
             gap: .5rem;
-            // padding: 1.5625rem 0rem;
             overflow-x: auto;
 
             .content-loader{
-                // min-height: 75vh;
                 width: 100%;
                 order: 2;
-
-
             }
 
             aside{
@@ -257,19 +259,19 @@ html{
             top: 50%;
             left: 50%;
             transform: translateX(-50%) translateY(-50%);
-            min-width: 90%;
-            min-height: 75vh;
-            max-width: 95%;
-            max-height: 95vh;
+            min-width: 95%;
+            max-width: 500px;
+            max-height: 75vh;
             background: black;
             color: white;
             display: flex;
             flex-flow: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             z-index: 100;
             padding: 1rem;
             box-shadow: 0rem 0rem .25rem gray;
+            overflow: auto;
 
             h3{
                 text-align: center;

@@ -94,6 +94,13 @@
   vertical-align: middle;
   text-align: center;
 }
+.member-show .member-history table td a {
+  color: white;
+  text-decoration: none;
+}
+.member-show .member-history table td a:hover {
+  text-decoration: underline;
+}
 .member-show .member-history table .clickable {
   cursor: pointer;
 }

@@ -21,6 +21,7 @@ class MonthController extends Controller
     public function __construct()
     {
         $this->middleware('login')->except('show');
+        $this->middleware('guest')->only(['store','update','destroy']);
     }
 
     public function index(Request $request)

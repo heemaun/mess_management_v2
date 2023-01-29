@@ -5,6 +5,17 @@ $.ajaxSetup({
     },
 });
 
+//toastr settings
+toastr.options = {
+    "debug": false,
+    "positionClass": "toast-bottom-left",
+    "onclick": null,
+    "fadeIn": 500,
+    "fadeOut": 500,
+    "timeOut": 2000,
+    "extendedTimeOut": 500
+}
+
 //home notice viwer toogler
 $("body").on("click","#home_notice_view_close",function(){
     $("#home_notice_view").addClass("hide");

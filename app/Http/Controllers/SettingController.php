@@ -18,6 +18,7 @@ class SettingController extends Controller
     public function __construct()
     {
         $this->middleware('login');
+        $this->middleware('guest')->only(['store','update','destroy']);
     }
 
     public function index(Request $request)

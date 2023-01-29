@@ -67,6 +67,7 @@ html body header nav ul li a {
 html body header nav ul li:hover {
   scale: 1.1;
   color: blue;
+  text-decoration: underline;
 }
 html body header nav .center-ul {
   position: fixed;
@@ -125,12 +126,20 @@ html body header nav .right-ul {
   flex-flow: column;
   background: black;
   color: white;
-  background: gray;
+  background: black;
   transition: all 0.5s ease-in-out;
+  box-shadow: 0rem 0rem 0.25rem gray;
 }
 html body header nav .right-ul li {
   width: 100%;
   text-align: right;
+  border-bottom: 0.1rem dashed gray;
+}
+html body header nav .right-ul li:hover {
+  scale: 1;
+  color: white;
+  background: gray;
+  text-decoration: underline;
 }
 html body header nav .hide {
   transform: translatex(500px);
@@ -145,13 +154,12 @@ html body main {
   margin-top: 81px;
   height: 50vh;
 }
-html body main h1 {
+html body main h1, html body main h6 {
+  color: gold;
   padding: 0rem;
   margin: 0rem;
-}
-html body main h6 {
-  padding: 0rem;
-  margin: 0rem;
+  text-transform: uppercase;
+  text-shadow: 0.1rem 0.1rem 0.25rem black;
 }
 html body .content-body {
   display: flex;
@@ -213,19 +221,19 @@ html body .home-notice-view {
   top: 50%;
   left: 50%;
   transform: translateX(-50%) translateY(-50%);
-  min-width: 90%;
-  min-height: 75vh;
-  max-width: 95%;
-  max-height: 95vh;
+  min-width: 95%;
+  max-width: 500px;
+  max-height: 75vh;
   background: black;
   color: white;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   z-index: 100;
   padding: 1rem;
   box-shadow: 0rem 0rem 0.25rem gray;
+  overflow: auto;
 }
 html body .home-notice-view h3 {
   text-align: center;

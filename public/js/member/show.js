@@ -91,3 +91,21 @@ $("#content_loader").on("submit","#member_delete_form",function(e){
     });
 });
 //member delete function end
+
+// redirecting to payment / month / adjustment
+$("#content_loader").on("click","#member_show table a,#member_show .clickable",function(e){
+    e.preventDefault();
+    let url = $(this).attr("href");
+    if(url === undefined){
+        url = $(this).attr("data-href");
+    }
+    // console.log(url);
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response){
+            $("#content_loader").html(response);
+        }
+    });
+});
+// redirecting to month / member ends

@@ -24,12 +24,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 //resource routes
-Route::resource('/adjustments', AdjustmentController::class);
+Route::resource('/adjustments', AdjustmentController::class)->except(['edit','update']);
 Route::resource('/members', MemberController::class);
-Route::resource('/members-months', MemberMonthController::class)->parameters(['members-months' => 'member_month']);
+Route::resource('/members-months', MemberMonthController::class)->only('index')->parameters(['members-months' => 'member_month']);
 Route::resource('/months', MonthController::class);
 Route::resource('/notices', NoticeController::class);
-Route::resource('/payments', PaymentController::class);
+Route::resource('/payments', PaymentController::class)->except(['edit','update']);
 Route::resource('/users', UserController::class);
 Route::resource('/settings', SettingController::class);
 

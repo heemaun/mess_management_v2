@@ -40,6 +40,7 @@ $("#content_loader").on("change","#home_month_name_select",function(){
         },
         success: function(response){
             $("#content_loader #table_container").html(response);
+            $("#home_floor_select").val("all");
         }
     });
 });

@@ -29,6 +29,7 @@ class DataSeeder extends Seeder
         $status = ['pending','active','inactive','deleted','banned','restricted'];
         $rent = [800,850,900,950,1000];
         $amount = [500,1000,1500,2000];
+
         User::create([
             'name'      => 'Md. Maksuduzzaman Maun',
             'email'     => 'heemaun@gmail.com',
@@ -36,6 +37,15 @@ class DataSeeder extends Seeder
             'status'    => 'active',
             'password'  => Hash::make('11111111'),
         ]);
+
+        User::create([
+            'name'      => 'Guest',
+            'email'     => 'guest@gmail.com',
+            'phone'     => '11111111111',
+            'status'    => 'active',
+            'password'  => Hash::make('guest123'),
+        ]);
+
         for($x=0;$x<5;$x++){
             User::create([
                 'name'      => $faker->name(),
@@ -67,7 +77,6 @@ class DataSeeder extends Seeder
                 'current_balance'   => rand(0,1000),
                 'joining_date'      => $faker->date(),
                 'floor'             => $floor[rand(0,2)],
-                // 'status'            => $status[rand(0,5)],
                 'status'            => 'active',
             ]);
 
