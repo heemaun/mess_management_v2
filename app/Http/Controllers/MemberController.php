@@ -121,8 +121,8 @@ class MemberController extends Controller
         //validation check
         $data = Validator::make($request->all(),[
             'name'              => 'required|min:3|max:30',
-            'email'             => 'required|email',
-            'phone'             => 'required|digits:11',
+            'email'             => 'nullable|email|unique:members,email',
+            'phone'             => 'nullable|digits:11|unique:members,phone',
             'status'            => 'required',
             'floor'             => 'required',
             'initial_balance'   => 'required|numeric',
@@ -235,8 +235,8 @@ class MemberController extends Controller
         //validation check
         $data = Validator::make($request->all(),[
             'name'              => 'required|string|min:3|max:30',
-            'email'             => 'required|email|unique:members,email,'.$member->id,
-            'phone'             => 'required|digits:11|unique:members,phone,'.$member->id,
+            'email'             => 'nullable|email|unique:members,email,'.$member->id,
+            'phone'             => 'nullable|digits:11|unique:members,phone,'.$member->id,
             'status'            => 'required',
             'floor'             => 'required',
             'initial_balance'   => 'required|numeric',

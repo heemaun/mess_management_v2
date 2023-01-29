@@ -109,3 +109,22 @@ $("#content_loader").on("click","#member_show table a,#member_show .clickable",f
     });
 });
 // redirecting to month / member ends
+
+// redirecting to new payment
+$("#content_loader").on("click","#member_show_add_payment",function(e){
+    e.preventDefault();
+    let url = $(this).attr("href");
+    let id = $(this).attr("data-id");
+    let floor = $(this).attr("data-floor");
+
+    $.ajax({
+        url: url,
+        type: "GET",
+        success: function(response){
+            $("#content_loader").html(response);
+            $("#payment_create_floor").val(floor);
+            $("#payment_create_member").val(id);
+        }
+    });
+});
+// redirecting to new payment ends

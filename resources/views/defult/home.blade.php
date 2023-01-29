@@ -15,7 +15,7 @@
                 <option value="all" selected>All</option>
                 <option value="ground_floor">Ground Floor</option>
                 <option value="first_floor">1st Floor</option>
-                <option value="second_floor">2nd Floor</option>
+                <option value="second_floor">2nd Floor</option>                   
             </select>
         </div>
     </div>

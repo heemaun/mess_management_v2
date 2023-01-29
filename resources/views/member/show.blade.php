@@ -2,6 +2,7 @@
     <div class="top">
         <h2>Member Details</h2>
         <div class="btn-container">
+            <a href="{{ route('payments.create') }}" data-id="{{ $member->id }}" data-floor="{{ $member->floor }}" id="member_show_add_payment" class="btn btn-primary">Add Payment</a>
             <a href="{{ route('members.edit',$member->id) }}" id="member_show_edit" class="btn btn-success">Edit</a>
             <button type="button" id="member_show_delete" class="btn btn-danger">Delete</button>
             <a href="{{ route('members.index') }}" id="member_show_back" class="btn btn-secondary">Back</a>

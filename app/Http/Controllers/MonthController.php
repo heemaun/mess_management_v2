@@ -254,6 +254,9 @@ class MonthController extends Controller
 
             if(strcmp('active',$month->status)==0 && strcmp($tmpStatus,'active')!=0 && count(MemberMonth::where('month_id',$month->id)->get())==0){ // checking previous status whether create new meber-months for this month
                 foreach(Member::where('status','active')->get() as $member){
+                    $member->current_balance += getSetting($member->floor.' Rent')->value;
+                    $member->save();
+
                     $member->months()->attach($month->id,[
                         'user_id'           => getUser()->id,
                         'rent_this_month'   => getSetting($member->floor.' Rent')->value,

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Month;
 use App\Models\Member;
 use App\Models\Notice;
+use App\Models\Payment;
 use App\Models\MemberMonth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
