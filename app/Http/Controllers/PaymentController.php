@@ -12,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\PaymentNotification;
 
 class PaymentController extends Controller
 {
@@ -149,6 +150,10 @@ class PaymentController extends Controller
 
                 $payment->memberMonth->member->current_balance -= $payment->amount;
                 $payment->memberMonth->member->save();
+
+                if(!empty($payment->memberMonth->member->email)){
+                    $payment->memberMonth->member->notify(new PaymentNotification($payment));
+                }
             }
 
             DB::commit();

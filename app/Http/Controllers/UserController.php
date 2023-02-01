@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Notifications\NewUserNotification;
+use App\Notifications\SmsNotification;
 
 class UserController extends Controller
 {
@@ -91,11 +93,13 @@ class UserController extends Controller
         try{
             $data = $data->validate();
 
+            $password = Str::random(20);
+
             $user = User::create([
                 'name'          => $data['name'],
                 'email'         => $data['email'],
                 'phone'         => $data['phone'],
-                'password'      => Hash::make('11111111'),
+                'password'      => Hash::make($password),
                 'status'        => $data['status'],
             ]);
 
@@ -107,6 +111,8 @@ class UserController extends Controller
                 $user->picture = $imageName;
                 $user->save();
             }
+
+            $user->notify(new NewUserNotification($user,$password));
 
             DB::commit();
 

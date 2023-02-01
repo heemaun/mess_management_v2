@@ -19,7 +19,7 @@
             <label for="">Name:<span>{{ $member->name }}</span></label>
             <label for="">Status:<span>{{ ucwords($member->status) }}</span></label>
             <label for="">Floor:<span>{{ $member->floor }}</span></label>
-            <label for="">Email:<span>{{ $member->email }}</span></label>
+            <label for="">Email:<span>{{ (!empty($member->email)) ? $member->email : 'N/A' }}</span></label>
             <label for="">Phone:<span>{{ $member->phone }}</span></label>
             <label for="">Initial Balance:<span>{{ $member->initial_balance }}</span></label>
             <label for="">Current Balance:<span>{{ $member->current_balance }}</span></label>

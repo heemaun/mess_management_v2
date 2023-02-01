@@ -94,7 +94,7 @@ $("#content_loader").on("submit","#payment_delete_form",function(e){
 //payment delete function end
 
 // redirecting to month / member
-$("#content_loader").on("click","#payment_show label a",function(e){
+$("#content_loader").on("click","#payment_show label a,#payment_show_create",function(e){
     e.preventDefault();
     let url = $(this).attr("href");
 
