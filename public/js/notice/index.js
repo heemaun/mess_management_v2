@@ -41,8 +41,12 @@ $("#content_loader").on("click","#notice_index .clickable", function(){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -56,8 +60,12 @@ $("#content_loader").on("click","#notice_index_create", function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -83,8 +91,6 @@ $("#content_loader").on("click","#notice_index .pagination a",function(e){
         to = new Date().getFullYear()+"-12-31 23:59:59";
     }
 
-    console.log(limit);
-
     $.ajax({
         url: url,
         type: "GET",
@@ -95,8 +101,12 @@ $("#content_loader").on("click","#notice_index .pagination a",function(e){
             to: to,
             limit: limit,
         },
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader #notice_index_table_container").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });

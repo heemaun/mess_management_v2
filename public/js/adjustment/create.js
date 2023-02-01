@@ -6,8 +6,12 @@ $("#content_loader").on("click","#adjustment_create_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -26,9 +30,11 @@ $("#content_loader").on("change","#adjustment_create_floor",function(){
             floor: floor,
         },
         beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#adjustment_create_member").find('option').remove().end().append('<option value="all">Select a member</option>');
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $.each(response.data,function(key,value){
                 $("#adjustment_create_member").append('<option value="'+value.id+'">'+value.name+'</option>')
             });
@@ -60,8 +66,10 @@ $("#content_loader").on("submit","#adjustment_create_form",function(e){
         },
         beforeSend: function(){
             $(".adjustment-create-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){

@@ -44,8 +44,10 @@ $("#content_loader").on("submit","#member_edit_form",function(e){
         },
         beforeSend: function(){
             $(".member-edit-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){

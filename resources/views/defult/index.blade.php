@@ -13,6 +13,7 @@
         <link rel="stylesheet" href="{{ asset('css/default/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/default/home.css') }}">
         <link rel="stylesheet" href="{{ asset('css/default/dashboard.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/default/forget-password.css') }}">
 
         {{-- user css --}}
         <link rel="stylesheet" href="{{ asset('css/user/index.css') }}">
@@ -32,23 +33,15 @@
         <link rel="stylesheet" href="{{ asset('css/month/create.css') }}">
         <link rel="stylesheet" href="{{ asset('css/month/edit.css') }}">
 
-        {{-- member-month css --}}
-        <link rel="stylesheet" href="{{ asset('css/member-month/index.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/member-month/show.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/member-month/create.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/member-month/edit.css') }}">
-
         {{-- payment css --}}
         <link rel="stylesheet" href="{{ asset('css/payment/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/payment/show.css') }}">
         <link rel="stylesheet" href="{{ asset('css/payment/create.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/payment/edit.css') }}">
 
         {{-- adjustment css --}}
         <link rel="stylesheet" href="{{ asset('css/adjustment/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/adjustment/show.css') }}">
         <link rel="stylesheet" href="{{ asset('css/adjustment/create.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/adjustment/edit.css') }}">
 
         {{-- notice css --}}
         <link rel="stylesheet" href="{{ asset('css/notice/index.css') }}">
@@ -92,8 +85,24 @@
         {{-- site banner space --}}
         @if (!checkLogin())
         <main>
-            <h1>Zaman Mess</h1>
-            <h6>Suihary, Dinajpur</h6>
+            <section class="headlines">
+                <h1>Zaman Mess</h1>
+                <h6>Suihary, Dinajpur</h6>
+            </section>
+            <h3>This months details</h3>
+            <section class="top">
+                <div id="piechart1" class="charts head"></div>
+                <div id="piechart2" class="charts"></div>
+                <div id="piechart3" class="charts"></div>
+                <div id="piechart4" class="charts"></div>
+            </section>
+
+            <h3>Details of last few months</h3>
+            <section class="middle">
+                <div id="columnchart1" class="charts"></div>
+                <div id="columnchart2" class="charts"></div>
+                <div id="columnchart3" class="charts"></div>
+            </section>
         </main>
         @endif
         {{-- site banner space end --}}
@@ -170,7 +179,7 @@
                 <input type="email" name="email" id="login_email" class="form-control" placehcurrenter="enter your email" autocomplete="OFF">
                 <span id="login_email_error" class="login-error"></span>
 
-                <label for="login-password" class="form-label">Password</label>
+                <label for="login-password" class="form-label">Password <span id="forget_password_trigger">Forget password?</span></label>
                 <input type="password" name="password" id="login_password" class="form-control" placehcurrenter="enter your password" autocomplete="OFF">
                 <span id="login_password_error" class="login-error"></span>
 
@@ -181,6 +190,24 @@
             </form>
         </section>
         {{-- login div end --}}
+
+        {{-- forget password form --}}
+        <section id="forget_password_div" class="forget-password-div hide">
+            <form action="{{ route('forget-password') }}" method="POST" id="forget_password_form">
+                <legend>Password recovary</legend>
+                @csrf
+
+                <label for="forget_password_email" class="form-label">Enter your email</label>
+                <input type="email" name="email" id="forget_password_email" placeholder="enter your email to search your account" class="form-control">
+                <span id="forget_password_email_error" class="forget-password-error"></span>
+
+                <div class="btn-container">
+                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="button" id="forget_password_form_close" class="btn btn-secondary">Close</button>
+                </div>
+            </form>
+        </section>
+        {{-- forget password form ends --}}
 
         @else
         {{-- change password div --}}
@@ -218,12 +245,19 @@
         {{-- change password div end --}}
         @endif
 
+        <section id="loading_screen" class="loading loading-hide">
+
+        </section>
+
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
         {{-- default js --}}
+        <script src="{{ asset('js/default/change-password.js') }}"></script>
+        <script src="{{ asset('js/default/login.js') }}"></script>
+        <script src="{{ asset('js/default/forget-password.js') }}"></script>
         <script src="{{ asset('js/default/dashboard.js') }}"></script>
         <script src="{{ asset('js/default/index.js') }}"></script>
         <script src="{{ asset('js/default/home.js') }}"></script>
@@ -246,23 +280,15 @@
         <script src="{{ asset('js/month/create.js') }}"></script>
         <script src="{{ asset('js/month/edit.js') }}"></script>
 
-        {{-- member-month js --}}
-        <script src="{{ asset('js/member-month/index.js') }}"></script>
-        <script src="{{ asset('js/member-month/show.js') }}"></script>
-        <script src="{{ asset('js/member-month/create.js') }}"></script>
-        <script src="{{ asset('js/member-month/edit.js') }}"></script>
-
         {{-- payment js --}}
         <script src="{{ asset('js/payment/index.js') }}"></script>
         <script src="{{ asset('js/payment/show.js') }}"></script>
         <script src="{{ asset('js/payment/create.js') }}"></script>
-        <script src="{{ asset('js/payment/edit.js') }}"></script>
 
         {{-- adjustment js --}}
         <script src="{{ asset('js/adjustment/index.js') }}"></script>
         <script src="{{ asset('js/adjustment/show.js') }}"></script>
         <script src="{{ asset('js/adjustment/create.js') }}"></script>
-        <script src="{{ asset('js/adjustment/edit.js') }}"></script>
 
         {{-- notice js --}}
         <script src="{{ asset('js/notice/index.js') }}"></script>

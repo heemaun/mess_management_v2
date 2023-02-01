@@ -6,8 +6,12 @@ $("#content_loader").on("click","#payment_create_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -27,8 +31,10 @@ $("#content_loader").on("change","#payment_create_floor",function(){
         },
         beforeSend: function(){
             $("#payment_create_member").find('option').remove().end().append('<option value="all">Select a member</option>');
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $.each(response.data,function(key,value){
                 $("#payment_create_member").append('<option value="'+value.id+'">'+value.name+'</option>')
             });
@@ -58,8 +64,10 @@ $("#content_loader").on("submit","#payment_create_form",function(e){
         },
         beforeSend: function(){
             $(".payment-create-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
@@ -85,8 +93,12 @@ $("#content_loader").on("submit","#payment_create_form",function(e){
                 $.ajax({
                     url: url,
                     type: "GET",
+                    beforeSend: function(){
+                        $("#loading_screen").toggleClass("loading-hide");
+                    },
                     success: function(response){
                         $("#content_loader").html(response);
+                        $("#loading_screen").toggleClass("loading-hide");
                     }
                 });
             }

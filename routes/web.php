@@ -41,3 +41,5 @@ Route::get('/logout',[LoginController::class,'logout'])->name('logout');
 Route::get('/',[HomeController::class,'index'])->name('index');
 Route::get('/home',[HomeController::class,'home'])->name('home');
 Route::get('/check-login',[HomeController::class,'checkLoginHome'])->name('check-login');
+Route::get('/forget-password',[HomeController::class,'getForgetPassword'])->name('get-forget-password');
+Route::post('/forget-password',[HomeController::class,'forgetPassword'])->name('forget-password');

@@ -279,6 +279,9 @@ class MemberController extends Controller
 
             //checking if member status is activated then create member month
             if(strcmp($tmpStatus,'active') != 0 && strcmp($member->status,'active') == 0 && MemberMonth::where('member_id',$member->id)->where('month_id',$month->id)->first() === null){
+                $member->current_balance = getsetting($member->floor.' Rent')->value;
+                $member->save();
+
                 $member->months()->attach([
                     'user_id'           => getUser()->id,
                     'rent_this_month'   => ((strcmp('Ground Floor',$member->floor)==0) ? 850 : 900 ),

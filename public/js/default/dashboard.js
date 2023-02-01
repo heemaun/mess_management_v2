@@ -4,6 +4,9 @@ function dashboard()
         url: "/members-months",
         type: "GET",
         dataType: "json",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             let m = response.m;
             let months = response.months;
@@ -12,6 +15,7 @@ function dashboard()
                 loadPieCharts(m,months); // pie chart draw trigger
                 loadColumnCharts(m,months); // column chart draw trigger
             }
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 
@@ -281,7 +285,11 @@ $("#content_loader").on("submit","#home_rent_form",function(e){
             second_floor_rent: second_floor_rent,
         },
         dataType: "json",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
@@ -314,7 +322,11 @@ $("#content_loader").on("click","#home_rent_form_restore",function(){
         data: {
             from_ajax: "true",
         },
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             let ground_floor_rent = $("#ground_floor_rent");
             let first_floor_rent = $("#1st_floor_rent");
             let second_floor_rent = $("#2nd_floor_rent");

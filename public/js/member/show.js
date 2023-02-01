@@ -6,8 +6,12 @@ $("#content_loader").on("click","#member_show_edit",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -21,8 +25,12 @@ $("#content_loader").on("click","#member_show_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -55,8 +63,10 @@ $("#content_loader").on("submit","#member_delete_form",function(e){
         },
         beforeSend: function(){
             $(".member-delete-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
@@ -99,12 +109,15 @@ $("#content_loader").on("click","#member_show table a,#member_show .clickable",f
     if(url === undefined){
         url = $(this).attr("data-href");
     }
-    // console.log(url);
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -120,10 +133,14 @@ $("#content_loader").on("click","#member_show_add_payment",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
             $("#payment_create_floor").val(floor);
             $("#payment_create_member").val(id);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });

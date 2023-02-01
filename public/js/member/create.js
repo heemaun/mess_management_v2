@@ -38,8 +38,10 @@ $("#content_loader").on("submit","#member_create_form",function(e){
         },
         beforeSend: function(){
             $(".member-create-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){

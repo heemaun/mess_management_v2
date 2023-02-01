@@ -171,14 +171,12 @@ html{
         }
 
         main{
-            background-image: url('/images/main_pic.jpg');
-            background-size: cover;
             display: flex;
             flex-flow: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
             margin-top: 81px;
-            height: 50vh;
+            height: auto;
 
             h1,h6{
                 color: gold;
@@ -186,6 +184,48 @@ html{
                 margin: 0rem;
                 text-transform: uppercase;
                 text-shadow: .1rem .1rem .25rem black;
+            }
+
+            .headlines{
+                min-height: 50vh;
+                display: flex;
+                flex-flow: column;
+                justify-content: center;
+                align-items: center;
+
+                h6{
+                    text-align: right;
+                }
+            }
+
+            .top{
+                display: flex;
+                flex-flow: column;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+
+                .charts{
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    min-height: 33vh;
+                    width: 100%;
+                }
+            }
+
+            .middle{
+                display: flex;
+                flex-flow: column;
+                justify-content: flex-start;
+                align-items: center;
+                width: 100%;
+                gap: .5rem;
+
+                .charts{
+                    min-height: 33vh;
+                    width: 100%;
+                }
             }
         }
 
@@ -336,6 +376,66 @@ html{
                     color: red;
                 }
 
+                label{
+                    span{
+                        font-weight: normal;
+                        font-style: italic;
+                        cursor: pointer;
+                        color: goldenrod;
+
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
+                .btn-container{
+                    margin-top: .5rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+        }
+
+        .forget-password-div{
+            position: fixed;
+            top: 0rem;
+            left: 0rem;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: rgba(0,0,0,.75);
+
+            form{
+                max-width: 95%;
+                min-width: 90%;
+                background: black;
+                color: white;
+                padding: 1rem;
+                border-radius: .25rem;
+                box-shadow: 0rem 0rem .5rem gray;
+
+                .forget-password-error{
+                    display: block;
+                    color: red;
+                }
+
+                label{
+                    span{
+                        font-weight: normal;
+                        font-style: italic;
+                        cursor: pointer;
+                        color: goldenrod;
+
+                        &:hover{
+                            text-decoration: underline;
+                        }
+                    }
+                }
+
                 .btn-container{
                     margin-top: .5rem;
                     display: flex;
@@ -379,6 +479,39 @@ html{
             }
         }
 
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background: #00000099;
+            z-index: 999999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            &:after {
+                content: "";
+                width: 10rem;
+                height: 10rem;
+                border: 1rem solid gold;
+                border-top-color: red;
+                border-bottom-color: red;
+                border-radius: 50%;
+                animation: loading 1s ease-in-out 0s infinite forwards;
+            }
+        }
+
+        .loading-hide {
+            z-index: -9999;
+            display: none;
+
+            &::after {
+                animation: none;
+            }
+        }
+
         .hide{
             display: none;
         }
@@ -395,6 +528,12 @@ html{
     }
 }
 
+@keyframes loading {
+    to {
+        rotate: 1turn;
+    }
+}
+
 @media screen and (min-width: 640px) {
     html{
         body{
@@ -407,6 +546,12 @@ html{
             }
 
             .login-div{
+                form{
+                    min-width: 500px;
+                }
+            }
+
+            .forget-password-div{
                 form{
                     min-width: 500px;
                 }
@@ -452,6 +597,16 @@ html{
                     .center-ul-open{
                         display: none;
                     }
+                }
+            }
+
+            main{
+                .top {
+                    flex-flow: row;
+                }
+
+                .middle{
+                    flex-flow: row;
                 }
             }
 

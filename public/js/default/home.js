@@ -4,7 +4,11 @@ function homeload()
     $.ajax({
         url: "/home",
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader").html(response);
 
             // checking login status whether to load dashboard
@@ -36,9 +40,10 @@ $("#content_loader").on("change","#home_month_name_select",function(){
             from_home: true,
         },
         beforeSend: function(){
-            console.log(key);
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader #table_container").html(response);
             $("#home_floor_select").val("all");
         }

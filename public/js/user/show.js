@@ -6,8 +6,12 @@ $("#content_loader").on("click","#user_show_edit",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -21,8 +25,12 @@ $("#content_loader").on("click","#user_show_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -55,9 +63,11 @@ $("#content_loader").on("submit","#user_delete_form",function(e){
         },
         beforeSend: function(){
             $(".user-delete-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
             // checking if validator fails
+            $("#loading_screen").toggleClass("loading-hide");
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
                     $("#accounts_delete_"+key+"_error").text(value);
@@ -82,8 +92,12 @@ $("#content_loader").on("submit","#user_delete_form",function(e){
                 $.ajax({
                     url: url,
                     type: "GET",
+                    beforeSend: function(){
+                        $("#loading_screen").toggleClass("loading-hide");
+                    },
                     success: function(response){
                         $("#content_loader").html(response);
+                        $("#loading_screen").toggleClass("loading-hide");
                     }
                 });
             }

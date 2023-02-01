@@ -6,7 +6,11 @@ $("#content_loader").on("click","#adjustment_show_edit",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader").html(response);
         }
     });
@@ -21,7 +25,11 @@ $("#content_loader").on("click","#adjustment_show_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader").html(response);
         }
     });
@@ -55,9 +63,10 @@ $("#content_loader").on("submit","#adjustment_delete_form",function(e){
         },
         beforeSend: function(){
             $(".adjustment-delete-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
-            console.log(response);
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
@@ -83,7 +92,11 @@ $("#content_loader").on("submit","#adjustment_delete_form",function(e){
                 $.ajax({
                     url: url,
                     type: "GET",
+                    beforeSend: function(){
+                        $("#loading_screen").toggleClass("loading-hide");
+                    },
                     success: function(response){
+                        $("#loading_screen").toggleClass("loading-hide");
                         $("#content_loader").html(response);
                     }
                 });
@@ -101,7 +114,11 @@ $("#content_loader").on("click","#adjustment_show label a",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader").html(response);
         }
     });

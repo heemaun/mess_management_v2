@@ -7,7 +7,7 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
-class PaymentNotification extends Notification
+class ForgetPasswordNotification extends Notification
 {
     use Queueable;
 
@@ -17,11 +17,12 @@ class PaymentNotification extends Notification
      * @return void
      */
 
-    public $payment = '';
+     public $user,$code;
 
-    public function __construct($payment)
+    public function __construct($user,$code)
     {
-        $this->payment = $payment;
+        $this->user = $user;
+        $this->code = $code;
     }
 
     /**
@@ -43,8 +44,10 @@ class PaymentNotification extends Notification
      */
     public function toMail($notifiable)
     {
-        $payment = $this->payment;
-        return (new MailMessage)->view('defult.mail-formats.payment-mail',compact('payment'));
+        $user = $this->user;
+        $code = $this->code;
+        return (new MailMessage)->subject('Password Recovary')
+                                ->view('defult.mail-formats.forget-password-mail',compact('user','code'));
     }
 
     /**

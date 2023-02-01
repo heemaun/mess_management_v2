@@ -6,8 +6,12 @@ $("#content_loader").on("click","#user_edit_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -36,8 +40,10 @@ $("#content_loader").on("submit","#user_edit_form",function(e){
         },
         beforeSend: function(){
             $(".user-edit-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
@@ -63,8 +69,12 @@ $("#content_loader").on("submit","#user_edit_form",function(e){
                 $.ajax({
                     url: url,
                     type: "GET",
+                    beforeSend: function(){
+                        $("#loading_screen").toggleClass("loading-hide");
+                    },
                     success: function(response){
                         $("#content_loader").html(response);
+                        $("#loading_screen").toggleClass("loading-hide");
                     }
                 });
             }

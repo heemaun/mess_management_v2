@@ -6,8 +6,12 @@ $("#content_loader").on("click","#payment_show_edit",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -21,8 +25,12 @@ $("#content_loader").on("click","#payment_show_back",function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -55,9 +63,10 @@ $("#content_loader").on("submit","#payment_delete_form",function(e){
         },
         beforeSend: function(){
             $(".payment-delete-error").text("");
+            $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
-            console.log(response);
+            $("#loading_screen").toggleClass("loading-hide");
             //checking if validator fails
             if(response.status === "errors"){
                 $.each(response.errors,function(key,value){
@@ -83,8 +92,12 @@ $("#content_loader").on("submit","#payment_delete_form",function(e){
                 $.ajax({
                     url: url,
                     type: "GET",
+                    beforeSend: function(){
+                        $("#loading_screen").toggleClass("loading-hide");
+                    },
                     success: function(response){
                         $("#content_loader").html(response);
+                        $("#loading_screen").toggleClass("loading-hide");
                     }
                 });
             }
@@ -101,8 +114,12 @@ $("#content_loader").on("click","#payment_show label a,#payment_show_create",fun
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });

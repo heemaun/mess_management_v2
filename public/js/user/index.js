@@ -13,8 +13,12 @@ function searchUser()
             status: status,
             limit: limit,
         },
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader #user_index_table_container").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 }
@@ -27,6 +31,9 @@ $("#content_loader").on("click","#user_index .clickable", function(){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
         }
@@ -42,8 +49,12 @@ $("#content_loader").on("click","#user_index_create", function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -65,8 +76,12 @@ $("#content_loader").on("click","#user_index .pagination a",function(e){
             status: status,
             limit: limit,
         },
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader #user_index_table_container").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });

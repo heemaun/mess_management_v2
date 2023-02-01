@@ -44,7 +44,7 @@ class NewUserNotification extends Notification
     {
         $user = $this->user;
         $password = $this->password;
-        return (new MailMessage)->view('defult.add-user-mail',compact('user','password'));
+        return (new MailMessage)->view('defult.mail-formats.add-user-mail',compact('user','password'));
     }
 
     /**

@@ -145,14 +145,12 @@ html body header nav .hide {
   transform: translatex(500px);
 }
 html body main {
-  background-image: url("/images/main_pic.jpg");
-  background-size: cover;
   display: flex;
   flex-flow: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   margin-top: 81px;
-  height: 50vh;
+  height: auto;
 }
 html body main h1, html body main h6 {
   color: gold;
@@ -160,6 +158,42 @@ html body main h1, html body main h6 {
   margin: 0rem;
   text-transform: uppercase;
   text-shadow: 0.1rem 0.1rem 0.25rem black;
+}
+html body main .headlines {
+  min-height: 50vh;
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+}
+html body main .headlines h6 {
+  text-align: right;
+}
+html body main .top {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+html body main .top .charts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 33vh;
+  width: 100%;
+}
+html body main .middle {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  gap: 0.5rem;
+}
+html body main .middle .charts {
+  min-height: 33vh;
+  width: 100%;
 }
 html body .content-body {
   display: flex;
@@ -290,7 +324,55 @@ html body .login-div form .login-error {
   display: block;
   color: red;
 }
+html body .login-div form label span {
+  font-weight: normal;
+  font-style: italic;
+  cursor: pointer;
+  color: goldenrod;
+}
+html body .login-div form label span:hover {
+  text-decoration: underline;
+}
 html body .login-div form .btn-container {
+  margin-top: 0.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+html body .forget-password-div {
+  position: fixed;
+  top: 0rem;
+  left: 0rem;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.75);
+}
+html body .forget-password-div form {
+  max-width: 95%;
+  min-width: 90%;
+  background: black;
+  color: white;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  box-shadow: 0rem 0rem 0.5rem gray;
+}
+html body .forget-password-div form .forget-password-error {
+  display: block;
+  color: red;
+}
+html body .forget-password-div form label span {
+  font-weight: normal;
+  font-style: italic;
+  cursor: pointer;
+  color: goldenrod;
+}
+html body .forget-password-div form label span:hover {
+  text-decoration: underline;
+}
+html body .forget-password-div form .btn-container {
   margin-top: 0.5rem;
   display: flex;
   justify-content: space-between;
@@ -326,6 +408,37 @@ html body .change-password-div form .btn-container {
   justify-content: space-between;
   align-items: center;
 }
+html body .loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 999999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+html body .loading:after {
+  content: "";
+  width: 10rem;
+  height: 10rem;
+  border: 1rem solid gold;
+  border-top-color: red;
+  border-bottom-color: red;
+  border-radius: 50%;
+  -webkit-animation: loading 1s ease-in-out 0s infinite forwards;
+          animation: loading 1s ease-in-out 0s infinite forwards;
+}
+html body .loading-hide {
+  z-index: -9999;
+  display: none;
+}
+html body .loading-hide::after {
+  -webkit-animation: none;
+          animation: none;
+}
 html body .hide {
   display: none;
 }
@@ -347,6 +460,16 @@ html body .hide {
     transform: rotateY(360deg);
   }
 }
+@-webkit-keyframes loading {
+  to {
+    rotate: 1turn;
+  }
+}
+@keyframes loading {
+  to {
+    rotate: 1turn;
+  }
+}
 @media screen and (min-width: 640px) {
   html body .home-notice-view {
     min-width: 500px;
@@ -356,6 +479,9 @@ html body .hide {
     overflow: auto;
   }
   html body .login-div form {
+    min-width: 500px;
+  }
+  html body .forget-password-div form {
     min-width: 500px;
   }
   html body .change-password-div form {
@@ -385,6 +511,12 @@ html body .hide {
   }
   html body header nav .center-ul-open {
     display: none;
+  }
+  html body main .top {
+    flex-flow: row;
+  }
+  html body main .middle {
+    flex-flow: row;
   }
   html body .content-body {
     flex-flow: row;

@@ -15,8 +15,12 @@ function searchMember()
             floor: floor,
             limit: limit,
         },
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader #member_index_table_container").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 }
@@ -29,8 +33,12 @@ $("#content_loader").on("click","#member_index .clickable", function(){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -44,8 +52,12 @@ $("#content_loader").on("click","#member_index_create", function(e){
     $.ajax({
         url: url,
         type: "GET",
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
@@ -69,8 +81,12 @@ $("#content_loader").on("click","#member_index .pagination a",function(e){
             floor: floor,
             limit: limit,
         },
+        beforeSend: function(){
+            $("#loading_screen").toggleClass("loading-hide");
+        },
         success: function(response){
             $("#content_loader #member_index_table_container").html(response);
+            $("#loading_screen").toggleClass("loading-hide");
         }
     });
 });
