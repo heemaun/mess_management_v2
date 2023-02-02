@@ -10,6 +10,7 @@ html{
         .form-label{
             font-weight: bold;
             margin: 0rem;
+            color: #9d3b18;
         }
 
         h1,h2,h3,h4,legend{
@@ -188,10 +189,18 @@ html{
 
             .headlines{
                 min-height: 50vh;
+                width: 100%;
                 display: flex;
                 flex-flow: column;
                 justify-content: center;
                 align-items: center;
+                border: .1rem solid gray;
+                background-image: url('/images/pexels-fwstudio-129731.jpg');
+                box-shadow: 0rem 0rem .5rem gray inset;
+
+                h1{
+                    // animation: heading-animation 1s ease-in-out 1s infinite alternate-reverse forwards;
+                }
 
                 h6{
                     text-align: right;
@@ -512,6 +521,32 @@ html{
             }
         }
 
+        .up-arrow {
+            position: fixed;
+            left: 1rem;
+            bottom: 1rem;
+            font-size: 2rem;
+            transition: all 1s;
+
+            span {
+                svg {
+                    stroke: white;
+                    fill: gray;
+                    animation: learn_more 1s ease-in-out 0s infinite
+                        alternate-reverse;
+                }
+
+                &:hover {
+                    cursor: pointer;
+                }
+            }
+        }
+
+        .up-arrow-hide {
+            left: -10rem;
+            transition: all 1s;
+        }
+
         .hide{
             display: none;
         }
@@ -528,15 +563,43 @@ html{
     }
 }
 
+@keyframes heading-animation {
+    from{
+        transform: scale(1);
+    }
+
+    to{
+        transform: scale(2);
+    }
+}
+
 @keyframes loading {
     to {
         rotate: 1turn;
     }
 }
 
+@keyframes learn_more {
+    100% {
+        transform: translateY(-5px);
+    }
+
+    0% {
+        transform: translateY(5px);
+    }
+}
+
 @media screen and (min-width: 640px) {
     html{
         body{
+            main{
+                .headlines{
+                    h1{
+                        font-size: 3rem;
+                    }
+                }
+            }
+
             .home-notice-view{
                 min-width: 500px;
                 min-height: 50vh;
@@ -601,6 +664,12 @@ html{
             }
 
             main{
+                .headlines{
+                    h1{
+                        font-size: 4rem;
+                    }
+                }
+
                 .top {
                     flex-flow: row;
                 }

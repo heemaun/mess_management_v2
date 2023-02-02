@@ -161,7 +161,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($groundMembersMonths as $mm)
+            @foreach ($secondMembersMonths as $mm)
             <tr>
                 <td>{{ $loop->iteration }}</td>
                 <td class="left">{{ $mm->member->name }}</td>

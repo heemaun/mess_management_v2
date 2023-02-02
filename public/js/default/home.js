@@ -10,19 +10,7 @@ function homeload()
         success: function(response){
             $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader").html(response);
-
-            // checking login status whether to load dashboard
-            $.ajax({
-                url: "/check-login",
-                type: "GET",
-                dataType: "json",
-                success: function(response){
-                    // if login is true dashboard will load
-                    if(response.login){
-                        dashboard();
-                    }
-                }
-            });
+            dashboard();
         }
     });
 }

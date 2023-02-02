@@ -13,7 +13,6 @@
         <link rel="stylesheet" href="{{ asset('css/default/index.css') }}">
         <link rel="stylesheet" href="{{ asset('css/default/home.css') }}">
         <link rel="stylesheet" href="{{ asset('css/default/dashboard.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/default/forget-password.css') }}">
 
         {{-- user css --}}
         <link rel="stylesheet" href="{{ asset('css/user/index.css') }}">
@@ -248,6 +247,10 @@
         <section id="loading_screen" class="loading loading-hide">
 
         </section>
+
+        <div class="up-arrow">
+            <span id="up-arrow"><svg xmlns="http://www.w3.org/2000/svg" height="48" width="48"><path d="m14.1 36.75-2.1-2.1 12-12 12 12-2.1 2.1-9.9-9.9Zm0-12.65L12 22l12-12 12 12-2.1 2.1-9.9-9.9Z"/></svg></span>
+        </div>
 
         <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>

@@ -35,6 +35,7 @@ $("#content_loader").on("click","#user_index .clickable", function(){
             $("#loading_screen").toggleClass("loading-hide");
         },
         success: function(response){
+            $("#loading_screen").toggleClass("loading-hide");
             $("#content_loader").html(response);
         }
     });

@@ -107,4 +107,11 @@ $(document).ready(function(){
 });
 //repositining right ul location ends
 
-dashboard();
+$("#up-arrow").click(function(){
+    $("html, body").animate(
+        {
+            scrollTop: $("html").offset().top,
+        },
+        2000
+    );
+});

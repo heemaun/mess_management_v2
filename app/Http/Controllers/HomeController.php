@@ -82,7 +82,7 @@ class HomeController extends Controller
         }
 
         $groundMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
-                                ->where('members_months.month_id',$months->last()->id)
+                                ->where('members_months.month_id',$months->first()->id)
                                 ->where('members.floor','Ground Floor')
                                 ->where('members.status','active')
                                 ->select('members_months.*')
@@ -102,7 +102,7 @@ class HomeController extends Controller
         }
 
         $firstMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
-                                ->where('members_months.month_id',$months->last()->id)
+                                ->where('members_months.month_id',$months->first()->id)
                                 ->where('members.floor','1st Floor')
                                 ->where('members.status','active')
                                 ->select('members_months.*')
@@ -122,7 +122,7 @@ class HomeController extends Controller
         }
 
         $secondMembersMonths = MemberMonth::join('members','members_months.member_id','=','members.id')
-                                ->where('members_months.month_id',$months->last()->id)
+                                ->where('members_months.month_id',$months->first()->id)
                                 ->where('members.floor','2nd Floor')
                                 ->where('members.status','active')
                                 ->select('members_months.*')
